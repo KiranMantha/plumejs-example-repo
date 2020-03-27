@@ -74,11 +74,24 @@ class SampleEle {
 		this.props = {
 			oncount: this.outCount,
 			name: this.test
-		};
+		};		
+	}
+
+	enablePersonsRoute() {
+		window.localStorage.setItem('plumejs', 'now persons route is activated');
+	}
+
+	disablePersonsRoute() {
+		window.localStorage.removeItem('plumejs');
 	}
 
 	render() {
-		return html`			
+		return html`
+			<p>Persons route has <b>canActivate</b> gaurd which check for <i>plumejs</i> key in localstorage. Click enable button to navigate to persons route. Click disable button to disable persons route. </p>
+			<div>
+				<button class='btn btn-sm btn-primary' onclick=${ this.enablePersonsRoute } title='click persons nav to check persons route'>Enable Persons route</button>
+				<button class='btn btn-sm btn-primary' style='margin-left: 10px' onclick=${ this.disablePersonsRoute } title='click persons nav to check persons route'>Disable Persons route</button>
+			</div>
 			<div>${ 'username.greet'.translate({ name: 'test user' })}</div>
 			<input type='text' ref=${this.inputField} /><button class='btn btn-sm btn-primary' onclick=${() => { this.getRef() }}>click</button>
 			<div>

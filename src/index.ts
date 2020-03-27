@@ -42,7 +42,7 @@ export class AppComponent {
 			template: `<persons-list></persons-list>`,
 			templatePath: () => import('./persons/persons-list'),
 			canActivate: () => {
-				let key = localStorage.getItem('key');
+				let key = localStorage.getItem('plumejs');
 				if (!key) {
 					this.router.navigateTo('/home');
 					return false;
@@ -123,7 +123,7 @@ export class AppComponent {
 			</div>
 		</nav>
 		<div class="container">	
-			<h1 class="title">Hello world</h1>		
+			<h1 class="title">Hello world</h1>	
 			<router-outlet></router-outlet>
 		</div>
     `;

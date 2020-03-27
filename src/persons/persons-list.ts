@@ -35,8 +35,8 @@ class PersonsList {
 
 	render() {
 		return html`
-		<h4>Sample service injection with http call and passing data to other component</h4>
-		<div innerHTML='${ '10300'.translate('fr') }'></div>		
+			<h4>Sample service injection with http call and passing data to other component</h4>
+			Current route data: <code>${ JSON.stringify(this.router.getCurrentRoute(), null, 2) }</code>
 			<div>
 				<ul class="list-group">
 					${this.data.map(
@@ -72,6 +72,7 @@ class PersonDetails {
 		console.log("selected: user", this.userDetails);
 		if (this.userDetails.name) {
 			return html`
+				<strong>Person Details</strong>
 				<div>Name: ${this.userDetails.name}</div>
 				<div>Company: ${this.userDetails.company.name}</div>
 			`;
