@@ -12,6 +12,6 @@ module.exports = merge(baseConfig, {
     devtool: false,
     mode: 'production',
     output: {
-        publicPath: '/plumejs/'
+        publicPath: './'
     }
 });
