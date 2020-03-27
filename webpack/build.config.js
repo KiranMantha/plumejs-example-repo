@@ -10,5 +10,8 @@ const TerserPlugin = require('terser-webpack-plugin');
 
 module.exports = merge(baseConfig, {
     devtool: false,
-    mode: 'production'
+    mode: 'production',
+    output: {
+        publicPath: '/plumejs/'
+    }
 });
