@@ -11,7 +11,8 @@ class PersonService {
 
 @Component({
 	selector: "persons-list",
-	styleUrl: 'persons/persons-list.scss'
+	styleUrl: 'persons-list.scss',
+	useShadow: false
 })
 class PersonsList {
 	data: Array<string> = [];
@@ -38,7 +39,7 @@ class PersonsList {
 			<h4>Sample service injection with http call and passing data to other component</h4>
 			Current route data: <code>${ JSON.stringify(this.router.getCurrentRoute(), null, 2) }</code>
 			<div>
-				<ul class="list-group">
+				<ul class=" test list-group">
 					${this.data.map(
 						(user: any) =>
 							html`

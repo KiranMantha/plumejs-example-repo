@@ -1,4 +1,4 @@
-import { Component, Input, html, Injectable, Router, Ref, useRef } from "plumejs";
+import { Component, Input, html, Injectable, Router, Ref, useRef, IHooks } from "plumejs";
 
 @Injectable()
 class SampleService {
@@ -23,10 +23,15 @@ class TestService {
 @Component({
 	selector: "test-ele"
 })
-class TestEle {
+class TestEle implements IHooks {
 	update: any;
 	@Input()
 	testprops: any = {};
+
+	inputChanged(oldValue: any, newValue: any) {
+		console.log('oldvalue: ', oldValue);
+		console.log('newvalue: ', newValue);
+	}
 
 	render() {
 		return html`
