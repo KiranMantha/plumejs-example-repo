@@ -19,7 +19,7 @@ class PlumeComponents {
 		offText: 'OFF'
 	}
 
-	multiselectToggles = {
+	multiselectToggles: {[key:string]: IToggleInput} = {
 		enableMultiselect: {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.multiple = _checked;
@@ -30,6 +30,12 @@ class PlumeComponents {
 		disableDropdown: {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.disableDropdown = _checked;
+				this.update();
+			}
+		},
+		enableFilter: {
+			onchange: (_checked: boolean) => {
+				this.multiSelectOptions.enableFilter = _checked;
 				this.update();
 			}
 		}
@@ -49,7 +55,6 @@ class PlumeComponents {
         }],
 		displayField: 'name',
 		multiple: false,
-		enableFilter: true,
 		disableDropdown: false,
 		buttonText: (options:Array<any>) => {
 			if (options.length === 0) {
@@ -91,11 +96,11 @@ class PlumeComponents {
 	render() {
 			return html`
 					<div>
-						<h2 class='mb-20'>Plumejs UI Control Collection</h2>
+						<h2 class='title is-3 mb-20'>Plumejs UI Control Collection</h2>
 						<div class='mb-20'>
-							<h5>Modal</h5>
+							<h5 class='title is-5'>Modal</h5>
 							<button
-								class="button is-small is-info"
+								class="button is-info"
 								onclick=${() => {
 									this.openModal();
 								}}
@@ -104,21 +109,24 @@ class PlumeComponents {
 							</button>
 						</div>
 						<div class='mb-20'>
-							<h5>Notification</h5>
-							<button class='button is-small is-info' onclick=${() => { this.notify(); }}>Notify</button>
+							<h5 class='title is-5'>Notification</h5>
+							<button class='button is-info' onclick=${() => { this.notify(); }}>Notify</button>
 						</div>
 						<div class='mb-20'>
-							<h5>Toggle Button</h5>
+							<h5 class='title is-5'>Toggle Button</h5>
 							<toggle-button toggleOptions=${ this.toggleInput }></toggle-button>
 						</div>
 						<div class='mb-20'>
-							<h5>Multi select</h5>
+							<h5 class='title is-5'>Multi select</h5>
 							<div style='width: 500px'>
-								<div class='d-flex mb-20'>
+								<div class='is-flex mb-20'>
 									<span>enable multi select</span> <toggle-button toggleOptions=${this.multiselectToggles.enableMultiselect}></toggle-button>
 								</div>
-								<div class='d-flex mb-20'>
+								<div class='is-flex mb-20'>
 									<span>disable dropdown</span> <toggle-button toggleOptions=${this.multiselectToggles.disableDropdown}></toggle-button>
+								</div>
+								<div class='is-flex mb-20'>
+									<span>enable filtering</span> <toggle-button toggleOptions=${this.multiselectToggles.enableFilter}></toggle-button>
 								</div>
 							</div>
 							<div style='width: 300px'>
