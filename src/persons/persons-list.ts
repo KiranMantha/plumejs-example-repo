@@ -38,21 +38,22 @@ class PersonsList {
 		return html`
 			<h4>Sample service injection with http call and passing data to other component</h4>
 			Current route data: <code>${ JSON.stringify(this.router.getCurrentRoute(), null, 2) }</code>
-			<div>
-				<ul class=" test list-group">
+			<div class='mt-20 mb-20'>
+				<div class="list is-hoverable">
 					${this.data.map(
 						(user: any) =>
 							html`
-								<li class="list-group-item"
-									onclick=${() => {
+								<a href='#' class="list-item"
+									onclick=${(e:Event) => {
+										e.preventDefault();
 										this.alertName(user);
 									}}
 								>
 									${user.name}
-								</li>
+								</a>
 							`
 					)}
-				</ul>
+				</div>
 				<person-details
 					id="person-details"
 					userDetails=${this.persondetails}

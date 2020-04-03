@@ -14,7 +14,7 @@
   "license": "ISC",
   "dependencies": {
     "@types/react": "^16.9.25",
-    "bootstrap": "^4.4.1",
+    "bulma": "^0.8.1",
     "plumejs": "^2.1.6",
     "plumejs-ui": "^1.0.4"
   },

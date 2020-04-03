@@ -19,11 +19,19 @@ class PlumeComponents {
 		offText: 'OFF'
 	}
 
-	toggleMultiSelect: IToggleInput = {
-		onchange: (_checked: boolean) => {
-			this.multiSelectOptions.multiple = _checked;
-			this.multiSelectOptions.resetWidget = true;
-			this.update();
+	multiselectToggles = {
+		enableMultiselect: {
+			onchange: (_checked: boolean) => {
+				this.multiSelectOptions.multiple = _checked;
+				this.multiSelectOptions.resetWidget = true;
+				this.update();
+			}
+		},
+		disableDropdown: {
+			onchange: (_checked: boolean) => {
+				this.multiSelectOptions.disableDropdown = _checked;
+				this.update();
+			}
 		}
 	}
 
@@ -56,7 +64,7 @@ class PlumeComponents {
 		onchange: (selectedOption: any) => { console.log(selectedOption); }
 	}
 
-    openModal() {
+  openModal() {
 		const modal:IModal = this.modalsrvc.show({
 			renderTemplate: () => html`<nested-modal nestedModalData=${{ message: 'Hello World' }}></nested-modal>`,
 			modalTitle: "testing modal",
@@ -80,41 +88,44 @@ class PlumeComponents {
 		console.log(_checked);
 	}
 
-    render() {
-        return html`
-            <div>
-							<h2 class='mb-20'>Plumejs UI Control Collection</h2>
-							<div class='mb-20'>
-								<h5>Modal</h5>
-								<button
-									class="btn btn-sm btn-primary"
-									onclick=${() => {
-										this.openModal();
-									}}
-								>
-									Open Modal
-								</button>
-							</div>
-							<div class='mb-20'>
-								<h5>Notification</h5>
-								<button class='btn btn-sm btn-primary' onclick=${() => { this.notify(); }}>Notify</button>
-							</div>
-							<div class='mb-20'>
-								<h5>Toggle Button</h5>
-								<toggle-button toggleOptions=${ this.toggleInput }></toggle-button>
-							</div>
-							<div class='mb-20'>
-								<h5>Multi select</h5>
-								<div style='width: 500px'>
-									<div class='d-flex mb-20'>
-										<span>enable multi select</span> <toggle-button toggleOptions=${this.toggleMultiSelect}></toggle-button>
-									</div>
+	render() {
+			return html`
+					<div>
+						<h2 class='mb-20'>Plumejs UI Control Collection</h2>
+						<div class='mb-20'>
+							<h5>Modal</h5>
+							<button
+								class="button is-small is-info"
+								onclick=${() => {
+									this.openModal();
+								}}
+							>
+								Open Modal
+							</button>
+						</div>
+						<div class='mb-20'>
+							<h5>Notification</h5>
+							<button class='button is-small is-info' onclick=${() => { this.notify(); }}>Notify</button>
+						</div>
+						<div class='mb-20'>
+							<h5>Toggle Button</h5>
+							<toggle-button toggleOptions=${ this.toggleInput }></toggle-button>
+						</div>
+						<div class='mb-20'>
+							<h5>Multi select</h5>
+							<div style='width: 500px'>
+								<div class='d-flex mb-20'>
+									<span>enable multi select</span> <toggle-button toggleOptions=${this.multiselectToggles.enableMultiselect}></toggle-button>
 								</div>
-								<div style='width: 300px'>
-									<multi-select multiSelectOptions=${ this.multiSelectOptions }></multi-select>
+								<div class='d-flex mb-20'>
+									<span>disable dropdown</span> <toggle-button toggleOptions=${this.multiselectToggles.disableDropdown}></toggle-button>
 								</div>
 							</div>
-            </div>
-        `;
-    }
+							<div style='width: 300px'>
+								<multi-select multiSelectOptions=${ this.multiSelectOptions }></multi-select>
+							</div>
+						</div>
+					</div>
+			`;
+	}
 }

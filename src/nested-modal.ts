@@ -31,7 +31,7 @@ class NestedModal {
 			<div>sample modal</div>
 			<div>${ this.nestedModalData.message }</div>
 			<button
-				class="btn btn-sm btn-primary"
+				class="button is-small is-info"
 				onclick=${() => {
 					this.openAnotherModal();
 				}}

@@ -28,16 +28,11 @@ class TestEle implements IHooks {
 	@Input()
 	testprops: any = {};
 
-	inputChanged(oldValue: any, newValue: any) {
-		console.log('oldvalue: ', oldValue);
-		console.log('newvalue: ', newValue);
-	}
-
 	render() {
 		return html`
 			<div>
 				testing web component2 ${this.testprops.name}
-				<button class='btn btn-sm btn-primary' onclick=${(e: any) => this.counts(e)}>hi</button>
+				<button class='button is-small is-info' onclick=${(e: any) => this.counts(e)}>hi</button>
 				<input
 					value=${this.testprops.name}
 					oninput=${(e: any) => this.change(e.target.value)}
@@ -94,11 +89,11 @@ class SampleEle {
 		return html`
 			<p>Persons route has <b>canActivate</b> gaurd which check for <i>plumejs</i> key in localstorage. Click enable button to navigate to persons route. Click disable button to disable persons route. </p>
 			<div>
-				<button class='btn btn-sm btn-primary' onclick=${ this.enablePersonsRoute } title='click persons nav to check persons route'>Enable Persons route</button>
-				<button class='btn btn-sm btn-primary' style='margin-left: 10px' onclick=${ this.disablePersonsRoute } title='click persons nav to check persons route'>Disable Persons route</button>
+				<button class='button is-small is-info' onclick=${ this.enablePersonsRoute } title='click persons nav to check persons route'>Enable Persons route</button>
+				<button class='button is-small is-info' style='margin-left: 10px' onclick=${ this.disablePersonsRoute } title='click persons nav to check persons route'>Disable Persons route</button>
 			</div>
 			<div>${ 'username.greet'.translate({ name: 'test user' })}</div>
-			<input type='text' ref=${this.inputField} /><button class='btn btn-sm btn-primary' onclick=${() => { this.getRef() }}>click</button>
+			<input type='text' ref=${this.inputField} /><button class='button is-small is-info' onclick=${() => { this.getRef() }}>click</button>
 			<div>
 				<h1>Sample two way data binding</h1>
 				testing web component1 ${this.test}

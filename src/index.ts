@@ -1,4 +1,4 @@
-import { Component, html, TranslationService, Router, Route, Ref, useRef } from "plumejs";
+import { Component, html, TranslationService, Router, Route, Ref, useRef, IHooks } from "plumejs";
 import { registerToggleComponent, registerMultiSelectComponent } from 'plumejs-ui';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
@@ -9,9 +9,10 @@ registerMultiSelectComponent();
 @Component({
 	selector: "app-root",
 	styleUrl: "styles.scss",
+	useShadow: false,
 	root: true
 })
-export class AppComponent {
+export class AppComponent implements IHooks {
 	constructor(
 		private router: Router, 
 		private translations: TranslationService,
@@ -21,6 +22,10 @@ export class AppComponent {
 		translations.setTranslate(locale_fr, "fr");
 		translations.setDefaultLanguage("en");		
 	}
+
+	update: () => void;
+
+	showNav = false;
 
 	routes: Array<Route> = [
 		{
@@ -62,70 +67,82 @@ export class AppComponent {
 		this.router.navigateTo(path);
 	}
 
+	private _displayNav() {
+		this.showNav = !this.showNav;
+		this.update();
+	}
+
 	render() {
 		return html`
-		<nav class="navbar navbar-expand-lg navbar-light bg-light">
-			<a class="navbar-brand" href="#" onclick=${(e: Event) => { this.navigate(e, '/home') }}>PlumeJS</a>
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active">
-						<a
-							class="nav-link"
+			<nav class="navbar is-light" role="navigation" aria-label="main navigation">
+				<div class="navbar-brand">
+					<a class="navbar-item" href="#" onclick=${(e: Event) => {
+							this.navigate(e, "/home");
+						}}>
+						PlumeJS
+					</a>
+			
+					<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" onclick=${(e:Event) => {
+						e.preventDefault();
+						this._displayNav();
+					}}>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+						<span aria-hidden="true"></span>
+					</a>
+				</div>
+			
+				<div id="navbarBasicExample" class="navbar-menu ${ this.showNav ? 'is-active' : '' }">
+					<div class="navbar-start">
+						<a class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-				this.navigate(e, "/home");
-			}}
-							>Home
+								this.navigate(e, "/home");
+							}}>
+							Home
 						</a>
-					</li>
-					<li class="nav-item active">
-						<a
-							class="nav-link"
+			
+						<a class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-				this.navigate(e, "/controls");
-			}}
-							>UI Controls
+								this.navigate(e, "/controls");
+							}}>
+							UI Controls
 						</a>
-					</li>
-					<li class="nav-item active">
-						<a
-							class="nav-link"
+					
+						<a class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-				this.navigate(e, "/persons/123");
-			}}
-							>Persons</a
-						>
-					</li>
-					<li class="nav-item active">
-						<a
-							class="nav-link"
+								this.navigate(e, "/persons/123");
+							}}>
+							Persons
+						</a>
+					
+						<a class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-				this.navigate(e, "/form");
-			}}
-							>Sample Form</a
-						>
-					</li>
-					<li class="nav-item dropdown">
-						<select
-							class="form-control"
-							onchange=${(e: any) => {
-				this.translations.setDefaultLanguage(e.target.value);
-			}}
-						>
-							<option value="en">EN</option>
-							<option value="fr">FR</option>
-						</select>
-					</li>
-				</ul>
-			</div>
-		</nav>
-		<div class="container">	
-			<h1 class="title">Hello world</h1>	
-			<router-outlet></router-outlet>
-		</div>
+							this.navigate(e, "/form");
+						}}>
+							Sample Form
+						</a>
+			
+						<div class="navbar-item">
+							<div class="select">
+								<select
+									class="form-control"
+									onchange=${(e: any) => {
+									this.translations.setDefaultLanguage(e.target.value);
+									}}
+									>
+									<option value="en">EN</option>
+									<option value="fr">FR</option>
+								</select>
+							</div>
+						</div>
+					</div>
+				</div>
+			</nav>	
+			<slot></slot>
     `;
 	}
 }
