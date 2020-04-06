@@ -30,12 +30,14 @@ class PlumeComponents {
 		disableDropdown: {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.disableDropdown = _checked;
+				this.multiSelectOptions.resetWidget = true;
 				this.update();
 			}
 		},
 		enableFilter: {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.enableFilter = _checked;
+				this.multiSelectOptions.resetWidget = true;
 				this.update();
 			}
 		}
@@ -118,7 +120,7 @@ class PlumeComponents {
 						</div>
 						<div class='mb-20'>
 							<h5 class='title is-5'>Multi select</h5>
-							<div style='width: 500px'>
+							<div>
 								<div class='is-flex mb-20'>
 									<span>enable multi select</span> <toggle-button toggleOptions=${this.multiselectToggles.enableMultiselect}></toggle-button>
 								</div>
@@ -129,7 +131,7 @@ class PlumeComponents {
 									<span>enable filtering</span> <toggle-button toggleOptions=${this.multiselectToggles.enableFilter}></toggle-button>
 								</div>
 							</div>
-							<div style='width: 300px'>
+							<div class='is-flex'>
 								<multi-select multiSelectOptions=${ this.multiSelectOptions }></multi-select>
 							</div>
 						</div>
