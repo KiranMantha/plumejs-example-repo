@@ -6,7 +6,7 @@ const appconstants = {
     publicPath: '/',
     root: '../',
     sourceDir: '../src',
-    buildDir: '../dist',
+    buildDir: '../docs',
     node_modules: '../node_modules',
     plumeuiDir: '../node_modules/plumejs-ui'
 }
