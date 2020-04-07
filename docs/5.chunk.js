@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{48:function(e,t,o){"use strict";o.r(t);var l=o(0),s=o(1),i=o(8);let n=class NestedModal{constructor(e){this.modalsrvc=e,this.nestedModalData={}}openAnotherModal(){const e=this.modalsrvc.show({renderTemplate:()=>s.html`<div>i'm nested modal</div>`,modalTitle:"nested modal",modalClass:"nested-class"});e.onOpen.subscribe(()=>{console.log("nested modal open")}),e.onClose.subscribe(()=>{console.log("nested modal closed")})}render(){return s.html`
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{48:function(t,e,o){"use strict";o.r(e);var s=o(0),l=o(1),i=o(8);let n=class NestedModal{constructor(t){this.modalsrvc=t,this.nestedModalData={}}openAnotherModal(){const t=this.modalsrvc.show({renderTemplate:()=>l.html`<div>i'm nested modal</div>`,modalTitle:"nested modal",modalClass:"nested-class"});t.onOpen.subscribe(()=>{console.log("nested modal open")}),t.onClose.subscribe(()=>{console.log("nested modal closed")})}render(){return l.html`
 			<div>sample modal</div>
 			<div>${this.nestedModalData.message}</div>
 			<button
@@ -7,7 +7,7 @@
 			>
 				open another modal
 			</button>
-		`}};Object(l.__decorate)([Object(s.Input)(),Object(l.__metadata)("design:type",Object)],n.prototype,"nestedModalData",void 0),n=Object(l.__decorate)([Object(s.Component)({selector:"nested-modal"}),Object(l.__metadata)("design:paramtypes",[i.ModalService])],n);let a=class PlumeComponents{constructor(e,t){this.modalsrvc=e,this.notifySrvc=t,this.toggleInput={onchange:this.onToggleChange.bind(this),onText:"ON",offText:"OFF"},this.multiselectToggles={enableMultiselect:{onchange:e=>{this.multiSelectOptions.multiple=e,this.multiSelectOptions.resetWidget=!0,this.update()}},disableDropdown:{onchange:e=>{this.multiSelectOptions.disableDropdown=e,this.multiSelectOptions.resetWidget=!0,this.update()}},enableFilter:{onchange:e=>{this.multiSelectOptions.enableFilter=e,this.multiSelectOptions.resetWidget=!0,this.update()}}},this.multiSelectOptions={data:[{name:"option1"},{name:"option2"},{name:"option3"},{name:"option4"},{name:"option5"}],displayField:"name",multiple:!1,disableDropdown:!1,buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.map(e=>e.name).join(", "),onchange:e=>{console.log(e)}}}openModal(){const e=this.modalsrvc.show({renderTemplate:()=>s.html`<nested-modal nestedModalData=${{message:"Hello World"}}></nested-modal>`,modalTitle:"testing modal",modalClass:"sample-class"});e.onOpen.subscribe(()=>{console.log("main modal open",e.Id)}),e.onClose.subscribe(()=>{console.log("main modal closed")})}notify(){this.notifySrvc.sendMessage("hello world",i.NotificationType.Info)}onToggleChange(e){console.log(e)}render(){return s.html`
+		`}};Object(s.__decorate)([Object(l.Input)(),Object(s.__metadata)("design:type",Object)],n.prototype,"nestedModalData",void 0),n=Object(s.__decorate)([Object(l.Component)({selector:"nested-modal"}),Object(s.__metadata)("design:paramtypes",[i.ModalService])],n);let a=class PlumeComponents{constructor(t,e){this.modalsrvc=t,this.notifySrvc=e,this.toggleInput={onchange:this.onToggleChange.bind(this),onText:"ON",offText:"OFF"},this.multiselectToggles={enableMultiselect:{onchange:t=>{this.multiSelectOptions.multiple=t,this.multiSelectOptions.resetWidget=!0,this.update()}},disableDropdown:{onchange:t=>{this.multiSelectOptions.disableDropdown=t,this.multiSelectOptions.resetWidget=!0,this.update()}},enableFilter:{onchange:t=>{this.multiSelectOptions.enableFilter=t,this.multiSelectOptions.resetWidget=!0,this.update()}}},this.multiSelectOptions={data:[{name:"option1"},{name:"option2"},{name:"option3"},{name:"option4"},{name:"option5"}],displayField:"name",multiple:!1,disableDropdown:!1,buttonText:t=>0===t.length?"None selected":t.length>3?t.length+" selected":t.map(t=>t.name).join(", "),onchange:t=>{console.log(t)}}}openModal(){const t=this.modalsrvc.show({renderTemplate:()=>l.html`<nested-modal nestedModalData=${{message:"Hello World"}}></nested-modal>`,modalTitle:"testing modal",modalClass:"sample-class"});t.onOpen.subscribe(()=>{console.log("main modal open",t.Id)}),t.onClose.subscribe(()=>{console.log("main modal closed")})}notify(){this.notifySrvc.sendMessage("hello world",i.NotificationType.Info)}notifyWithAutoHide(){this.notifySrvc.sendMessage("hello world",i.NotificationType.Info,!0)}onToggleChange(t){console.log(t)}render(){return l.html`
 					<div>
 						<h2 class='title is-3 mb-20'>Plumejs UI Control Collection</h2>
 						<div class='mb-20'>
@@ -21,7 +21,8 @@
 						</div>
 						<div class='mb-20'>
 							<h5 class='title is-5'>Notification</h5>
-							<button class='button is-small is-info' onclick=${()=>{this.notify()}}>Notify</button>
+							<button class='button is-small is-info mr-10' onclick=${()=>{this.notify()}}>Notify with action</button>
+							<button class='button is-small is-info' onclick=${()=>{this.notifyWithAutoHide()}}>Notify with auto hide</button>
 						</div>
 						<div class='mb-20'>
 							<h5 class='title is-5'>Toggle Button</h5>
@@ -45,4 +46,4 @@
 							</div>
 						</div>
 					</div>
-			`}};a=Object(l.__decorate)([Object(s.Component)({selector:"plume-comp"}),Object(l.__metadata)("design:paramtypes",[i.ModalService,i.NotificationService])],a)}}]);
+			`}};a=Object(s.__decorate)([Object(l.Component)({selector:"plume-comp"}),Object(s.__metadata)("design:paramtypes",[i.ModalService,i.NotificationService])],a)}}]);

@@ -91,6 +91,10 @@ class PlumeComponents {
 		this.notifySrvc.sendMessage('hello world', NotificationType.Info);
 	}
 
+	notifyWithAutoHide() {
+		this.notifySrvc.sendMessage('hello world', NotificationType.Info, true);
+	}
+
 	onToggleChange(_checked: boolean) {
 		console.log(_checked);
 	}
@@ -112,7 +116,8 @@ class PlumeComponents {
 						</div>
 						<div class='mb-20'>
 							<h5 class='title is-5'>Notification</h5>
-							<button class='button is-small is-info' onclick=${() => { this.notify(); }}>Notify</button>
+							<button class='button is-small is-info mr-10' onclick=${() => { this.notify(); }}>Notify with action</button>
+							<button class='button is-small is-info' onclick=${() => { this.notifyWithAutoHide(); }}>Notify with auto hide</button>
 						</div>
 						<div class='mb-20'>
 							<h5 class='title is-5'>Toggle Button</h5>
