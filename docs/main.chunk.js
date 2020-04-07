@@ -2,7 +2,7 @@
 			<nav class="navbar is-light" role="navigation" aria-label="main navigation">
 				<div class="navbar-brand">
 					<a class="navbar-item" href="#" onclick=${e=>{this.navigate(e,"/home")}}>
-						PlumeJS
+						<img src='./images/plume-logo.jpg'/>
 					</a>
 			
 					<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" onclick=${e=>{e.preventDefault(),this._displayNav()}}>

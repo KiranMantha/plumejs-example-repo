@@ -79,7 +79,7 @@ export class AppComponent implements IHooks {
 					<a class="navbar-item" href="#" onclick=${(e: Event) => {
 							this.navigate(e, "/home");
 						}}>
-						PlumeJS
+						<img src='./images/plume-logo.jpg'/>
 					</a>
 			
 					<a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" onclick=${(e:Event) => {

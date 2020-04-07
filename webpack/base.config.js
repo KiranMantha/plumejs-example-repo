@@ -12,6 +12,7 @@ const appconstants = {
 }
 const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
+const CopyWebpackPlugin = require('copy-webpack-plugin');
 const fromDir = require('./custom-scss-loader');
 const scssMap = fromDir([path.resolve(__dirname, appconstants.sourceDir), path.resolve(__dirname, appconstants.plumeuiDir)], '.scss');
 
@@ -41,15 +42,16 @@ module.exports = {
                     }
                 }]
             }, {
-                test: /\.(png|svg|jpg|gif|woff|woff2|eot|ttf|otf)$/,
+                test: /\.(png|jp(e*)g|svg)$/,  
                 use: [{
-                    loader: 'file-loader',
-                    options: {
+                    loader: 'url-loader',
+                    options: { 
+                        limit: 8000, // Convert images < 8kb to base64 strings
                         name: 'images/[name].[ext]'
-                    }
-                }],
+                    } 
+                }]
             }, {
-                test: /\.(woff2?|ttf|eot|svg)$/,
+                test: /\.(woff2?|ttf|eot)$/,
                 use: [{
                     loader: 'url-loader',
                     options: {
@@ -74,7 +76,10 @@ module.exports = {
         }),
         new webpack.DefinePlugin({
             "process.env.COMPILEDCSSOBJ": JSON.stringify(scssMap)
-        })
+        }),
+        new CopyWebpackPlugin([
+            {from:'src/images',to:'images'}
+        ])
     ],
     optimization: {
         minimizer: [
