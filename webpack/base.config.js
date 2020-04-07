@@ -18,7 +18,7 @@ const scssMap = fromDir([path.resolve(__dirname, appconstants.sourceDir), path.r
 
 module.exports = {
     devtool: 'eval-cheap-source-map',
-    entry: './src/index.ts',
+    entry: ['./src/index.ts', './src/polyfills.ts'],
     output: {
         path: path.resolve(__dirname, appconstants.buildDir),
         publicPath: appconstants.publicPath,
