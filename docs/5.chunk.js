@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{48:function(t,e,o){"use strict";o.r(e);var s=o(0),l=o(1),i=o(8);let n=class NestedModal{constructor(t){this.modalsrvc=t,this.nestedModalData={}}openAnotherModal(){const t=this.modalsrvc.show({renderTemplate:()=>l.html`<div>i'm nested modal</div>`,modalTitle:"nested modal",modalClass:"nested-class"});t.onOpen.subscribe(()=>{console.log("nested modal open")}),t.onClose.subscribe(()=>{console.log("nested modal closed")})}render(){return l.html`
+(window.webpackJsonp=window.webpackJsonp||[]).push([[5],{49:function(t,e,o){"use strict";o.r(e);var s=o(0),l=o(1),i=o(8);let n=class NestedModal{constructor(t){this.modalsrvc=t,this.nestedModalData={}}openAnotherModal(){const t=this.modalsrvc.show({renderTemplate:()=>l.html`<div>i'm nested modal</div>`,modalTitle:"nested modal",modalClass:"nested-class"});t.onOpen.subscribe(()=>{console.log("nested modal open")}),t.onClose.subscribe(()=>{console.log("nested modal closed")})}render(){return l.html`
 			<div>sample modal</div>
 			<div>${this.nestedModalData.message}</div>
 			<button
