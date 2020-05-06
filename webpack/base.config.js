@@ -42,6 +42,10 @@ module.exports = {
                     }
                 }]
             }, {
+                test: /\.(s*)css$/,
+                exclude: /node_modules/,
+                use: ['css-loader', 'sass-loader']
+            }, {
                 test: /\.(png|jp(e*)g|svg)$/,  
                 use: [{
                     loader: 'url-loader',

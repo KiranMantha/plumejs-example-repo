@@ -23,3 +23,21 @@ interface fetch {
 	resetMocks: () => void;
 	mockResponseOnce: (mockResponse:string) => void;
 }
+
+// declare module '*.scss' {
+//   interface IClassNames {
+//     [className: string]: string
+//   }
+//   const classNames: IClassNames;
+//   export = classNames;
+// }
+
+declare module '*.scss' {
+  const content: any;
+  export default content;
+}
+
+// declare module '*.scss' {
+//   const content: {[className: string]: string};
+//   export = content;
+// }

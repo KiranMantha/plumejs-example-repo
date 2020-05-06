@@ -2,6 +2,9 @@ import { Component, html, TranslationService, Router, Route, Ref, useRef, IHooks
 import { registerToggleComponent, registerMultiSelectComponent } from 'plumejs-ui';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
+import style from "./styles.scss";
+
+console.log('styles.scss result using import', style);
 
 registerToggleComponent();
 registerMultiSelectComponent();
