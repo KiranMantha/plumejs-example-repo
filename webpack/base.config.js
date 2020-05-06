@@ -10,11 +10,8 @@ const appconstants = {
     node_modules: '../node_modules',
     plumeuiDir: '../node_modules/plumejs-ui'
 }
-const webpack = require('webpack');
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const fromDir = require('./custom-scss-loader');
-const scssMap = fromDir([path.resolve(__dirname, appconstants.sourceDir), path.resolve(__dirname, appconstants.plumeuiDir)], '.scss');
 
 module.exports = {
     devtool: 'eval-cheap-source-map',
@@ -77,9 +74,6 @@ module.exports = {
         }),
         new WebpackPrebuild(() => {
             del([path.resolve(__dirname, appconstants.buildDir)])
-        }),
-        new webpack.DefinePlugin({
-            "process.env.COMPILEDCSSOBJ": JSON.stringify(scssMap)
         }),
         new CopyWebpackPlugin([
             {from:'src/images',to:'images'}

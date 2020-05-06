@@ -2,16 +2,16 @@ import { Component, html, TranslationService, Router, Route, Ref, useRef, IHooks
 import { registerToggleComponent, registerMultiSelectComponent } from 'plumejs-ui';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
-import style from "./styles.scss";
+import globalstyles from "./styles.scss";
 
-console.log('styles.scss result using import', style);
+console.log('styles.scss result using import', globalstyles);
 
 registerToggleComponent();
 registerMultiSelectComponent();
 
 @Component({
 	selector: "app-root",
-	styleUrl: "styles.scss",
+	styles: globalstyles,
 	useShadow: false,
 	root: true
 })
