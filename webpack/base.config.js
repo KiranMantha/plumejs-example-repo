@@ -7,8 +7,7 @@ const appconstants = {
     root: '../',
     sourceDir: '../src',
     buildDir: '../docs',
-    node_modules: '../node_modules',
-    plumeuiDir: '../node_modules/plumejs-ui'
+    node_modules: '../node_modules'
 }
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
