@@ -30,5 +30,5 @@ declare module '*.scss' {
 	// hence use only css-loader and sass-loader which result in proper compiled css array 
 	// calling toString on compiled css array will result in proper css string 
 	// which will feed to component decorator
-  export default content.toString();
+  	export default content.toString();
 }

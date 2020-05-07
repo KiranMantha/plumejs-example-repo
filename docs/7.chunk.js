@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{52:function(e,l,a){"use strict";a.r(l);var o=a(0),s=a(1);let r=class SampleForm{render(){return s.html`
+(window.webpackJsonp=window.webpackJsonp||[]).push([[7],{56:function(e,l,a){"use strict";a.r(l);var o=a(0),s=a(1);let r=class SampleForm{render(){return s.html`
         <div>
             <form>
                 <div class="form-group">
