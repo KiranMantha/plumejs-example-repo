@@ -145,7 +145,10 @@ export class AppComponent implements IHooks {
 					</div>
 				</div>
 			</nav>	
-			<slot></slot>
+			<div class="container">	
+                <h1 class="title is-size-1-touch">Hello world</h1>	
+                <router-outlet></router-outlet>
+            </div>
     `;
 	}
 }
