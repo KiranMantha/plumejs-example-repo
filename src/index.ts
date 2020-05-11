@@ -4,8 +4,6 @@ import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
 import globalstyles from "./styles.scss";
 
-console.log('styles.scss result using import', globalstyles);
-
 registerToggleComponent();
 registerMultiSelectComponent();
 

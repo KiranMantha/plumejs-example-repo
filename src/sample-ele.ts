@@ -1,4 +1,5 @@
 import { Component, Input, html, Injectable, Router, Ref, useRef, IHooks } from "plumejs";
+import './emulated-styles.component';
 
 @Injectable()
 class SampleService {
@@ -99,6 +100,11 @@ class SampleEle {
 				testing web component1 ${this.test}
 				<test-ele testprops=${this.props}></test-ele>
 			</div>
+			${
+				[1,2,3].map(()=>{
+					return html`<emulated-styles></emulated-styles>`
+				})
+			}
 		`;
 	}
 

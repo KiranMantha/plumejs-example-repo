@@ -14,7 +14,7 @@ const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
     devtool: 'eval-cheap-source-map',
-    entry: ['./src/index.ts', './src/polyfills.ts'],
+    entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, appconstants.buildDir),
         publicPath: appconstants.publicPath,
