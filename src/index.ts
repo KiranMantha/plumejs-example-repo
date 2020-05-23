@@ -93,7 +93,7 @@ export class AppComponent implements IHooks {
 					</a>
 				</div>
 			
-				<div id="navbarBasicExample" class="navbar-menu ${ this.showNav ? 'is-active' : '' }">
+				<div id="navbarBasicExample" class=${`navbar-menu ${ this.showNav ? 'is-active' : '' }`}>
 					<div class="navbar-start">
 						<a class="navbar-item"
 							href="#"
