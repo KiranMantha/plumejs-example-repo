@@ -2,13 +2,13 @@
     "compilerOptions": {
         "baseUrl": "./",
         "rootDir": "./",
+        "outDir": "./dist/out-tsc",
         "target": "es2015",
         "moduleResolution": "node",
         "module": "esnext",
         "lib": [
-            "dom",
-            "es2015",
-            "es2015.promise"
+            "es2017",
+            "dom"
         ],
         "importHelpers": true,
         "noEmitOnError": true,
@@ -21,6 +21,5 @@
             "@types",
             "node_modules/@types"
         ]
-    },
-    "exclude": ["node_modules"]
+    }
 }

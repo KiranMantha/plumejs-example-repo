@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{52:function(e,l,a){"use strict";a.r(l);var o=a(0),s=a(1);let r=class SampleForm{render(){return s.html`
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{52:function(e,l,a){"use strict";a.r(l);var o=a(0),s=a(1);(()=>{let e=class SampleForm{render(){return s.html`
         <div>
             <form>
                 <div class="form-group">
@@ -17,4 +17,4 @@
                 <button type="submit" class="button is-info">Submit</button>
             </form>
         </div>
-        `}};r=Object(o.__decorate)([Object(s.Component)({selector:"sample-form"})],r)}}]);
+        `}};e=Object(o.__decorate)([Object(s.Component)({selector:"sample-form"})],e)})()}}]);
