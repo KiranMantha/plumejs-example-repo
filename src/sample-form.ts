@@ -11,13 +11,15 @@ class SampleForm {
 
 	constructor() {
 		const { formFields, createChangeHandler } = useFormFields({
-            email: "",
-            password: "",
-            checkme: false,
-        });
-        this.sampleformFields = formFields;
-        this.createChangeHandler = createChangeHandler;
-    }
+			email: "",
+			password: "",
+			checkme: false,
+			options: [],
+			gender: "",
+		});
+		this.sampleformFields = formFields;
+		this.createChangeHandler = createChangeHandler;
+	}
 
 	submitForm(e: Event) {
 		e.preventDefault();
@@ -28,7 +30,11 @@ class SampleForm {
 	render() {
 		return html`
 			<div>
-				<form onsubmit=${(e:Event) => {this.submitForm(e)}}>
+				<form
+					onsubmit=${(e: Event) => {
+						this.submitForm(e);
+					}}
+				>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label>
 						<input
@@ -67,12 +73,39 @@ class SampleForm {
 							>Check me out</label
 						>
 					</div>
+					<div class="form-group form-check">
+						<label for="exampleInputPassword1">select</label>
+						<select multiple value=${this.sampleformFields.options} onchange=${this.createChangeHandler("options")}>
+							<option value="1">1</option>
+							<option value="2">2</option>
+							<option value="3">3</option>
+							<option value="4">4</option>
+						</select>
+					</div>
+					<div class="form-group form-check">
+						<input
+							type="checkbox"
+							id="gender_male"
+							name="gender"
+							value="male"
+							onchange=${this.createChangeHandler("gender")}
+						/>
+						<label for="gender_male">Male</label>
+						<input
+							type="checkbox"
+							id="gender_female"
+							name="gender"
+							value="female"
+							onchange=${this.createChangeHandler("gender")}
+						/>
+						<label for="gender_female">Female</label>
+					</div>
 					<button type="submit" class="button is-info">Submit</button>
 				</form>
 			</div>
 			<pre>
 				<code>
-					${ JSON.stringify(this.sampleformFields, null, '\t') }
+					${JSON.stringify(this.sampleformFields, null, "\t")}
 				</code>
 			</pre>
 		`;
