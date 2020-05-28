@@ -47,15 +47,22 @@ class PlumeComponents {
 		data: [{
 			name: 'option1'
 		}, {
-            name: 'option2'
-        },{
-            name: 'option3'
-        },{
-            name: 'option4'
-        },{
-            name: 'option5'
-        }],
+				name: 'option2'
+		},{
+				name: 'option3'
+		},{
+				name: 'option4'
+		},{
+				name: 'option5'
+		}],
+		selectedValues: [{
+			name: 'option1'
+		},{
+			name: 'option2'
+		}],
 		displayField: 'name',
+		// data: ['option1', 'option2', 'option3', 'option4'],
+		// selectedValues: ['option1', 'option2'],
 		multiple: false,
 		disableDropdown: false,
 		buttonText: (options:Array<any>) => {
@@ -66,6 +73,7 @@ class PlumeComponents {
 				return options.length + ' selected';
 			} else {
 				return options.map(i=>i.name).join(', ');
+				//return options.join(', ')
 			}
 		},
 		onchange: (selectedOption: any) => { console.log(selectedOption); }
