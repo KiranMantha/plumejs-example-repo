@@ -1,4 +1,5 @@
 import { Component, html, useFormFields } from "plumejs";
+import { IMultiSelectOptions } from 'plumejs-ui';
 // https://blog.logrocket.com/forms-in-react-in-2020/
 
 @Component({
@@ -7,18 +8,42 @@ import { Component, html, useFormFields } from "plumejs";
 class SampleForm {
 	sampleformFields: any;
 	createChangeHandler: any;
+	multiSelectChangehandler: any;
 	update: any;
+	multiSelectOptions: IMultiSelectOptions = {
+		data: ['option1', 'option2', 'option3', 'option4'],
+		multiple: true,
+		onchange: (optionsArr: string[]) => {
+			this.multiSelectChangehandler({
+				target: { 
+					value: optionsArr
+				}
+			});
+		},		
+		buttonText: (options:Array<string>) => {
+			if (options.length === 0) {
+				return 'None selected';
+			}
+			else if (options.length > 3) {
+				return options.length + ' selected';
+			} else {
+				return options.join(', ');
+			}
+		},
+	}
 
 	constructor() {
 		const { formFields, createChangeHandler } = useFormFields({
 			email: "",
 			password: "",
 			checkme: false,
+			option: '',
 			options: [],
 			gender: "",
 		});
 		this.sampleformFields = formFields;
 		this.createChangeHandler = createChangeHandler;
+		this.multiSelectChangehandler = this.createChangeHandler('options');
 	}
 
 	submitForm(e: Event) {
@@ -74,13 +99,17 @@ class SampleForm {
 						>
 					</div>
 					<div class="form-group form-check">
-						<label for="exampleInputPassword1">select</label>
-						<select multiple value=${this.sampleformFields.options} onchange=${this.createChangeHandler("options")}>
+						<label>single select</label>
+						<select value=${this.sampleformFields.option} onchange=${this.createChangeHandler("option")}>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
 						</select>
+					</div>
+					<div>
+					<label>plumejs multi select</label>
+					<multi-select class="d-inline-block" multiSelectOptions=${ this.multiSelectOptions }></multi-select>
 					</div>
 					<div class="form-group form-check">
 						<input

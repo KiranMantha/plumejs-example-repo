@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{54:function(e,a,l){"use strict";l.r(a);var o=l(0),s=l(1);(()=>{let e=class SampleForm{constructor(){const{formFields:e,createChangeHandler:a}=Object(s.useFormFields)({email:"",password:"",checkme:!1,options:[],gender:""});this.sampleformFields=e,this.createChangeHandler=a}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.update()}render(){return s.html`
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{54:function(e,l,a){"use strict";a.r(l);var t=a(0),o=a(1);(()=>{let e=class SampleForm{constructor(){this.multiSelectOptions={data:["option1","option2","option3","option4"],multiple:!0,onchange:e=>{this.multiSelectChangehandler({target:{value:e}})},buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.join(", ")};const{formFields:e,createChangeHandler:l}=Object(o.useFormFields)({email:"",password:"",checkme:!1,option:"",options:[],gender:""});this.sampleformFields=e,this.createChangeHandler=l,this.multiSelectChangehandler=this.createChangeHandler("options")}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.update()}render(){return o.html`
 			<div>
 				<form
 					onsubmit=${e=>{this.submitForm(e)}}
@@ -42,13 +42,17 @@
 						>
 					</div>
 					<div class="form-group form-check">
-						<label for="exampleInputPassword1">select</label>
-						<select multiple value=${this.sampleformFields.options} onchange=${this.createChangeHandler("options")}>
+						<label>single select</label>
+						<select value=${this.sampleformFields.option} onchange=${this.createChangeHandler("option")}>
 							<option value="1">1</option>
 							<option value="2">2</option>
 							<option value="3">3</option>
 							<option value="4">4</option>
 						</select>
+					</div>
+					<div>
+					<label>plumejs multi select</label>
+					<multi-select class="d-inline-block" multiSelectOptions=${this.multiSelectOptions}></multi-select>
 					</div>
 					<div class="form-group form-check">
 						<input
@@ -76,4 +80,4 @@
 					${JSON.stringify(this.sampleformFields,null,"\t")}
 				</code>
 			</pre>
-		`}};e=Object(o.__decorate)([Object(s.Component)({selector:"sample-form"}),Object(o.__metadata)("design:paramtypes",[])],e)})()}}]);
+		`}};e=Object(t.__decorate)([Object(o.Component)({selector:"sample-form"}),Object(t.__metadata)("design:paramtypes",[])],e)})()}}]);
