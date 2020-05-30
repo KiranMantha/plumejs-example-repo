@@ -113,7 +113,7 @@ class SampleForm {
 					</div>
 					<div class="form-group form-check">
 						<input
-							type="checkbox"
+							type="radio"
 							id="gender_male"
 							name="gender"
 							value="male"
@@ -121,7 +121,7 @@ class SampleForm {
 						/>
 						<label for="gender_male">Male</label>
 						<input
-							type="checkbox"
+							type="radio"
 							id="gender_female"
 							name="gender"
 							value="female"
