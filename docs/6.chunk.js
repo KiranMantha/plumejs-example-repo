@@ -1,4 +1,4 @@
-(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{54:function(e,l,a){"use strict";a.r(l);var t=a(0),o=a(1);let s=class SampleForm{constructor(){this.multiSelectOptions={data:["option1","option2","option3","option4"],multiple:!0,onchange:e=>{this.multiSelectChangehandler({target:{value:e}})},buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.join(", ")};const{formFields:e,createChangeHandler:l}=Object(o.useFormFields)({email:"",password:"",checkme:!1,option:"",options:[],gender:""});this.sampleformFields=e,this.createChangeHandler=l,this.multiSelectChangehandler=this.createChangeHandler("options")}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.update()}render(){return o.html`
+(window.webpackJsonp=window.webpackJsonp||[]).push([[6],{54:function(e,l,a){"use strict";a.r(l);var t=a(0),o=a(1);(()=>{let e=class SampleForm{constructor(){this.multiSelectOptions={data:["option1","option2","option3","option4"],multiple:!0,onchange:e=>{this.multiSelectChangehandler({target:{value:e}})},buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.join(", ")};const{formFields:e,createChangeHandler:l}=Object(o.useFormFields)({email:"",password:"",checkme:!1,option:"",options:[],gender:""});this.sampleformFields=e,this.createChangeHandler=l,this.multiSelectChangehandler=this.createChangeHandler("options")}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.update()}render(){return o.html`
 			<div>
 				<form
 					onsubmit=${e=>{this.submitForm(e)}}
@@ -80,4 +80,4 @@
 					${JSON.stringify(this.sampleformFields,null,"\t")}
 				</code>
 			</pre>
-		`}};s=Object(t.__decorate)([Object(o.Component)({selector:"sample-form"}),Object(t.__metadata)("design:paramtypes",[])],s)}}]);
+		`}};e=Object(t.__decorate)([Object(o.Component)({selector:"sample-form"}),Object(t.__metadata)("design:paramtypes",[])],e)})()}}]);
