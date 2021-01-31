@@ -1,4 +1,5 @@
-import { Component, Input, html, Injectable, Router } from "plumejs";
+import { Component, Input, html, Injectable } from "@plumejs/core";
+import { Router } from '@plumejs/router';
 import personListStyles from './persons-list.scss';
 
 @Injectable()

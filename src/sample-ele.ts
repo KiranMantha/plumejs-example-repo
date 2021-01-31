@@ -1,4 +1,5 @@
-import { Component, Input, html, Injectable, Router, Ref, useRef, IHooks } from "plumejs";
+import { Component, Input, html, Injectable, Ref, useRef, IHooks } from "@plumejs/core";
+import { Router } from '@plumejs/router';
 import './emulated-styles.component';
 
 @Injectable()
@@ -79,11 +80,11 @@ class SampleEle {
 	}
 
 	enablePersonsRoute() {
-		window.localStorage.setItem('plumejs', 'now persons route is activated');
+		window.localStorage.setItem('@plumejs/core', 'now persons route is activated');
 	}
 
 	disablePersonsRoute() {
-		window.localStorage.removeItem('plumejs');
+		window.localStorage.removeItem('@plumejs/core');
 	}
 
 	render() {

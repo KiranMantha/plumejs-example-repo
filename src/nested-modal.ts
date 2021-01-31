@@ -1,5 +1,5 @@
-import { Input, Component, html } from "plumejs";
-import { ModalService } from 'plumejs-ui';
+import { Input, Component, html } from "@plumejs/core";
+import { ModalService } from '@plumejs/ui';
 
 @Component({
 	selector: "nested-modal"

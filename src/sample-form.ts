@@ -1,5 +1,5 @@
-import { Component, html, useFormFields } from "plumejs";
-import { IMultiSelectOptions } from 'plumejs-ui';
+import { Component, html, useFormFields } from "@plumejs/core";
+import { IMultiSelectOptions } from '@plumejs/ui';
 // https://blog.logrocket.com/forms-in-react-in-2020/
 
 @Component({

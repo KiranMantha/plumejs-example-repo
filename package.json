@@ -15,7 +15,8 @@
   "dependencies": {
     "@types/react": "^16.9.25",
     "bulma": "^0.8.1",
-    "plumejs": "^2.2.4",
+    "plumejs": "^2.2.5",
+    "plumejs-router": "file:plumejs-router-1.0.0.tgz",
     "plumejs-ui": "^1.1.1"
   },
   "devDependencies": {

@@ -1,7 +1,7 @@
-import { TestBed } from 'plumejs';
+import { TestBed } from '@plumejs/core';
 import { AppComponent } from './index';
 
-describe("Plumejs Component", () => {
+describe("@plumejs/core Component", () => {
   let appRoot:any;
 
   beforeAll(async() => {
