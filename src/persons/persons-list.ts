@@ -1,4 +1,4 @@
-import { Component, Input, html, Injectable } from "@plumejs/core";
+import { Component, html, Injectable, Input } from "@plumejs/core";
 import { Router } from '@plumejs/router';
 import personListStyles from './persons-list.scss';
 
@@ -21,7 +21,7 @@ class PersonsList {
 	persondetails: any = {};
 	update: any;
 	element: any;
-	constructor(private personSrvc: PersonService, private router:Router) {
+	constructor(private personSrvc: PersonService, private router: Router) {
 		console.log('current route ', this.router.getCurrentRoute());
 	}
 	mount() {
@@ -39,23 +39,23 @@ class PersonsList {
 	render() {
 		return html`
 			<h4>Sample service injection with http call and passing data to other component</h4>
-			Current route data: <code>${ JSON.stringify(this.router.getCurrentRoute(), null, 2) }</code>
-			<div class='mt-20 mb-20'>
-				<div class="list is-hoverable">
+			Current route data: <code>${JSON.stringify(this.router.getCurrentRoute(), null, 2)}</code>
+			<div class='mt-20 mb-20 content'>
+				<ul class="block-list is-small">
 					${this.data.map(
-						(user: any) =>
-							html`
-								<a href='#' class="list-item"
-									onclick=${(e:Event) => {
-										e.preventDefault();
-										this.alertName(user);
-									}}
+			(user: any) =>
+				html`
+								<li class='pointer'
+									onclick=${(e: Event) => {
+						e.preventDefault();
+						this.alertName(user);
+					}}
 								>
 									${user.name}
-								</a>
+								</li>
 							`
-					)}
-				</div>
+		)}
+				</ul>
 				<person-details
 					id="person-details"
 					userDetails=${this.persondetails}
@@ -69,8 +69,7 @@ class PersonsList {
 	selector: "person-details"
 })
 class PersonDetails {
-	@Input()
-	userDetails: any = {};
+	@Input userDetails: any = {};
 
 	render() {
 		console.log("selected: user", this.userDetails);

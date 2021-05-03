@@ -4,16 +4,19 @@
         "outDir": "./dist/out-tsc",
         "target": "es2015",
         "moduleResolution": "node",
-        "module": "esnext",
-        "lib": [
-            "es2017",
-            "dom"
+        "module": "commonjs",
+        "plugins": [
+            {
+                "transform": ".node_modules/@plumejs/core/simple-transformer.ts",
+                "type": "raw",
+                "after": false
+            }
         ],
         "importHelpers": true,
         "noEmitOnError": true,
         "esModuleInterop": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true, 
+        "emitDecoratorMetadata": true,
         "sourceMap": true,
         "skipLibCheck": true,
         "typeRoots": [

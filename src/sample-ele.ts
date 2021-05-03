@@ -1,10 +1,9 @@
-import { Component, Input, html, Injectable, Ref, useRef, IHooks } from "@plumejs/core";
-import { Router } from '@plumejs/router';
+import { Component, html, IHooks, Injectable, Input, Ref, useRef } from "@plumejs/core";
 import './emulated-styles.component';
 
 @Injectable()
 class SampleService {
-	constructor() {}
+	constructor() { }
 	testMeth() {
 		console.log("testmethod in sample service");
 	}
@@ -12,7 +11,7 @@ class SampleService {
 
 @Injectable()
 class TestService {
-	constructor(private sampleSrvc: SampleService) {}
+	constructor(private sampleSrvc: SampleService) { }
 	testMeth() {
 		this.sampleSrvc.testMeth();
 	}
@@ -27,8 +26,7 @@ class TestService {
 })
 class TestEle implements IHooks {
 	update: any;
-	@Input()
-	testprops: any = {};
+	@Input testprops: any = {};
 
 	render() {
 		return html`
@@ -59,6 +57,10 @@ class TestEle implements IHooks {
 	unmount() {
 		console.log("component unloaded");
 	}
+
+	inputChanged(oldValue, newValue) {
+		console.log({ oldValue, newValue });
+	}
 }
 
 @Component({
@@ -76,7 +78,7 @@ class SampleEle {
 		this.props = {
 			oncount: this.outCount,
 			name: this.test
-		};		
+		};
 	}
 
 	enablePersonsRoute() {
@@ -87,24 +89,31 @@ class SampleEle {
 		window.localStorage.removeItem('@plumejs/core');
 	}
 
+	updateProps() {
+		this.props = { ...this.props, name: Math.random().toString() };
+		this.update();
+	}
+
 	render() {
 		return html`
 			<p>Persons route has <b>canActivate</b> gaurd which check for <i>plumejs</i> key in localstorage. Click enable button to navigate to persons route. Click disable button to disable persons route. </p>
 			<div>
-				<button class='button is-small is-info' onclick=${ this.enablePersonsRoute } title='click persons nav to check persons route'>Enable Persons route</button>
-				<button class='button is-small is-info' style='margin-left: 10px' onclick=${ this.disablePersonsRoute } title='click persons nav to check persons route'>Disable Persons route</button>
+				<button class='button is-small is-info' onclick=${this.enablePersonsRoute} title='click persons nav to check persons route'>Enable Persons route</button>
+				<button class='button is-small is-info' style='margin-left: 10px' onclick=${this.disablePersonsRoute} title='click persons nav to check persons route'>Disable Persons route</button>
 			</div>
-			<div class='mt-20'>check translation: ${ 'username.greet'.translate({ name: 'test user' })}</div>
+			<div class='mt-20'>check translation: ${'username.greet'.translate({ name: 'test user' })}</div>
 			<input type='text' ref=${this.inputField} /><button class='button is-small is-info' onclick=${() => { this.getRef() }}>click</button>
 			<div>
 				<h1>Sample two way data binding</h1>
 				testing web component1 ${this.test}
+				<div>
+					<button onclick=${() => { this.updateProps(); }}>change props</button>
+				</div>
 				<test-ele testprops=${this.props}></test-ele>
 			</div>
-			${
-				[1,2,3].map(()=>{
-					return html`<emulated-styles></emulated-styles>`
-				})
+			${[1, 2, 3].map(() => {
+			return html`<emulated-styles></emulated-styles>`
+		})
 			}
 		`;
 	}

@@ -1,19 +1,15 @@
 import {
 	Component,
 	html,
-	TranslationService,
-	Ref,
-	useRef,
-	IHooks,
+	IHooks, TranslationService
 } from "@plumejs/core";
-import {
-	registerToggleComponent,
-	registerMultiSelectComponent,
-} from "@plumejs/ui";
-import { Router, Route, registerRouterComponent } from "@plumejs/router";
+import { registerRouterComponent, Route, Router } from "@plumejs/router";
+import { registerMultiSelectComponent, registerToggleComponent } from "@plumejs/ui";
 import locale_en from "./i18n/en";
 import locale_fr from "./i18n/fr";
 import globalstyles from "./styles.scss";
+
+console.log(globalstyles.toString());
 
 registerToggleComponent();
 registerMultiSelectComponent();
@@ -23,7 +19,7 @@ registerRouterComponent();
 	selector: "app-root",
 	styles: globalstyles,
 	useShadow: false,
-	root: true,
+	root: true
 })
 export class AppComponent implements IHooks {
 	constructor(
@@ -72,7 +68,7 @@ export class AppComponent implements IHooks {
 			path: "/form",
 			template: `<sample-form></sample-form>`,
 			templatePath: () => import("./sample-form"),
-		},
+		}
 	];
 
 	navigate = (e: Event, path: string) => {
@@ -97,8 +93,8 @@ export class AppComponent implements IHooks {
 						class="navbar-item"
 						href="#"
 						onclick=${(e: Event) => {
-							this.navigate(e, "/home");
-						}}
+				this.navigate(e, "/home");
+			}}
 					>
 						<img src="./images/plume-logo.jpg" />
 					</a>
@@ -109,9 +105,9 @@ export class AppComponent implements IHooks {
 						aria-label="menu"
 						aria-expanded="false"
 						onclick=${(e: Event) => {
-							e.preventDefault();
-							this._displayNav();
-						}}
+				e.preventDefault();
+				this._displayNav();
+			}}
 					>
 						<span aria-hidden="true"></span>
 						<span aria-hidden="true"></span>
@@ -128,8 +124,8 @@ export class AppComponent implements IHooks {
 							class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-								this.navigate(e, "/home");
-							}}
+				this.navigate(e, "/home");
+			}}
 						>
 							Home
 						</a>
@@ -138,8 +134,8 @@ export class AppComponent implements IHooks {
 							class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-								this.navigate(e, "/controls");
-							}}
+				this.navigate(e, "/controls");
+			}}
 						>
 							UI Controls
 						</a>
@@ -148,8 +144,8 @@ export class AppComponent implements IHooks {
 							class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-								this.navigate(e, "/persons/123");
-							}}
+				this.navigate(e, "/persons/123");
+			}}
 						>
 							Persons
 						</a>
@@ -158,8 +154,8 @@ export class AppComponent implements IHooks {
 							class="navbar-item"
 							href="#"
 							onclick=${(e: Event) => {
-								this.navigate(e, "/form");
-							}}
+				this.navigate(e, "/form");
+			}}
 						>
 							Sample Form
 						</a>
@@ -169,8 +165,8 @@ export class AppComponent implements IHooks {
 								<select
 									class="form-control"
 									onchange=${(e: any) => {
-										this.translations.setDefaultLanguage(e.target.value);
-									}}
+				this.translations.setDefaultLanguage(e.target.value);
+			}}
 								>
 									<option value="en">EN</option>
 									<option value="fr">FR</option>

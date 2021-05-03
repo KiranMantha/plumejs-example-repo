@@ -1,14 +1,13 @@
-import { Input, Component, html } from "@plumejs/core";
+import { Component, html, Input } from "@plumejs/core";
 import { ModalService } from '@plumejs/ui';
 
 @Component({
 	selector: "nested-modal"
 })
 class NestedModal {
-	constructor(private modalsrvc: ModalService) {}
+	constructor(private modalsrvc: ModalService) { }
 
-	@Input()
-	nestedModalData:any = {};
+	@Input nestedModalData: any = {};
 
 	openAnotherModal() {
 		const modal = this.modalsrvc.show({
@@ -29,12 +28,12 @@ class NestedModal {
 	render() {
 		return html`
 			<div>sample modal</div>
-			<div>${ this.nestedModalData.message }</div>
+			<div>${this.nestedModalData.message}</div>
 			<button
 				class="button is-small is-info"
 				onclick=${() => {
-					this.openAnotherModal();
-				}}
+				this.openAnotherModal();
+			}}
 			>
 				open another modal
 			</button>

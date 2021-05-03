@@ -1,7 +1,5 @@
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
-const WebpackPrebuild = require('pre-build-webpack');
-const del = require('del');
 const appconstants = {
     publicPath: '/',
     root: '../',
@@ -13,7 +11,9 @@ const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 
 module.exports = {
-    devtool: 'eval-cheap-source-map',
+    // devtool: 'eval-cheap-source-map',
+    devtool: false,
+    mode: 'production',
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, appconstants.buildDir),
@@ -26,39 +26,48 @@ module.exports = {
     },
     module: {
         rules: [{
-                test: /\.html$/,
-                use: ['html-loader']
-            }, {
-                test: /\.ts$/,
-                exclude: /node_modules/,
-                use: [{
-                    loader: 'ts-loader',
-                    options: {
-                        configFile: path.resolve(__dirname, "../tsconfig.app.json")
+            test: /\.html$/,
+            use: ['html-loader']
+        }, {
+            test: /\.ts$/,
+            exclude: /node_modules/,
+            use: [{
+                loader: 'ts-loader',
+                options: {
+                    configFile: path.resolve(__dirname, "../tsconfig.app.json")
+                }
+            }]
+        }, {
+            test: /\.(s*)css$/,
+            use: ['css-loader', {
+                loader: "sass-loader",
+                options: {
+                    // Prefer `dart-sass`
+                    implementation: require("sass"),
+                    sassOptions: {
+                        fiber: false
                     }
-                }]
-            }, {
-                test: /\.(s*)css$/,
-                use: ['css-loader', 'sass-loader']
-            }, {
-                test: /\.(png|jp(e*)g|svg)$/,  
-                use: [{
-                    loader: 'url-loader',
-                    options: { 
-                        limit: 8000, // Convert images < 8kb to base64 strings
-                        name: 'images/[name].[ext]'
-                    } 
-                }]
-            }, {
-                test: /\.(woff2?|ttf|eot)$/,
-                use: [{
-                    loader: 'url-loader',
-                    options: {
-                        limit: 10000,
-                        name: 'fonts/[name].[ext]'
-                    }
-                }]
-            }
+                },
+            }]
+        }, {
+            test: /\.(png|jp(e*)g|svg)$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 8000, // Convert images < 8kb to base64 strings
+                    name: 'images/[name].[ext]'
+                }
+            }]
+        }, {
+            test: /\.(woff2?|ttf|eot)$/,
+            use: [{
+                loader: 'url-loader',
+                options: {
+                    limit: 10000,
+                    name: 'fonts/[name].[ext]'
+                }
+            }]
+        }
         ]
     },
     plugins: [
@@ -70,37 +79,29 @@ module.exports = {
                 collapseWhitespace: false
             }
         }),
-        new WebpackPrebuild(() => {
-            del([path.resolve(__dirname, appconstants.buildDir)])
-        }),
-        new CopyWebpackPlugin([
-            {from:'src/images',to:'images'}
-        ])
+        new CopyWebpackPlugin({
+            patterns: [
+                { from: 'src/images', to: 'images' }
+            ]
+        })
     ],
     optimization: {
+        minimize: true,
         minimizer: [
             new TerserPlugin({
                 terserOptions: {
                     keep_classnames: true,
-                    keep_fnames: true
+                    keep_fnames: true,
+                    parse: {
+                        ecma: 8
+                    },
+                    compress: {
+                        ecma: 5,
+                        drop_console: false
+                    }
                 }
             })
         ],
-        splitChunks: {
-            chunks: 'all',
-            automaticNameDelimiter: '-',
-            cacheGroups: {
-                vendors: {
-                    test: /[\\/]node_modules[\\/]/i,
-                    chunks: 'all'
-                },
-                default: {
-                    minChunks: 2,
-                    priority: -20,
-                    reuseExistingChunk: true
-                }
-            }
-        },
         runtimeChunk: {
             name: "runtime"
         }
