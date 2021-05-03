@@ -90,7 +90,7 @@ module.exports = {
         minimizer: [
             new TerserPlugin({
                 terserOptions: {
-                    keep_classnames: true,
+                    keep_classnames: false,
                     keep_fnames: true,
                     parse: {
                         ecma: 8
