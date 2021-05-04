@@ -9,6 +9,7 @@ const appconstants = {
 }
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
+const plumejsTransformer = require('../ast-transformer');
 
 module.exports = {
     // devtool: 'eval-cheap-source-map',
@@ -34,7 +35,10 @@ module.exports = {
             use: [{
                 loader: 'ts-loader',
                 options: {
-                    configFile: path.resolve(__dirname, "../tsconfig.app.json")
+                    configFile: path.resolve(__dirname, "../tsconfig.app.json"),
+                    getCustomTransformers: () => ({
+                        before: [plumejsTransformer]
+                    })
                 }
             }]
         }, {
