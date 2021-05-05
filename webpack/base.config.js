@@ -1,3 +1,4 @@
+//import { astTransformer } from '@plumejs/core';
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 const appconstants = {
@@ -9,7 +10,9 @@ const appconstants = {
 }
 const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const plumejsTransformer = require('../ast-transformer');
+const plumejsTransformer = require('../ast-transformer').default;
+
+console.log(plumejsTransformer);
 
 module.exports = {
     // devtool: 'eval-cheap-source-map',
@@ -95,7 +98,7 @@ module.exports = {
             new TerserPlugin({
                 terserOptions: {
                     keep_classnames: false,
-                    keep_fnames: true,
+                    keep_fnames: false,
                     parse: {
                         ecma: 8
                     },
