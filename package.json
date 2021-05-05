@@ -1,6 +1,6 @@
 {
-  "name": "unit-testing-plumejs",
-  "version": "1.0.0",
+  "name": "plumejs-example-repo",
+  "version": "3.0.0-beta",
   "description": "example repo with implementation and unit testing setup for plumejs",
   "scripts": {
     "start": "npm run serve",
