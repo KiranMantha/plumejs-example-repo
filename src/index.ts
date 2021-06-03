@@ -4,15 +4,13 @@ import {
 	IHooks, TranslationService
 } from "@plumejs/core";
 import { registerRouterComponent, Route, Router } from "@plumejs/router";
-import { registerMultiSelectComponent, registerToggleComponent } from "@plumejs/ui";
+//import { registerMultiSelectComponent, registerToggleComponent } from "@plumejs/ui";
 import locale_en from "./i18n/en";
 import locale_fr from "./i18n/fr";
 import globalstyles from "./styles.scss";
 
-console.log(globalstyles.toString());
-
-registerToggleComponent();
-registerMultiSelectComponent();
+// registerToggleComponent();
+// registerMultiSelectComponent();
 registerRouterComponent();
 
 @Component({
@@ -46,11 +44,11 @@ export class AppComponent implements IHooks {
 			template: `<sample-ele></sample-ele>`,
 			templatePath: () => import("./sample-ele"),
 		},
-		{
-			path: "/controls",
-			template: `<plume-comp></plume-comp>`,
-			templatePath: () => import("./plume-components"),
-		},
+		// {
+		// 	path: "/controls",
+		// 	template: `<plume-comp></plume-comp>`,
+		// 	templatePath: () => import("./plume-components"),
+		// },
 		{
 			path: "/persons/:id",
 			template: `<persons-list></persons-list>`,
@@ -63,12 +61,12 @@ export class AppComponent implements IHooks {
 				}
 				return true;
 			},
-		},
-		{
-			path: "/form",
-			template: `<sample-form></sample-form>`,
-			templatePath: () => import("./sample-form"),
 		}
+		// {
+		// 	path: "/form",
+		// 	template: `<sample-form></sample-form>`,
+		// 	templatePath: () => import("./sample-form"),
+		// }
 	];
 
 	navigate = (e: Event, path: string) => {
@@ -117,7 +115,7 @@ export class AppComponent implements IHooks {
 
 				<div
 					id="navbarBasicExample"
-					class=${`navbar-menu ${this.showNav ? "is-active" : ""}`}
+					class="navbar-menu ${this.showNav ? "is-active" : ""}"
 				>
 					<div class="navbar-start">
 						<a

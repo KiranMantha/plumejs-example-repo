@@ -1,4 +1,4 @@
-import { Component, html, Injectable, Input } from "@plumejs/core";
+import { Component, html, Injectable, render } from "@plumejs/core";
 import { Router } from '@plumejs/router';
 import personListStyles from './persons-list.scss';
 
@@ -17,23 +17,35 @@ class PersonService {
 	useShadow: false
 })
 class PersonsList {
-	data: Array<string> = [];
 	persondetails: any = {};
 	update: any;
-	element: any;
+	usersListRef;
+	personDetailsRef;
+
 	constructor(private personSrvc: PersonService, private router: Router) {
 		console.log('current route ', this.router.getCurrentRoute());
 	}
+
 	mount() {
 		this.personSrvc.getPersons().then(data => {
-			this.data = data;
-			this.update(); // triggers change detection and update view
+			this.renderUsers(data);
 		});
 	}
 
 	alertName(user: any) {
 		this.persondetails = user;
-		this.update();
+		this.personDetailsRef.setProps({ userDetails: user });
+	}
+
+	private renderUsers(data: Array<any>) {
+		const nodes = data.map((user: any) => {
+			return html`
+				<li class='pointer' onclick=${() => { this.alertName(user); }}>
+					${user.name}
+				</li>
+			`;
+		});
+		render(this.usersListRef, html`${nodes}`);
 	}
 
 	render() {
@@ -41,24 +53,9 @@ class PersonsList {
 			<h4>Sample service injection with http call and passing data to other component</h4>
 			Current route data: <code>${JSON.stringify(this.router.getCurrentRoute(), null, 2)}</code>
 			<div class='mt-20 mb-20 content'>
-				<ul class="block-list is-small">
-					${this.data.map(
-			(user: any) =>
-				html`
-								<li class='pointer'
-									onclick=${(e: Event) => {
-						e.preventDefault();
-						this.alertName(user);
-					}}
-								>
-									${user.name}
-								</li>
-							`
-		)}
-				</ul>
-				<person-details
-					id="person-details"
-					userDetails=${this.persondetails}
+				<ul ref="${(node) => { this.usersListRef = node; }}" class="block-list is-small"></ul>
+				<person-details id="person-details"
+					ref="${(node) => { this.personDetailsRef = node; }}"
 				></person-details>
 			</div>
 		`;
@@ -69,7 +66,7 @@ class PersonsList {
 	selector: "person-details"
 })
 class PersonDetails {
-	@Input userDetails: any = {};
+	userDetails: any = {};
 
 	render() {
 		console.log("selected: user", this.userDetails);

@@ -2,10 +2,15 @@ import { Component, html } from "@plumejs/core";
 
 @Component({
   selector: 'emulated-styles',
-  styles: '.test-emulation { color: green;}'
+  styles: `
+    :host(.color-1) { color: green; }
+    :host(.color-2) { color: blue; }
+    :host(.color-3) { color: red; }
+  `
 })
 class EmulatedStylesComp {
+  constructor() { }
   render() {
-    return html`<p class='test-emulation'>my styles are emulated</p>`;
+    return html`<p>my styles are emulated</p>`;
   }
 }

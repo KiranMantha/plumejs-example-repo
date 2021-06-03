@@ -1,4 +1,4 @@
-import { Component, html, IHooks, Injectable, Input, Ref, useRef } from "@plumejs/core";
+import { Component, html, IHooks, Injectable } from "@plumejs/core";
 import './emulated-styles.component';
 
 @Injectable()
@@ -26,7 +26,8 @@ class TestService {
 })
 class TestEle implements IHooks {
 	update: any;
-	@Input testprops: any = {};
+	testprops: any = {};
+	emitEvent;
 
 	render() {
 		return html`
@@ -42,11 +43,12 @@ class TestEle implements IHooks {
 	}
 
 	counts(e: any) {
-		this.testprops.oncount("testing from click");
+		this.emitEvent('count', "testing from click")
 	}
 
 	change(val: string) {
-		this.testprops.oncount(val);
+		//this.testprops.oncount(val);
+		this.emitEvent('count', val);
 	}
 
 	mount() {
@@ -56,10 +58,6 @@ class TestEle implements IHooks {
 
 	unmount() {
 		console.log("component unloaded");
-	}
-
-	inputChanged(oldValue, newValue) {
-		console.log({ oldValue, newValue });
 	}
 }
 
@@ -71,14 +69,29 @@ class SampleEle {
 	outCount: Function;
 	update: any;
 	props: any;
-	inputField: Ref<HTMLInputElement> = useRef(null);
+	inputField: HTMLInputElement;
+	testEleRef;
+
 	constructor(private testSrvc: TestService) {
 		this.test = "sample 123";
-		this.outCount = this.count.bind(this);
 		this.props = {
-			oncount: this.outCount,
 			name: this.test
 		};
+	}
+
+	beforeMount() {
+		console.log("before mounting...");
+	}
+
+	mount() {
+		console.log("component loaded");
+		console.log(this.inputField);
+		this.testSrvc.testMeth();
+		this.testEleRef.setProps({ testprops: this.props });
+	}
+
+	unmount() {
+		console.log("component unloaded");
 	}
 
 	enablePersonsRoute() {
@@ -90,8 +103,18 @@ class SampleEle {
 	}
 
 	updateProps() {
-		this.props = { ...this.props, name: Math.random().toString() };
+		this.testEleRef.setProps({ testprops: this.props });
+	}
+
+	count(val: string) {
+		this.test = val;
+		this.props.name = val;
 		this.update();
+		this.testEleRef.setProps({ testprops: this.props });
+	}
+
+	getRef() {
+		console.log(this.inputField);
 	}
 
 	render() {
@@ -102,44 +125,17 @@ class SampleEle {
 				<button class='button is-small is-info' style='margin-left: 10px' onclick=${this.disablePersonsRoute} title='click persons nav to check persons route'>Disable Persons route</button>
 			</div>
 			<div class='mt-20'>check translation: ${'username.greet'.translate({ name: 'test user' })}</div>
-			<input type='text' ref=${this.inputField} /><button class='button is-small is-info' onclick=${() => { this.getRef() }}>click</button>
+			<input type='text' ref=${(node) => { this.inputField = node }} /><button class='button is-small is-info' onclick=${() => { this.getRef() }}>click</button>
 			<div>
 				<h1>Sample two way data binding</h1>
 				testing web component1 ${this.test}
 				<div>
 					<button onclick=${() => { this.updateProps(); }}>change props</button>
 				</div>
-				<test-ele testprops=${this.props}></test-ele>
+				<test-ele ref="${(node) => { this.testEleRef = node; }}" oncount="${(e: CustomEvent) => { this.count(e.detail); }}"></test-ele>
 			</div>
-			${[1, 2, 3].map(() => {
-			return html`<emulated-styles></emulated-styles>`
-		})
-			}
+			${[1, 2, 3].map((i) => html`<emulated-styles class="color-${i}"></emulated-styles>`)}
 		`;
-	}
-
-	count(val: string) {
-		this.test = val;
-		this.props.name = val;
-		this.update();
-	}
-
-	beforeMount() {
-		console.log("before mounting...");
-	}
-
-	mount() {
-		console.log("component loaded");
-		console.log(this.inputField);
-		this.testSrvc.testMeth();
-	}
-
-	unmount() {
-		console.log("component unloaded");
-	}
-
-	getRef() {
-		console.log(this.inputField);
 	}
 }
 
