@@ -18,7 +18,6 @@
         "experimentalDecorators": true,
         "emitDecoratorMetadata": true,
         "inlineSourceMap": true,
-        "sourceMap": true,
         "skipLibCheck": true,
         "typeRoots": [
             "@types",
