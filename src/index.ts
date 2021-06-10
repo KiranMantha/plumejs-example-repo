@@ -4,12 +4,12 @@ import {
 	IHooks, TranslationService
 } from "@plumejs/core";
 import { registerRouterComponent, Route, Router } from "@plumejs/router";
-//import { registerMultiSelectComponent, registerToggleComponent } from "@plumejs/ui";
+import { registerToggleComponent } from "@plumejs/ui";
 import locale_en from "./i18n/en";
 import locale_fr from "./i18n/fr";
 import globalstyles from "./styles.scss";
 
-// registerToggleComponent();
+registerToggleComponent();
 // registerMultiSelectComponent();
 registerRouterComponent();
 

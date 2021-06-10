@@ -94,6 +94,28 @@ class PlumeComponents implements IHooks {
 	};
 
 	nestedModalRef;
+	sampleToggleRef;
+	enableMultiselectRef;
+	disableDropdownRef;
+	enableFilterRef;
+
+	mount() {
+		this.sampleToggleRef.setProps({
+			toggleOptions: this.toggleInput
+		});
+
+		this.enableMultiselectRef.setProps({
+			toggleOptions: this.multiselectToggles.enableMultiselect
+		});
+
+		this.disableDropdownRef.setProps({
+			toggleOptions: this.multiselectToggles.disableDropdown
+		});
+
+		this.enableFilterRef.setProps({
+			toggleOptions: this.multiselectToggles.enableFilter
+		});
+	}
 
 	openModal() {
 		const modal: IModal = this.modalsrvc.show({
@@ -165,7 +187,7 @@ class PlumeComponents implements IHooks {
 				</div>
 				<div class="mb-20">
 					<h5 class="title is-5">Toggle Button</h5>
-					<toggle-button toggleOptions=${this.toggleInput}></toggle-button>
+					<toggle-button ref=${(node) => { this.sampleToggleRef = node; }}></toggle-button>
 				</div>
 				<div class="mb-20">
 					<h5 class="title is-5">Multi select</h5>
@@ -173,19 +195,19 @@ class PlumeComponents implements IHooks {
 						<div class="is-flex mb-20">
 							<span>enable multi select</span>
 							<toggle-button
-								toggleOptions=${this.multiselectToggles.enableMultiselect}
+								ref=${(node) => { this.enableMultiselectRef = node; }}
 							></toggle-button>
 						</div>
 						<div class="is-flex mb-20">
 							<span>disable dropdown</span>
 							<toggle-button
-								toggleOptions=${this.multiselectToggles.disableDropdown}
+								ref=${(node) => { this.disableDropdownRef = node; }}
 							></toggle-button>
 						</div>
 						<div class="is-flex mb-20">
 							<span>enable filtering</span>
 							<toggle-button
-								toggleOptions=${this.multiselectToggles.enableFilter}
+								ref=${(node) => { this.enableFilterRef = node; }}
 							></toggle-button>
 						</div>
 					</div>
