@@ -1,4 +1,4 @@
-import { Component, html, Input } from "@plumejs/core";
+import { Component, html } from "@plumejs/core";
 import { ModalService } from '@plumejs/ui';
 
 @Component({
@@ -7,7 +7,7 @@ import { ModalService } from '@plumejs/ui';
 class NestedModal {
 	constructor(private modalsrvc: ModalService) { }
 
-	@Input nestedModalData: any = {};
+	nestedModalData: any = {};
 
 	openAnotherModal() {
 		const modal = this.modalsrvc.show({

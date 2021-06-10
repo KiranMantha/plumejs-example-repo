@@ -1,11 +1,13 @@
 import { Component, html } from "@plumejs/core";
 import {
 	IModal,
-	ModalService,
+
+
+
+
+	IMultiSelectOptions, IToggleInput, ModalService,
 	NotificationService,
-	NotificationType,
-	IToggleInput,
-	IMultiSelectOptions,
+	NotificationType
 } from "@plumejs/ui";
 import "./nested-modal";
 
@@ -16,7 +18,7 @@ class PlumeComponents {
 	constructor(
 		private modalsrvc: ModalService,
 		private notifySrvc: NotificationService
-	) {}
+	) { }
 
 	update: any;
 
@@ -96,11 +98,13 @@ class PlumeComponents {
 		},
 	};
 
+	nestedModalRef;
+
 	openModal() {
 		const modal: IModal = this.modalsrvc.show({
 			renderTemplate: () =>
 				html`<nested-modal
-					nestedModalData=${{ message: "Hello World" }}
+					ref=${(node) => { this.nestedModalRef = node; }}
 				></nested-modal>`,
 			modalTitle: "testing modal",
 			modalClass: "sample-class",
@@ -108,6 +112,9 @@ class PlumeComponents {
 
 		modal.onOpen.subscribe(() => {
 			console.log("main modal open", modal.Id);
+			this.nestedModalRef.setProps({
+				nestedModalData: { message: "Hello World" }
+			});
 		});
 
 		modal.onClose.subscribe(() => {
@@ -136,8 +143,8 @@ class PlumeComponents {
 					<button
 						class="button is-small is-info"
 						onclick=${() => {
-							this.openModal();
-						}}
+				this.openModal();
+			}}
 					>
 						Open Modal
 					</button>
@@ -147,16 +154,16 @@ class PlumeComponents {
 					<button
 						class="button is-small is-info mr-10"
 						onclick=${() => {
-							this.notify();
-						}}
+				this.notify();
+			}}
 					>
 						Notify with action
 					</button>
 					<button
 						class="button is-small is-info"
 						onclick=${() => {
-							this.notifyWithAutoHide();
-						}}
+				this.notifyWithAutoHide();
+			}}
 					>
 						Notify with auto hide
 					</button>

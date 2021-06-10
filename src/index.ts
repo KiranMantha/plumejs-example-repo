@@ -44,11 +44,11 @@ export class AppComponent implements IHooks {
 			template: `<sample-ele></sample-ele>`,
 			templatePath: () => import("./sample-ele"),
 		},
-		// {
-		// 	path: "/controls",
-		// 	template: `<plume-comp></plume-comp>`,
-		// 	templatePath: () => import("./plume-components"),
-		// },
+		{
+			path: "/controls",
+			template: `<plume-comp></plume-comp>`,
+			templatePath: () => import("./plume-components"),
+		},
 		{
 			path: "/persons/:id",
 			template: `<persons-list></persons-list>`,
