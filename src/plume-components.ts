@@ -1,11 +1,9 @@
-import { Component, html } from "@plumejs/core";
+import { Component, html, IHooks } from "@plumejs/core";
 import {
 	IModal,
-
-
-
-
-	IMultiSelectOptions, IToggleInput, ModalService,
+	IMultiSelectOptions,
+	IToggleInput,
+	ModalService,
 	NotificationService,
 	NotificationType
 } from "@plumejs/ui";
@@ -14,13 +12,10 @@ import "./nested-modal";
 @Component({
 	selector: "plume-comp",
 })
-class PlumeComponents {
-	constructor(
-		private modalsrvc: ModalService,
-		private notifySrvc: NotificationService
-	) { }
+class PlumeComponents implements IHooks {
+	constructor(private modalsrvc: ModalService, private notifySrvc: NotificationService) { }
 
-	update: any;
+	update: () => void;
 
 	toggleInput: IToggleInput = {
 		onchange: this.onToggleChange.bind(this),
