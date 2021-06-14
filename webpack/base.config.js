@@ -8,7 +8,6 @@ const appconstants = {
     buildDir: '../docs',
     node_modules: '../node_modules'
 }
-const TerserPlugin = require('terser-webpack-plugin');
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const plumejsTransformer = require('../ast-transformer').default;
 
@@ -91,26 +90,5 @@ module.exports = {
                 { from: 'src/images', to: 'images' }
             ]
         })
-    ],
-    optimization: {
-        minimize: true,
-        minimizer: [
-            new TerserPlugin({
-                terserOptions: {
-                    keep_classnames: false,
-                    keep_fnames: false,
-                    parse: {
-                        ecma: 8
-                    },
-                    compress: {
-                        ecma: 5,
-                        drop_console: false
-                    }
-                }
-            })
-        ],
-        runtimeChunk: {
-            name: "runtime"
-        }
-    }
+    ]
 };
