@@ -159,9 +159,7 @@ class PlumeComponents implements IHooks {
 					<h5 class="title is-5">Modal</h5>
 					<button
 						class="button is-small is-info"
-						onclick=${() => {
-				this.openModal();
-			}}
+						onclick=${() => { this.openModal(); }}
 					>
 						Open Modal
 					</button>
@@ -170,17 +168,13 @@ class PlumeComponents implements IHooks {
 					<h5 class="title is-5">Notification</h5>
 					<button
 						class="button is-small is-info mr-10"
-						onclick=${() => {
-				this.notify();
-			}}
+						onclick=${() => { this.notify(); }}
 					>
 						Notify with action
 					</button>
 					<button
 						class="button is-small is-info"
-						onclick=${() => {
-				this.notifyWithAutoHide();
-			}}
+						onclick=${() => { this.notifyWithAutoHide(); }}
 					>
 						Notify with auto hide
 					</button>
