@@ -4,7 +4,7 @@ import { ModalService } from '@plumejs/ui';
 @Component({
 	selector: "nested-modal"
 })
-class NestedModal {
+export class NestedModal {
 	constructor(private modalsrvc: ModalService) { }
 
 	nestedModalData: any = {};

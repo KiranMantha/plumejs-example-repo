@@ -1,16 +1,13 @@
 import {
 	Component,
 	html,
-	IHooks, TranslationService
+	Renderer, TranslationService
 } from "@plumejs/core";
 import { registerRouterComponent, Route, Router } from "@plumejs/router";
-import { registerToggleComponent } from "@plumejs/ui";
 import locale_en from "./i18n/en";
 import locale_fr from "./i18n/fr";
 import globalstyles from "./styles.scss";
 
-registerToggleComponent();
-// registerMultiSelectComponent();
 registerRouterComponent();
 
 @Component({
@@ -19,7 +16,8 @@ registerRouterComponent();
 	useShadow: false,
 	root: true
 })
-export class AppComponent implements IHooks {
+export class AppComponent {
+	private renderer: Renderer;
 	constructor(
 		private router: Router,
 		private translations: TranslationService
@@ -29,8 +27,6 @@ export class AppComponent implements IHooks {
 		translations.setTranslate(locale_fr, "fr");
 		translations.setDefaultLanguage("en");
 	}
-
-	update: () => void;
 
 	showNav = false;
 
@@ -76,7 +72,7 @@ export class AppComponent implements IHooks {
 
 	private _displayNav() {
 		this.showNav = !this.showNav;
-		this.update();
+		this.renderer.update();
 	}
 
 	render() {

@@ -1,4 +1,5 @@
 //import { astTransformer } from '@plumejs/core';
+const webpack = require('webpack');
 const HtmlWebPackPlugin = require("html-webpack-plugin");
 const path = require('path');
 const appconstants = {
@@ -11,12 +12,10 @@ const appconstants = {
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const plumejsTransformer = require('../ast-transformer').default;
 
-console.log(plumejsTransformer);
-
 module.exports = {
-    // devtool: 'eval-cheap-source-map',
-    devtool: false,
-    mode: 'production',
+    devtool: 'eval-cheap-source-map',
+    //devtool: false,
+    mode: 'development',
     entry: './src/index.ts',
     output: {
         path: path.resolve(__dirname, appconstants.buildDir),
@@ -89,6 +88,7 @@ module.exports = {
             patterns: [
                 { from: 'src/images', to: 'images' }
             ]
-        })
+        }),
+        new webpack.SourceMapDevToolPlugin({})
     ]
 };

@@ -1,13 +1,14 @@
-import { Component, html, IHooks } from "@plumejs/core";
+import { Component, ComponentRef, html, IHooks, Renderer } from "@plumejs/core";
 import {
 	IModal,
 	IMultiSelectOptions,
 	IToggleInput,
-	ModalService,
-	NotificationService,
-	NotificationType
+	ModalService, MultiSelectComponent, NotificationService,
+	NotificationType,
+	ToggleComponent
 } from "@plumejs/ui";
 import "./nested-modal";
+import { NestedModal } from "./nested-modal";
 
 @Component({
 	selector: "plume-comp",
@@ -15,7 +16,7 @@ import "./nested-modal";
 class PlumeComponents implements IHooks {
 	constructor(private modalsrvc: ModalService, private notifySrvc: NotificationService) { }
 
-	update: () => void;
+	private renderer: Renderer;
 
 	toggleInput: IToggleInput = {
 		onchange: this.onToggleChange.bind(this),
@@ -28,21 +29,27 @@ class PlumeComponents implements IHooks {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.multiple = _checked;
 				this.multiSelectOptions.resetWidget = true;
-				this.update();
+				this.multiSelectRef.setProps({
+					multiSelectOptions: this.multiSelectOptions
+				});
 			},
 		},
 		disableDropdown: {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.disableDropdown = _checked;
 				this.multiSelectOptions.resetWidget = true;
-				this.update();
+				this.multiSelectRef.setProps({
+					multiSelectOptions: this.multiSelectOptions
+				});
 			},
 		},
 		enableFilter: {
 			onchange: (_checked: boolean) => {
 				this.multiSelectOptions.enableFilter = _checked;
 				this.multiSelectOptions.resetWidget = true;
-				this.update();
+				this.multiSelectRef.setProps({
+					multiSelectOptions: this.multiSelectOptions
+				});
 			},
 		},
 	};
@@ -93,11 +100,12 @@ class PlumeComponents implements IHooks {
 		},
 	};
 
-	nestedModalRef;
-	sampleToggleRef;
-	enableMultiselectRef;
-	disableDropdownRef;
-	enableFilterRef;
+	nestedModalRef: ComponentRef<NestedModal>;
+	sampleToggleRef: ComponentRef<ToggleComponent>;
+	enableMultiselectRef: ComponentRef<ToggleComponent>;
+	disableDropdownRef: ComponentRef<ToggleComponent>;
+	enableFilterRef: ComponentRef<ToggleComponent>;
+	multiSelectRef: ComponentRef<MultiSelectComponent>;
 
 	mount() {
 		this.sampleToggleRef.setProps({
@@ -114,6 +122,10 @@ class PlumeComponents implements IHooks {
 
 		this.enableFilterRef.setProps({
 			toggleOptions: this.multiselectToggles.enableFilter
+		});
+
+		this.multiSelectRef.setProps({
+			multiSelectOptions: this.multiSelectOptions
 		});
 	}
 
@@ -207,7 +219,7 @@ class PlumeComponents implements IHooks {
 					</div>
 					<div class="is-flex">
 						<multi-select
-							multiSelectOptions=${this.multiSelectOptions}
+							ref=${(node) => { this.multiSelectRef = node; }}
 						></multi-select>
 					</div>
 				</div>

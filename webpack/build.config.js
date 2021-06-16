@@ -22,9 +22,9 @@ module.exports = merge(baseConfig, {
                         ecma: 8
                     },
                     compress: {
-                        ecma: 5,
-                        drop_console: false
-                    }
+                        ecma: 5
+                    },
+                    sourceMap: false
                 }
             })
         ],

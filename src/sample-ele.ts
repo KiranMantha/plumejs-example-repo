@@ -1,4 +1,4 @@
-import { Component, html, IHooks, Injectable } from "@plumejs/core";
+import { Component, ComponentRef, html, IHooks, Injectable, Renderer } from "@plumejs/core";
 import './emulated-styles.component';
 
 @Injectable()
@@ -25,9 +25,8 @@ class TestService {
 	selector: "test-ele"
 })
 class TestEle implements IHooks {
-	update: any;
-	testprops: any = {};
-	emitEvent;
+	private renderer: Renderer;
+	private testprops: any = {};
 
 	render() {
 		return html`
@@ -43,12 +42,12 @@ class TestEle implements IHooks {
 	}
 
 	counts(e: any) {
-		this.emitEvent('count', "testing from click")
+		this.renderer.emitEvent('count', "testing from click")
 	}
 
 	change(val: string) {
 		//this.testprops.oncount(val);
-		this.emitEvent('count', val);
+		this.renderer.emitEvent('count', val);
 	}
 
 	mount() {
@@ -67,10 +66,11 @@ class TestEle implements IHooks {
 class SampleEle {
 	test: string;
 	outCount: Function;
-	update: any;
 	props: any;
 	inputField: HTMLInputElement;
-	testEleRef;
+
+	private renderer: Renderer;
+	private testEleRef: ComponentRef<TestEle>;
 
 	constructor(private testSrvc: TestService) {
 		this.test = "sample 123";
@@ -109,7 +109,7 @@ class SampleEle {
 	count(val: string) {
 		this.test = val;
 		this.props.name = val;
-		this.update();
+		this.renderer.update();
 		this.testEleRef.setProps({ testprops: this.props });
 	}
 

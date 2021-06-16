@@ -1,4 +1,4 @@
-import { Component, html, Injectable, render } from "@plumejs/core";
+import { Component, ComponentRef, html, Injectable, render } from "@plumejs/core";
 import { Router } from '@plumejs/router';
 import personListStyles from './persons-list.scss';
 
@@ -19,8 +19,8 @@ class PersonService {
 class PersonsList {
 	persondetails: any = {};
 	update: any;
-	usersListRef;
-	personDetailsRef;
+	usersListRef: HTMLElement;
+	personDetailsRef: ComponentRef<PersonDetails>;
 
 	constructor(private personSrvc: PersonService, private router: Router) {
 		console.log('current route ', this.router.getCurrentRoute());
@@ -66,11 +66,10 @@ class PersonsList {
 	selector: "person-details"
 })
 class PersonDetails {
-	userDetails: any = {};
+	private userDetails: { name: string; company: { name: string } };
 
 	render() {
-		console.log("selected: user", this.userDetails);
-		if (this.userDetails.name) {
+		if (this.userDetails && this.userDetails.name) {
 			return html`
 				<strong>Person Details</strong>
 				<div>Name: ${this.userDetails.name}</div>
