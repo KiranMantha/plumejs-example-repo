@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, Injectable, render } from "@plumejs/core";
+import { Component, ComponentRef, html, IHooks, Injectable, render } from "@plumejs/core";
 import { Router } from '@plumejs/router';
 import personListStyles from './persons-list.scss';
 
@@ -65,8 +65,9 @@ class PersonsList {
 @Component({
 	selector: "person-details"
 })
-class PersonDetails {
-	private userDetails: { name: string; company: { name: string } };
+class PersonDetails implements IHooks {
+	readonly ObservedProperties = <const>['userDetails'];
+	userDetails: { name: string; company: { name: string } };
 
 	render() {
 		if (this.userDetails && this.userDetails.name) {

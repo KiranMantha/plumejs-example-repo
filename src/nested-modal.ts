@@ -1,13 +1,14 @@
-import { Component, html } from "@plumejs/core";
+import { Component, html, IHooks } from "@plumejs/core";
 import { ModalService } from '@plumejs/ui';
 
 @Component({
 	selector: "nested-modal"
 })
-export class NestedModal {
-	constructor(private modalsrvc: ModalService) { }
+export class NestedModal implements IHooks {
+	readonly ObservedProperties = <const>['nestedModalData'];
+	nestedModalData: { message: string };
 
-	nestedModalData: any = {};
+	constructor(private modalsrvc: ModalService) { }
 
 	openAnotherModal() {
 		const modal = this.modalsrvc.show({

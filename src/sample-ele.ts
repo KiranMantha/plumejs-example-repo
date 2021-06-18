@@ -25,8 +25,9 @@ class TestService {
 	selector: "test-ele"
 })
 class TestEle implements IHooks {
+	readonly ObservedProperties = <const>['testprops'];
+	testprops: { name: string };
 	private renderer: Renderer;
-	private testprops: any = {};
 
 	render() {
 		return html`
