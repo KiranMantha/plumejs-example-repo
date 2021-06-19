@@ -3,12 +3,10 @@ import {
 	html,
 	Renderer, TranslationService
 } from "@plumejs/core";
-import { registerRouterComponent, Route, Router } from "@plumejs/router";
+import { Route, Router } from "@plumejs/router";
 import locale_en from "./i18n/en";
 import locale_fr from "./i18n/fr";
 import globalstyles from "./styles.scss";
-
-registerRouterComponent();
 
 @Component({
 	selector: "app-root",
@@ -17,9 +15,9 @@ registerRouterComponent();
 	root: true
 })
 export class AppComponent {
-	private renderer: Renderer;
 	constructor(
 		private router: Router,
+		private renderer: Renderer,
 		private translations: TranslationService
 	) {
 		Router.registerRoutes(this.routes);

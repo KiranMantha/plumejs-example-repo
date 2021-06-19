@@ -27,17 +27,21 @@ export class NestedModal implements IHooks {
 	}
 
 	render() {
-		return html`
-			<div>sample modal</div>
-			<div>${this.nestedModalData.message}</div>
-			<button
-				class="button is-small is-info"
-				onclick=${() => {
-				this.openAnotherModal();
-			}}
-			>
-				open another modal
-			</button>
-		`;
+		if (this.nestedModalData) {
+			return html`
+				<div>sample modal</div>
+				<div>${this.nestedModalData.message}</div>
+				<button
+					class="button is-small is-info"
+					onclick=${() => {
+					this.openAnotherModal();
+				}}
+				>
+					open another modal
+				</button>
+			`;
+		} else {
+			return html``;
+		}
 	}
 }

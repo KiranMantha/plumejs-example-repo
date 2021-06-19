@@ -27,19 +27,24 @@ class TestService {
 class TestEle implements IHooks {
 	readonly ObservedProperties = <const>['testprops'];
 	testprops: { name: string };
-	private renderer: Renderer;
+
+	constructor(private renderer: Renderer) { }
 
 	render() {
-		return html`
-			<div>
-				testing web component2 ${this.testprops.name}
-				<button class='button is-small is-info' onclick=${(e: any) => this.counts(e)}>hi</button>
-				<input
-					value=${this.testprops.name}
-					oninput=${(e: any) => this.change(e.target.value)}
-				/>
-			</div>
-		`;
+		if (this.testprops) {
+			return html`
+				<div>
+					testing web component2 ${this.testprops.name}
+					<button class='button is-small is-info' onclick=${(e: any) => this.counts(e)}>hi</button>
+					<input
+						value=${this.testprops.name}
+						oninput=${(e: any) => this.change(e.target.value)}
+					/>
+				</div>
+			`;
+		} else {
+			return html``;
+		}
 	}
 
 	counts(e: any) {
@@ -70,10 +75,9 @@ class SampleEle {
 	props: any;
 	inputField: HTMLInputElement;
 
-	private renderer: Renderer;
 	private testEleRef: ComponentRef<TestEle>;
 
-	constructor(private testSrvc: TestService) {
+	constructor(private testSrvc: TestService, private renderer: Renderer) {
 		this.test = "sample 123";
 		this.props = {
 			name: this.test

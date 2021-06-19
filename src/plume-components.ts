@@ -14,9 +14,7 @@ import { NestedModal } from "./nested-modal";
 	selector: "plume-comp",
 })
 class PlumeComponents implements IHooks {
-	constructor(private modalsrvc: ModalService, private notifySrvc: NotificationService) { }
-
-	private renderer: Renderer;
+	constructor(private renderer: Renderer, private modalsrvc: ModalService, private notifySrvc: NotificationService) { }
 
 	toggleInput: IToggleInput = {
 		onchange: this.onToggleChange.bind(this),
