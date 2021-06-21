@@ -1,5 +1,6 @@
-import { Component, ComponentRef, html, IHooks, Injectable, render } from "@plumejs/core";
+import { Component, ComponentRef, html, Injectable, render } from "@plumejs/core";
 import { Router } from '@plumejs/router';
+import { PersonDetails } from './person-details.component';
 import personListStyles from './persons-list.scss';
 
 @Injectable()
@@ -59,25 +60,5 @@ class PersonsList {
 				></person-details>
 			</div>
 		`;
-	}
-}
-
-@Component({
-	selector: "person-details"
-})
-class PersonDetails implements IHooks {
-	readonly ObservedProperties = <const>['userDetails'];
-	userDetails: { name: string; company: { name: string } };
-
-	render() {
-		if (this.userDetails && this.userDetails.name) {
-			return html`
-				<strong>Person Details</strong>
-				<div>Name: ${this.userDetails.name}</div>
-				<div>Company: ${this.userDetails.company.name}</div>
-			`;
-		} else {
-			return html`<div></div>`;
-		}
 	}
 }

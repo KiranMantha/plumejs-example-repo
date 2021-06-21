@@ -7,8 +7,7 @@ import {
 	NotificationType,
 	ToggleComponent
 } from "@plumejs/ui";
-import "./nested-modal";
-import { NestedModal } from "./nested-modal";
+import { NestedModal } from "./nested-modal.component";
 
 @Component({
 	selector: "plume-comp",

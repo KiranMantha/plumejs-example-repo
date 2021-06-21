@@ -1,5 +1,5 @@
-import { Component, ComponentRef, html, IHooks, Injectable, Renderer } from "@plumejs/core";
-import './emulated-styles.component';
+import { Component, ComponentRef, html, Injectable, Renderer } from "@plumejs/core";
+import { TestEle } from './test-ele.component';
 
 @Injectable()
 class SampleService {
@@ -21,50 +21,6 @@ class TestService {
 	}
 }
 
-@Component({
-	selector: "test-ele"
-})
-class TestEle implements IHooks {
-	readonly ObservedProperties = <const>['testprops'];
-	testprops: { name: string };
-
-	constructor(private renderer: Renderer) { }
-
-	render() {
-		if (this.testprops) {
-			return html`
-				<div>
-					testing web component2 ${this.testprops.name}
-					<button class='button is-small is-info' onclick=${(e: any) => this.counts(e)}>hi</button>
-					<input
-						value=${this.testprops.name}
-						oninput=${(e: any) => this.change(e.target.value)}
-					/>
-				</div>
-			`;
-		} else {
-			return html``;
-		}
-	}
-
-	counts(e: any) {
-		this.renderer.emitEvent('count', "testing from click")
-	}
-
-	change(val: string) {
-		//this.testprops.oncount(val);
-		this.renderer.emitEvent('count', val);
-	}
-
-	mount() {
-		console.log("component loaded");
-		console.log("props: ", this.testprops);
-	}
-
-	unmount() {
-		console.log("component unloaded");
-	}
-}
 
 @Component({
 	selector: "sample-ele"
@@ -137,7 +93,9 @@ class SampleEle {
 				<div>
 					<button onclick=${() => { this.updateProps(); }}>change props</button>
 				</div>
-				<test-ele ref="${(node) => { this.testEleRef = node; }}" oncount="${(e: CustomEvent) => { this.count(e.detail); }}"></test-ele>
+				<test-ele ref="${(node) => { this.testEleRef = node; }}" oncount="${(e: CustomEvent) => { this.count(e.detail); }}">
+					
+				</test-ele>
 			</div>
 			${[1, 2, 3].map((i) => html`<emulated-styles class="color-${i}"></emulated-styles>`)}
 		`;

@@ -36,17 +36,17 @@ export class AppComponent {
 		{
 			path: "/home",
 			template: `<sample-ele></sample-ele>`,
-			templatePath: () => import("./sample-ele"),
+			templatePath: () => import("./home"),
 		},
 		{
 			path: "/controls",
 			template: `<plume-comp></plume-comp>`,
-			templatePath: () => import("./plume-components"),
+			templatePath: () => import("./ui-controls"),
 		},
 		{
 			path: "/persons/:id",
 			template: `<persons-list></persons-list>`,
-			templatePath: () => import("./persons/persons-list"),
+			templatePath: () => import("./persons"),
 			canActivate: () => {
 				let key = localStorage.getItem("@plumejs/core");
 				if (!key) {
@@ -55,12 +55,12 @@ export class AppComponent {
 				}
 				return true;
 			},
+		},
+		{
+			path: "/form",
+			template: `<sample-form></sample-form>`,
+			templatePath: () => import("./form"),
 		}
-		// {
-		// 	path: "/form",
-		// 	template: `<sample-form></sample-form>`,
-		// 	templatePath: () => import("./sample-form"),
-		// }
 	];
 
 	navigate = (e: Event, path: string) => {
