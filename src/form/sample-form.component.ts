@@ -1,26 +1,24 @@
-import { Component, html, useFormFields } from "@plumejs/core";
+import { Component, html, IHooks, Renderer, useFormFields } from "@plumejs/core";
 import { IMultiSelectOptions } from '@plumejs/ui';
-// https://blog.logrocket.com/forms-in-react-in-2020/
 
 @Component({
-	selector: "sample-form",
+	selector: "sample-form"
 })
-class SampleForm {
+class SampleForm implements IHooks {
 	sampleformFields: any;
 	createChangeHandler: any;
 	multiSelectChangehandler: any;
-	update: any;
 	multiSelectOptions: IMultiSelectOptions = {
 		data: ['option1', 'option2', 'option3', 'option4'],
 		multiple: true,
 		onchange: (optionsArr: string[]) => {
 			this.multiSelectChangehandler({
-				target: { 
+				target: {
 					value: optionsArr
 				}
 			});
-		},		
-		buttonText: (options:Array<string>) => {
+		},
+		buttonText: (options: Array<string>) => {
 			if (options.length === 0) {
 				return 'None selected';
 			}
@@ -32,7 +30,9 @@ class SampleForm {
 		},
 	}
 
-	constructor() {
+	constructor(private renderer: Renderer) { }
+
+	beforeMount() {
 		const { formFields, createChangeHandler } = useFormFields({
 			email: "",
 			password: "",
@@ -49,7 +49,7 @@ class SampleForm {
 	submitForm(e: Event) {
 		e.preventDefault();
 		console.log(this.sampleformFields);
-		this.update();
+		this.renderer.update();
 	}
 
 	render() {
@@ -57,8 +57,8 @@ class SampleForm {
 			<div>
 				<form
 					onsubmit=${(e: Event) => {
-						this.submitForm(e);
-					}}
+				this.submitForm(e);
+			}}
 				>
 					<div class="form-group">
 						<label for="exampleInputEmail1">Email address</label>
@@ -109,7 +109,7 @@ class SampleForm {
 					</div>
 					<div>
 					<label>plumejs multi select</label>
-					<multi-select class="d-inline-block" multiSelectOptions=${ this.multiSelectOptions }></multi-select>
+					<multi-select class="d-inline-block" multiSelectOptions=${this.multiSelectOptions}></multi-select>
 					</div>
 					<div class="form-group form-check">
 						<input
