@@ -6,7 +6,7 @@ import { IMultiSelectOptions } from '@plumejs/ui';
 })
 class SampleForm implements IHooks {
 	sampleformFields: any;
-	createChangeHandler: any;
+	createChangeHandler: (key: string) => (e: Event) => void;
 	multiSelectChangehandler: any;
 	multiSelectOptions: IMultiSelectOptions = {
 		data: ['option1', 'option2', 'option3', 'option4'],
@@ -43,7 +43,7 @@ class SampleForm implements IHooks {
 		});
 		this.sampleformFields = formFields;
 		this.createChangeHandler = createChangeHandler;
-		this.multiSelectChangehandler = this.createChangeHandler('options');
+		this.multiSelectChangehandler = createChangeHandler('options');
 	}
 
 	submitForm(e: Event) {
