@@ -1,18 +1,22 @@
 module.exports = {
-  testEnvironment: "node",
+  testEnvironment: "@happy-dom/jest-environment",
   setupFilesAfterEnv: [
     '<rootDir>/config/jest.setup.js'
   ],
   displayName: 'PLUMEJS',
-  preset: 'ts-jest',
+  preset: 'ts-jest/presets/js-with-ts-esm',
   roots: ['<rootDir>/src/'],
   collectCoverage: true,
   coverageDirectory: '<rootDir>/coverage',
   testMatch: ['**/+(*.)+(spec).+(ts)'],
   // testMatch: ['**/+(index.)+(spec).+(ts)'], // to test single file,
   transform: {
-    '^.+\\.(ts|js|html)$': 'ts-jest',
+    '^.+\\.ts$': 'ts-jest'
   },
+  transformIgnorePatterns: [
+    "node_modules/(?!(@plumejs/core|@plumejs/router|@plumejs/ui)/)",
+  ],
+  extensionsToTreatAsEsm: ['.ts'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json'],
   moduleNameMapper: {
     "^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$": "jest-transform-stub"
@@ -20,7 +24,7 @@ module.exports = {
   globals: {
     'ts-jest': {
       diagnostics: false,
-      tsConfig: '<rootDir>/tsconfig.spec.json',
+      tsConfig: '<rootDir>/tsconfig.json',
       stringifyContentPathRegex: '\\.html$'
     }
   }

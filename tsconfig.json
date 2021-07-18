@@ -1,13 +1,18 @@
 {
     "compilerOptions": {
+        "allowJs": true,
         "baseUrl": "./",
         "outDir": "./dist/out-tsc",
-        "target": "es2015",
+        "target": "esnext",
         "moduleResolution": "node",
-        "module": "commonjs",
+        "module": "esnext",
+        "lib": [
+            "DOM",
+            "ESNext"
+        ],
         "plugins": [
             {
-                "transform": ".node_modules/@plumejs/core/simple-transformer.ts",
+                "transform": "./ast-transformer.js",
                 "type": "raw",
                 "after": false
             }

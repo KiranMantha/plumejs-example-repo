@@ -2,19 +2,21 @@ import { TestBed } from '@plumejs/core';
 import { AppComponent } from './index';
 
 describe("@plumejs/core Component", () => {
-  let appRoot:any;
+  let appRoot: any;
 
-  beforeAll(async() => {
+  beforeAll(async () => {
+    //appRoot = await TestBed.MockComponent('app-root');
     appRoot = await TestBed.MockComponent(AppComponent);
+    console.log('appRoot', appRoot)
   });
-  
+
   it('translation should return "Hello World"', () => {
     //expect('username.greet'.translate({name: 'Hello World'})).toBe("my name is Hello World");
-    const h1:any = appRoot.querySelector('h1');
+    const h1: any = appRoot.querySelector('h1');
     expect(h1.innerHTML).toBe("Hello world");
   });
 
-  afterAll(()=>{
+  afterAll(() => {
     TestBed.RemoveComponent(appRoot);
   })
 });
