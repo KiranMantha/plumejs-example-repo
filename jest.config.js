@@ -11,7 +11,7 @@ module.exports = {
   testMatch: ['**/+(*.)+(spec).+(ts)'],
   // testMatch: ['**/+(index.)+(spec).+(ts)'], // to test single file,
   transform: {
-    '^.+\\.ts$': 'ts-jest'
+    //'^.+\\.ts$': 'ts-jest'
   },
   transformIgnorePatterns: [
     "node_modules/(?!(@plumejs/core|@plumejs/router|@plumejs/ui)/)",
@@ -23,9 +23,9 @@ module.exports = {
   },
   globals: {
     'ts-jest': {
-      diagnostics: false,
+      diagnostics: true,
       tsConfig: '<rootDir>/tsconfig.json',
-      stringifyContentPathRegex: '\\.html$'
+      compiler: 'ttypescript'
     }
   }
 };

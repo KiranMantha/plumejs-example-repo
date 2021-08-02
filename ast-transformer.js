@@ -38,6 +38,7 @@ var __importStar = (this && this.__importStar) || function (mod) {
     }
     function getDecoratorMetaData(decoratorName, node) {
         const [decorator] = node.decorators.filter(d => d.getFullText().trim().startsWith('@' + decoratorName));
+        console.log(decorator.escapedText);
         if (decorator) {
             let params = null;
             if (ts.isCallExpression(decorator.expression)) {
