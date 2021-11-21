@@ -7,7 +7,6 @@ import globalstyles from "./styles.scss";
 @Component({
   selector: "app-root",
   styles: globalstyles,
-  useShadow: false,
   root: true,
 })
 export class AppComponent {
