@@ -58,9 +58,9 @@ export class AppComponent {
     },
   ];
 
-  navigate = (e: Event, path: string) => {
+  navigate = (e: Event, path: string, state?: Record<string, any>) => {
     e.preventDefault();
-    this.router.navigateTo(path);
+    this.router.navigateTo(path, state);
   };
 
   private _displayNav() {
@@ -86,7 +86,7 @@ export class AppComponent {
             <img src="./images/plume-logo.jpg" />
           </a>
 
-          <a
+          <span
             role="button"
             class="navbar-burger burger"
             aria-label="menu"
@@ -99,7 +99,7 @@ export class AppComponent {
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
             <span aria-hidden="true"></span>
-          </a>
+          </span>
         </div>
 
         <div
@@ -121,7 +121,7 @@ export class AppComponent {
               class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
-                this.navigate(e, "/controls");
+                this.navigate(e, "/controls", { name: "hello world" });
               }}
             >
               UI Controls
