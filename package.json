@@ -15,18 +15,15 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@webcomponents/webcomponentsjs": "^2.6.0",
-    "browser-or-node": "^2.0.0",
+    "@plumejs/core": "^3.0.0",
+    "@plumejs/router": "^3.0.0",
+    "@plumejs/ui": "^3.0.0",
     "bulma": "^0.9.3",
-    "bulma-block-list": "^0.5.0",
-    "rxjs": "^7.4.0",
-    "vanilla-i18n": "^1.0.8"
+    "bulma-block-list": "^0.5.0"
   },
   "devDependencies": {
-    "@abraham/reflection": "^0.8.0",
     "@happy-dom/jest-environment": "^2.24.4",
     "@types/jest": "^27.0.3",
-    "@types/node": "^16.11.9",
     "construct-style-sheets-polyfill": "^3.0.4",
     "copy-webpack-plugin": "^10.0.0",
     "coveralls": "^3.1.1",
