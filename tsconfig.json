@@ -1,19 +1,28 @@
 {
     "compilerOptions": {
+        "allowJs": true,
         "baseUrl": "./",
         "outDir": "./dist/out-tsc",
-        "target": "es2015",
+        "target": "esnext",
         "moduleResolution": "node",
         "module": "esnext",
         "lib": [
-            "es2017",
-            "dom"
+            "DOM",
+            "ESNext"
+        ],
+        "plugins": [
+            {
+                "transform": "./ast-transformer.js",
+                "type": "raw",
+                "after": false
+            }
         ],
         "importHelpers": true,
         "noEmitOnError": true,
         "esModuleInterop": true,
+        "allowSyntheticDefaultImports": true,
         "experimentalDecorators": true,
-        "emitDecoratorMetadata": true, 
+        "emitDecoratorMetadata": true,
         "sourceMap": true,
         "skipLibCheck": true,
         "typeRoots": [

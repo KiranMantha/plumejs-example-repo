@@ -10,13 +10,13 @@ const _fetch = require('jest-fetch-mock');
 
 window.CSSStyleSheet = _CSSStyleSheet;
 window.fetch = _fetch;
-window.document.createElementNS = function () {
-  if (arguments.length === 1) {
-    return window.document.createElement(arguments[0]);
-  } else {
-    return window.document.createElement(arguments[1]);
-  }
-};
+// window.document.createElementNS = function () {
+//   if (arguments.length === 1) {
+//     return window.document.createElement(arguments[0]);
+//   } else {
+//     return window.document.createElement(arguments[1]);
+//   }
+// };
 
 window.HTMLElement.prototype.trigger = function (eventName, isBubbleing) {
   let event = new Event(eventName, {
