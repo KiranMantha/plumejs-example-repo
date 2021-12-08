@@ -1,14 +1,12 @@
 {
   "name": "plumejs-example-repo",
-  "version": "3.0.0-beta",
+  "version": "3.0.0",
   "description": "example repo with implementation and unit testing setup for plumejs",
   "scripts": {
     "start": "npm run serve",
     "serve": "webpack serve --config webpack/server.config.js",
     "build": "rimraf docs && webpack --config webpack/build.config.js",
-    "test": "jest --coverage --coverageReporters=text-lcov | coveralls",
-    "test-local": "jest",
-    "test-env": "NODE_OPTIONS=--experimental-vm-modules npx jest"
+    "test": "jest"
   },
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -17,7 +15,7 @@
   "dependencies": {
     "@plumejs/core": "^3.0.2",
     "@plumejs/router": "^3.0.1",
-    "@plumejs/ui": "^3.0.2",
+    "@plumejs/ui": "^3.0.1",
     "bulma": "^0.9.3",
     "bulma-block-list": "^0.5.0"
   },

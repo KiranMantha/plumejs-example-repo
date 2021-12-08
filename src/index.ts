@@ -1,11 +1,14 @@
-import { Component, html, Renderer, TranslationService } from "@plumejs/core";
-import { Route, Router } from "@plumejs/router";
-import locale_en from "./i18n/en";
-import locale_fr from "./i18n/fr";
-import globalstyles from "./styles.scss";
+import { Component, html, Renderer, TranslationService } from '@plumejs/core';
+import { Route, Router } from '@plumejs/router';
+import { registerUIComponents } from '@plumejs/ui/dist/src';
+import locale_en from './i18n/en';
+import locale_fr from './i18n/fr';
+import globalstyles from './styles.scss';
+
+registerUIComponents();
 
 @Component({
-  selector: "app-root",
+  selector: 'app-root',
   styles: globalstyles,
   root: true,
 })
@@ -16,45 +19,45 @@ export class AppComponent {
     private translations: TranslationService
   ) {
     Router.registerRoutes(this.routes);
-    translations.setTranslate(locale_en, "en");
-    translations.setTranslate(locale_fr, "fr");
-    translations.setDefaultLanguage("en");
+    translations.setTranslate(locale_en, 'en');
+    translations.setTranslate(locale_fr, 'fr');
+    translations.setDefaultLanguage('en');
   }
 
   showNav = false;
 
   routes: Array<Route> = [
     {
-      path: "",
-      redirectTo: "/home",
+      path: '',
+      redirectTo: '/home',
     },
     {
-      path: "/home",
+      path: '/home',
       template: `<sample-ele></sample-ele>`,
-      templatePath: () => import("./home"),
+      templatePath: () => import('./home'),
     },
     {
-      path: "/controls",
+      path: '/controls',
       template: `<plume-comp></plume-comp>`,
-      templatePath: () => import("./ui-controls"),
+      templatePath: () => import('./ui-controls'),
     },
     {
-      path: "/persons/:id",
+      path: '/persons/:id',
       template: `<persons-list></persons-list>`,
-      templatePath: () => import("./persons"),
+      templatePath: () => import('./persons'),
       canActivate: () => {
-        let key = localStorage.getItem("@plumejs/core");
+        let key = localStorage.getItem('@plumejs/core');
         if (!key) {
-          this.router.navigateTo("/home");
+          this.router.navigateTo('/home');
           return false;
         }
         return true;
       },
     },
     {
-      path: "/form",
+      path: '/form',
       template: `<sample-form></sample-form>`,
-      templatePath: () => import("./form"),
+      templatePath: () => import('./form'),
     },
   ];
 
@@ -80,7 +83,7 @@ export class AppComponent {
             class="navbar-item"
             href="#"
             onclick=${(e: Event) => {
-              this.navigate(e, "/home");
+              this.navigate(e, '/home');
             }}
           >
             <img src="./images/plume-logo.jpg" />
@@ -104,14 +107,14 @@ export class AppComponent {
 
         <div
           id="navbarBasicExample"
-          class="navbar-menu ${this.showNav ? "is-active" : ""}"
+          class="navbar-menu ${this.showNav ? 'is-active' : ''}"
         >
           <div class="navbar-start">
             <a
               class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
-                this.navigate(e, "/home");
+                this.navigate(e, '/home');
               }}
             >
               Home
@@ -121,7 +124,7 @@ export class AppComponent {
               class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
-                this.navigate(e, "/controls", { name: "hello world" });
+                this.navigate(e, '/controls', { name: 'hello world' });
               }}
             >
               UI Controls
@@ -131,7 +134,7 @@ export class AppComponent {
               class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
-                this.navigate(e, "/persons/123");
+                this.navigate(e, '/persons/123');
               }}
             >
               Persons
@@ -141,7 +144,7 @@ export class AppComponent {
               class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
-                this.navigate(e, "/form");
+                this.navigate(e, '/form');
               }}
             >
               Sample Form

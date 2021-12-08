@@ -1,45 +1,46 @@
 //import { astTransformer } from '@plumejs/core';
-const webpack = require("webpack");
-const HtmlWebPackPlugin = require("html-webpack-plugin");
-const path = require("path");
+const webpack = require('webpack');
+const HtmlWebPackPlugin = require('html-webpack-plugin');
+const path = require('path');
 const appconstants = {
-  publicPath: "/",
-  root: "../",
-  sourceDir: "../src",
-  buildDir: "../docs",
-  node_modules: "../node_modules",
+  publicPath: '/',
+  root: '../',
+  sourceDir: '../src',
+  buildDir: '../docs',
+  node_modules: '../node_modules',
 };
-const CopyWebpackPlugin = require("copy-webpack-plugin");
-const plumejsTransformer = require("../ast-transformer").default;
+const CopyWebpackPlugin = require('copy-webpack-plugin');
+const TerserPlugin = require('terser-webpack-plugin');
+const plumejsTransformer = require('../ast-transformer').default;
 
 module.exports = {
-  devtool: "eval-cheap-source-map",
+  devtool: 'eval-cheap-source-map',
   //devtool: false,
-  mode: "development",
-  entry: "./src/index.ts",
+  mode: 'development',
+  entry: './src/index.ts',
   output: {
     path: path.resolve(__dirname, appconstants.buildDir),
     publicPath: appconstants.publicPath,
-    filename: "[name].bundle.js",
-    chunkFilename: "[name].chunk.js",
+    filename: 'scripts/[name].[chunkhash].bundle.js',
+    chunkFilename: 'scripts/[name].[chunkhash].chunk.js',
   },
   resolve: {
-    extensions: [".ts", ".js", ".scss", ".css"],
+    extensions: ['.ts', '.js', '.scss', '.css'],
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        use: ["html-loader"],
+        use: ['html-loader'],
       },
       {
         test: /\.ts$/,
         exclude: /node_modules/,
         use: [
           {
-            loader: "ts-loader",
+            loader: 'ts-loader',
             options: {
-              configFile: path.resolve(__dirname, "../tsconfig.app.json"),
+              configFile: path.resolve(__dirname, '../tsconfig.app.json'),
               // getCustomTransformers: () => ({
               //     before: [plumejsTransformer]
               // })
@@ -50,12 +51,12 @@ module.exports = {
       {
         test: /\.(s*)css$/,
         use: [
-          "css-loader",
+          'css-loader',
           {
-            loader: "sass-loader",
+            loader: 'sass-loader',
             options: {
               // Prefer `dart-sass`
-              implementation: require("sass"),
+              implementation: require('sass'),
               sassOptions: {
                 fiber: false,
               },
@@ -67,10 +68,10 @@ module.exports = {
         test: /\.(png|jp(e*)g|svg)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 8000, // Convert images < 8kb to base64 strings
-              name: "images/[name].[ext]",
+              name: 'images/[name].[ext]',
             },
           },
         ],
@@ -79,10 +80,10 @@ module.exports = {
         test: /\.(woff2?|ttf|eot)$/,
         use: [
           {
-            loader: "url-loader",
+            loader: 'url-loader',
             options: {
               limit: 10000,
-              name: "fonts/[name].[ext]",
+              name: 'fonts/[name].[ext]',
             },
           },
         ],
@@ -91,16 +92,59 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: "./src/index.html",
-      filename: "index.html",
-      inject: "head",
+      template: './src/index.html',
+      filename: 'index.html',
+      inject: 'head',
       minify: {
         collapseWhitespace: false,
       },
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: "src/images", to: "images" }],
+      patterns: [{ from: 'src/images', to: 'images' }],
     }),
     new webpack.SourceMapDevToolPlugin({}),
   ],
+
+  optimization: {
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          parse: {
+            ecma: 8,
+          },
+          compress: {
+            ecma: 5,
+          },
+          sourceMap: false,
+        },
+      }),
+    ],
+    runtimeChunk: {
+      name: 'runtime',
+    },
+    splitChunks: {
+      chunks: 'all',
+      maxInitialRequests: Infinity,
+      minSize: 0,
+      cacheGroups: {
+        coreVendor: {
+          test: /[\\/]node_modules[\\/](@plumejs\/core)[\\/]/,
+        },
+        uiVendor: {
+          test: /[\\/]node_modules[\\/](@plumejs\/ui)[\\/]/,
+        },
+        routerVendor: {
+          test: /[\\/]node_modules[\\/](@plumejs\/router)[\\/]/,
+        },
+        otherVendor: {
+          test: /[\\/]node_modules[\\/](!@plumejs\/core)(!@plumejs\/ui)(!@plumejs\/router)[\\/]/,
+        },
+        default: {
+          minChunks: 1,
+          reuseExistingChunk: true,
+        },
+      },
+    },
+  },
 };
