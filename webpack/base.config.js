@@ -117,6 +117,7 @@ module.exports = {
             ecma: 5,
           },
           sourceMap: false,
+          keep_classnames: true,
         },
       }),
     ],
