@@ -175,6 +175,7 @@ class SampleForm implements IHooks {
 				<code ref=${(node) => {
         this.jsonRef = node;
       }}>
+        ${JSON.stringify(this.sampleformFields, null, 4)}
 				</code>
 			</pre>
     `;
