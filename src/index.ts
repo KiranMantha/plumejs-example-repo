@@ -1,11 +1,8 @@
 import { Component, html, Renderer, TranslationService } from '@plumejs/core';
 import { Route, Router } from '@plumejs/router';
-import { registerUIComponents } from '@plumejs/ui/dist/src';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
 import globalstyles from './styles.scss';
-
-registerUIComponents();
 
 @Component({
   selector: 'app-root',
@@ -18,7 +15,7 @@ export class AppComponent {
     private renderer: Renderer,
     private translations: TranslationService
   ) {
-    Router.registerRoutes(this.routes);
+    Router.registerRoutes(this.routes, true);
     translations.setTranslate(locale_en, 'en');
     translations.setTranslate(locale_fr, 'fr');
     translations.setDefaultLanguage('en');
