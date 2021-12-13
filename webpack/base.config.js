@@ -40,7 +40,7 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              configFile: path.resolve(__dirname, '../tsconfig.app.json'),
+              configFile: path.resolve(__dirname, '../tsconfig.json'),
               // getCustomTransformers: () => ({
               //     before: [plumejsTransformer]
               // })
