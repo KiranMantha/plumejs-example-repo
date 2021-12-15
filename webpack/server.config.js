@@ -1,19 +1,19 @@
-const { merge } = require("webpack-merge");
-const baseConfig = require("./base.config.js");
-const path = require("path");
+const { merge } = require('webpack-merge');
+const baseConfig = require('./base.config.js');
+const path = require('path');
 
 module.exports = merge(baseConfig, {
-  mode: "development",
+  mode: 'development',
   devServer: {
-    static: path.join(__dirname, "../docs"),
+    static: path.join(__dirname, '../docs'),
     compress: true,
     hot: true,
     port: 3001,
     open: true,
     historyApiFallback: {
       rewrites: [
-        { from: /^\/$/, to: "/" },
-        { from: /./, to: "/" },
+        { from: /^\/$/, to: '/' },
+        { from: /./, to: '/' },
       ],
     },
   },

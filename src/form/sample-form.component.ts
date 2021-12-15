@@ -6,7 +6,15 @@ import {
   Renderer,
   useFormFields,
 } from '@plumejs/core';
-import { IMultiSelectOptions, MultiSelectComponent } from '@plumejs/ui';
+
+import {
+  IDropdownOptions,
+  IOption,
+  DropdownComponent,
+  registerUIDropdown,
+} from '@plumejs/ui';
+
+registerUIDropdown();
 
 @Component({
   selector: 'sample-form',
@@ -18,29 +26,38 @@ class SampleForm implements IHooks {
   resetFormFields: () => void;
   jsonRef: HTMLElement;
 
-  multiSelectOptions: IMultiSelectOptions = {
-    data: ['option1', 'option2', 'option3', 'option4'],
-    selectedValues: ['option1', 'option2'],
+  dropdownOptions: IDropdownOptions<string> = {
+    options: [
+      {
+        label: 'Option 1',
+        value: 'o1',
+      },
+      {
+        label: 'Option 2',
+        value: 'o2',
+      },
+      {
+        label: 'Option 3',
+        value: 'o3',
+      },
+      {
+        label: 'Option 4',
+        value: 'o4',
+      },
+    ],
     multiple: true,
-    onchange: (optionsArr: string[]) => {
-      this.multiSelectChangehandler({
-        target: {
-          value: optionsArr,
-        },
-      });
-    },
-    buttonText: (options: Array<string>) => {
+    buttonText: (options: IOption<string>[]): string => {
       if (options.length === 0) {
         return 'None selected';
       } else if (options.length > 3) {
         return options.length + ' selected';
       } else {
-        return options.join(', ');
+        return options.map((item) => item.label).join(', ');
       }
     },
   };
 
-  multiSelectRef: ComponentRef<MultiSelectComponent>;
+  dropdownRef: ComponentRef<DropdownComponent<string>>;
 
   constructor(private renderer: Renderer) {}
 
@@ -58,8 +75,8 @@ class SampleForm implements IHooks {
   }
 
   mount() {
-    this.multiSelectRef.setProps({
-      multiSelectOptions: this.multiSelectOptions,
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions,
     });
   }
 
@@ -135,12 +152,19 @@ class SampleForm implements IHooks {
           </div>
           <div>
             <label>plumejs multi select</label>
-            <multi-select
+            <app-dropdown
               class="d-inline-block"
               ref=${(node) => {
-                this.multiSelectRef = node;
+                this.dropdownRef = node;
               }}
-            ></multi-select>
+              onoptionselected=${(event) => {
+                this.multiSelectChangehandler({
+                  target: {
+                    value: event.detail,
+                  },
+                });
+              }}
+            ></app-dropdown>
           </div>
           <div class="form-group form-check">
             <input
