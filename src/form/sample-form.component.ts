@@ -152,7 +152,7 @@ class SampleForm implements IHooks {
           </div>
           <div>
             <label>plumejs multi select</label>
-            <app-dropdown
+            <ui-dropdown
               class="d-inline-block"
               ref=${(node) => {
                 this.dropdownRef = node;
@@ -164,7 +164,7 @@ class SampleForm implements IHooks {
                   },
                 });
               }}
-            ></app-dropdown>
+            ></ui-dropdown>
           </div>
           <div class="form-group form-check">
             <input

@@ -1,23 +1,26 @@
-import { Component, ComponentRef, html, IHooks, Renderer } from "@plumejs/core";
-import { Router } from "@plumejs/router";
+import { Component, ComponentRef, html, IHooks, Renderer } from '@plumejs/core';
+import { Router } from '@plumejs/router';
 import {
   IModal,
-  IMultiSelectOptions,
   IToggleInput,
   ModalService,
-  MultiSelectComponent,
   NotificationService,
   NotificationType,
   ToggleComponent,
-} from "@plumejs/ui";
-import { NestedModal } from "./nested-modal.component";
+  IDropdownOptions,
+  IOption,
+  DropdownComponent,
+  registerUIDropdown,
+} from '@plumejs/ui';
+import { NestedModal } from './nested-modal.component';
+
+registerUIDropdown();
 
 @Component({
-  selector: "plume-comp",
+  selector: 'plume-comp',
 })
 class PlumeComponents implements IHooks {
   constructor(
-    private renderer: Renderer,
     private router: Router,
     private modalsrvc: ModalService,
     private notifySrvc: NotificationService
@@ -25,92 +28,77 @@ class PlumeComponents implements IHooks {
 
   toggleInput: IToggleInput = {
     onchange: this.onToggleChange.bind(this),
-    onText: "ON",
-    offText: "OFF",
+    onText: 'ON',
+    offText: 'OFF',
   };
 
   multiselectToggles: { [key: string]: IToggleInput } = {
     enableMultiselect: {
       onchange: (_checked: boolean) => {
-        this.multiSelectOptions.multiple = _checked;
-        this.multiSelectOptions.resetWidget = true;
-        this.multiSelectRef.setProps({
-          multiSelectOptions: this.multiSelectOptions,
+        this.dropdownOptions.multiple = _checked;
+        this.dropdownOptions.resetDropdown = true;
+        this.dropdownRef.setProps({
+          dropdownOptions: this.dropdownOptions,
         });
       },
     },
     disableDropdown: {
       onchange: (_checked: boolean) => {
-        this.multiSelectOptions.disableDropdown = _checked;
-        this.multiSelectOptions.resetWidget = true;
-        this.multiSelectRef.setProps({
-          multiSelectOptions: this.multiSelectOptions,
+        this.dropdownOptions.disable = _checked;
+        this.dropdownOptions.resetDropdown = true;
+        this.dropdownRef.setProps({
+          dropdownOptions: this.dropdownOptions,
         });
       },
     },
     enableFilter: {
       onchange: (_checked: boolean) => {
-        this.multiSelectOptions.enableFilter = _checked;
-        this.multiSelectOptions.resetWidget = true;
-        this.multiSelectRef.setProps({
-          multiSelectOptions: this.multiSelectOptions,
+        this.dropdownOptions.enableFilter = _checked;
+        this.dropdownOptions.resetDropdown = true;
+        this.dropdownRef.setProps({
+          dropdownOptions: this.dropdownOptions,
         });
       },
     },
   };
 
-  multiSelectOptions: IMultiSelectOptions = {
-    data: [
+  dropdownOptions: IDropdownOptions<string> = {
+    options: [
       {
-        name: "option1",
+        label: 'Option 1',
+        value: 'o1',
       },
       {
-        name: "option2",
+        label: 'Option 2',
+        value: 'o2',
       },
       {
-        name: "option3",
+        label: 'Option 3',
+        value: 'o3',
       },
       {
-        name: "option4",
-      },
-      {
-        name: "option5",
-      },
-    ],
-    selectedValues: [
-      {
-        name: "option1",
-      },
-      {
-        name: "option2",
+        label: 'Option 4',
+        value: 'o4',
       },
     ],
-    displayField: "name",
-    // data: ['option1', 'option2', 'option3', 'option4'],
-    // selectedValues: ['option1', 'option2'],
     multiple: false,
-    disableDropdown: false,
-    buttonText: (options: Array<any>) => {
+    buttonText: (options: IOption<string>[]) => {
       if (options.length === 0) {
-        return "None selected";
+        return 'None selected';
       } else if (options.length > 3) {
-        return options.length + " selected";
+        return options.length + ' selected';
       } else {
-        return options.map((i) => i.name).join(", ");
-        //return options.join(', ')
+        return options.map((i) => i.label).join(', ');
       }
-    },
-    onchange: (selectedOption: any) => {
-      console.log(selectedOption);
     },
   };
 
   nestedModalRef: ComponentRef<NestedModal>;
   sampleToggleRef: ComponentRef<ToggleComponent>;
-  enableMultiselectRef: ComponentRef<ToggleComponent>;
+  enableDropdownRef: ComponentRef<ToggleComponent>;
   disableDropdownRef: ComponentRef<ToggleComponent>;
   enableFilterRef: ComponentRef<ToggleComponent>;
-  multiSelectRef: ComponentRef<MultiSelectComponent>;
+  dropdownRef: ComponentRef<DropdownComponent<string>>;
 
   mount() {
     console.log(this.router.getCurrentRoute());
@@ -118,7 +106,7 @@ class PlumeComponents implements IHooks {
       toggleOptions: this.toggleInput,
     });
 
-    this.enableMultiselectRef.setProps({
+    this.enableDropdownRef.setProps({
       toggleOptions: this.multiselectToggles.enableMultiselect,
     });
 
@@ -130,8 +118,8 @@ class PlumeComponents implements IHooks {
       toggleOptions: this.multiselectToggles.enableFilter,
     });
 
-    this.multiSelectRef.setProps({
-      multiSelectOptions: this.multiSelectOptions,
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions,
     });
   }
 
@@ -143,28 +131,28 @@ class PlumeComponents implements IHooks {
             this.nestedModalRef = node;
           }}
         ></nested-modal>`,
-      modalTitle: "testing modal",
-      modalClass: "sample-class",
+      modalTitle: 'testing modal',
+      modalClass: 'sample-class',
     });
 
     modal.onOpen.subscribe(() => {
-      console.log("main modal open", modal.Id);
+      console.log('main modal open', modal.Id);
       this.nestedModalRef.setProps({
-        nestedModalData: { message: "Hello World" },
+        nestedModalData: { message: 'Hello World' },
       });
     });
 
     modal.onClose.subscribe(() => {
-      console.log("main modal closed");
+      console.log('main modal closed');
     });
   }
 
   notify() {
-    this.notifySrvc.sendMessage("hello world", NotificationType.Info);
+    this.notifySrvc.sendMessage('hello world', NotificationType.Info);
   }
 
   notifyWithAutoHide() {
-    this.notifySrvc.sendMessage("hello world", NotificationType.Info, true);
+    this.notifySrvc.sendMessage('hello world', NotificationType.Info, true);
   }
 
   onToggleChange(_checked: boolean) {
@@ -220,7 +208,7 @@ class PlumeComponents implements IHooks {
               <span>enable multi select</span>
               <toggle-button
                 ref=${(node) => {
-                  this.enableMultiselectRef = node;
+                  this.enableDropdownRef = node;
                 }}
               ></toggle-button>
             </div>
@@ -242,11 +230,14 @@ class PlumeComponents implements IHooks {
             </div>
           </div>
           <div class="is-flex">
-            <multi-select
+            <ui-dropdown
               ref=${(node) => {
-                this.multiSelectRef = node;
+                this.dropdownRef = node;
               }}
-            ></multi-select>
+              onoptionselected=${(event) => {
+                console.log(event.detail);
+              }}
+            ></ui-dropdown>
           </div>
         </div>
       </div>
