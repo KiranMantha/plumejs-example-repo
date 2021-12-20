@@ -27,40 +27,38 @@ class PlumeComponents implements IHooks {
   ) {}
 
   toggleInput: IToggleInput = {
-    onchange: this.onToggleChange.bind(this),
     onText: 'ON',
     offText: 'OFF',
   };
 
-  multiselectToggles: { [key: string]: IToggleInput } = {
-    enableMultiselect: {
-      onchange: (_checked: boolean) => {
-        this.dropdownOptions.multiple = _checked;
-        this.dropdownOptions.resetDropdown = true;
-        this.dropdownRef.setProps({
-          dropdownOptions: this.dropdownOptions,
-        });
-      },
-    },
-    disableDropdown: {
-      onchange: (_checked: boolean) => {
-        this.dropdownOptions.disable = _checked;
-        this.dropdownOptions.resetDropdown = true;
-        this.dropdownRef.setProps({
-          dropdownOptions: this.dropdownOptions,
-        });
-      },
-    },
-    enableFilter: {
-      onchange: (_checked: boolean) => {
-        this.dropdownOptions.enableFilter = _checked;
-        this.dropdownOptions.resetDropdown = true;
-        this.dropdownRef.setProps({
-          dropdownOptions: this.dropdownOptions,
-        });
-      },
-    },
+  toggleProps: IToggleInput = {
+    onText: '',
+    offText: '',
   };
+
+  enableMultiselect(_checked: boolean) {
+    this.dropdownOptions.multiple = _checked;
+    this.dropdownOptions.resetDropdown = true;
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions,
+    });
+  }
+
+  disableDropdown(checked: boolean) {
+    this.dropdownOptions.disable = checked;
+    this.dropdownOptions.resetDropdown = true;
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions,
+    });
+  }
+
+  enableFilter(checked: boolean) {
+    this.dropdownOptions.enableFilter = checked;
+    this.dropdownOptions.resetDropdown = true;
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions,
+    });
+  }
 
   dropdownOptions: IDropdownOptions<string> = {
     options: [
@@ -107,15 +105,15 @@ class PlumeComponents implements IHooks {
     });
 
     this.enableDropdownRef.setProps({
-      toggleOptions: this.multiselectToggles.enableMultiselect,
+      toggleOptions: { ...this.toggleProps },
     });
 
     this.disableDropdownRef.setProps({
-      toggleOptions: this.multiselectToggles.disableDropdown,
+      toggleOptions: { ...this.toggleProps },
     });
 
     this.enableFilterRef.setProps({
-      toggleOptions: this.multiselectToggles.enableFilter,
+      toggleOptions: { ...this.toggleProps },
     });
 
     this.dropdownRef.setProps({
@@ -195,38 +193,50 @@ class PlumeComponents implements IHooks {
         </div>
         <div class="mb-20">
           <h5 class="title is-5">Toggle Button</h5>
-          <toggle-button
+          <ui-toggle-button
             ref=${(node) => {
               this.sampleToggleRef = node;
             }}
-          ></toggle-button>
+            ontogglechange=${(event) => {
+              this.onToggleChange(event.detail);
+            }}
+          ></ui-toggle-button>
         </div>
         <div class="mb-20">
           <h5 class="title is-5">Multi select</h5>
           <div>
             <div class="is-flex mb-20">
               <span>enable multi select</span>
-              <toggle-button
+              <ui-toggle-button
                 ref=${(node) => {
                   this.enableDropdownRef = node;
                 }}
-              ></toggle-button>
+                ontogglechange=${(event) => {
+                  this.enableMultiselect(event.detail);
+                }}
+              ></ui-toggle-button>
             </div>
             <div class="is-flex mb-20">
               <span>disable dropdown</span>
-              <toggle-button
+              <ui-toggle-button
                 ref=${(node) => {
                   this.disableDropdownRef = node;
                 }}
-              ></toggle-button>
+                ontogglechange=${(event) => {
+                  this.disableDropdown(event.detail);
+                }}
+              ></ui-toggle-button>
             </div>
             <div class="is-flex mb-20">
               <span>enable filtering</span>
-              <toggle-button
+              <ui-toggle-button
                 ref=${(node) => {
                   this.enableFilterRef = node;
                 }}
-              ></toggle-button>
+                ontogglechange=${(event) => {
+                  this.enableFilter(event.detail);
+                }}
+              ></ui-toggle-button>
             </div>
           </div>
           <div class="is-flex">
