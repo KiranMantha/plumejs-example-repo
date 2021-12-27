@@ -6,7 +6,8 @@
     "start": "npm run serve",
     "serve": "webpack serve --config webpack/server.config.js",
     "build": "rimraf docs && webpack --config webpack/build.config.js",
-    "test": "jest"
+    "test": "jest",
+    "test-esm": "cross-env NODE_OPTIONS='--experimental-vm-modules' jest"
   },
   "main": "build/index.js",
   "module": "build/index.es.js",
@@ -25,11 +26,12 @@
     "construct-style-sheets-polyfill": "^3.0.4",
     "copy-webpack-plugin": "^10.0.0",
     "coveralls": "^3.1.1",
+    "cross-env": "^7.0.3",
     "css-loader": "^6.5.1",
     "happy-dom": "^2.24.4",
     "html-loader": "^3.0.1",
     "html-webpack-plugin": "^5.5.0",
-    "jest": "^27.3.1",
+    "jest": "^27.4.5",
     "jest-fetch-mock": "^3.0.3",
     "jest-transform-stub": "^2.0.0",
     "rimraf": "^3.0.2",

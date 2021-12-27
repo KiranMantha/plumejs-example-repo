@@ -21,6 +21,8 @@ export class AppComponent {
     translations.setDefaultLanguage('en');
   }
 
+  translation = 'en';
+
   showNav = false;
 
   routes: Array<Route> = [
@@ -151,7 +153,9 @@ export class AppComponent {
               <div class="select">
                 <select
                   class="form-control"
+                  value=${this.translation}
                   onchange=${(e: any) => {
+                    this.translation = e.target.value;
                     this.translations.setDefaultLanguage(e.target.value);
                   }}
                 >
