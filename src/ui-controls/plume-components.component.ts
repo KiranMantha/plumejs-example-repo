@@ -10,10 +10,16 @@ import {
   IDropdownOptions,
   IOption,
   DropdownComponent,
+  registerUIModal,
+  registerUINotifications,
+  registerUIToggle,
   registerUIDropdown,
 } from '@plumejs/ui';
 import { NestedModal } from './nested-modal.component';
 
+registerUIModal();
+registerUINotifications();
+registerUIToggle();
 registerUIDropdown();
 
 @Component({
