@@ -1,6 +1,6 @@
 // @import "bulma/bulma.sass";
 // @import "bulma-block-list/src/block-list.scss";
-@import "@picocss/pico/css/pico.min.css";
+@import '@picocss/pico/css/pico.min.css';
 
 .container {
   padding: 0 0.5rem;
@@ -28,4 +28,50 @@
 
 .pointer {
   cursor: pointer;
+}
+
+details[role='menu'] {
+  border: none;
+  margin: 0;
+  padding: 0;
+  position: relative;
+
+  &[open] summary {
+    margin: 0;
+
+    &::before {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 80;
+      display: block;
+      cursor: default;
+      content: ' ';
+      background: transparent;
+    }
+  }
+
+  summary {
+    &::after {
+      display: none;
+    }
+  }
+
+  summary + ul {
+    position: absolute;
+    top: 1.5rem;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    background: #fff;
+    box-shadow: 7px 7px 7px #eee;
+    margin: auto;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    min-width: 300px;
+    z-index: 100;
+  }
 }
