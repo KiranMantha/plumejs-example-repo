@@ -54,19 +54,22 @@ details[role='menu'] {
   }
 
   summary {
+    list-style: none;
+
     &::after {
       display: none;
     }
   }
 
   summary + ul {
+    list-style: none;
     position: absolute;
-    top: 1.5rem;
+    top: 100%;
     border: 1px solid #ccc;
     border-radius: 4px;
     background: #fff;
     box-shadow: rgba(140, 149, 159, 0.2) 0px 8px 24px 0px;
-    margin: auto;
+    margin: 5px auto;
     padding: 0;
     display: flex;
     flex-direction: column;
