@@ -1,5 +1,6 @@
-@import "bulma/bulma.sass";
-@import "bulma-block-list/src/block-list.scss";
+// @import "bulma/bulma.sass";
+// @import "bulma-block-list/src/block-list.scss";
+@import "@picocss/pico/css/pico.min.css";
 
 .container {
   padding: 0 0.5rem;
@@ -19,6 +20,10 @@
 
 .d-inline-block {
   display: inline-block;
+}
+
+.d-flex {
+  display: flex;
 }
 
 .pointer {

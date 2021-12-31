@@ -99,45 +99,42 @@ class SampleForm implements IHooks {
             this.submitForm(e);
           }}
         >
-          <div class="form-group">
+          <div>
             <label for="exampleInputEmail1">Email address</label>
             <input
               type="email"
-              class="form-control"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
               value=${this.sampleformFields.email}
               onchange=${this.createChangeHandler('email')}
             />
-            <small id="emailHelp" class="form-text text-muted"
-              >We'll never share your email with anyone else.</small
-            >
+            <small id="emailHelp">
+              We'll never share your email with anyone else.
+            </small>
           </div>
-          <div class="form-group">
+          <div>
             <label for="exampleInputPassword1">Password</label>
             <input
               type="password"
-              class="form-control"
               id="exampleInputPassword1"
               placeholder="Password"
               value=${this.sampleformFields.password}
               onchange=${this.createChangeHandler('password')}
             />
           </div>
-          <div class="form-group form-check">
-            <input
-              type="checkbox"
-              class="form-check-input"
-              id="exampleCheck1"
-              checked=${this.sampleformFields.checkme}
-              onchange=${this.createChangeHandler('checkme')}
-            />
-            <label class="form-check-label" for="exampleCheck1"
-              >Check me out</label
-            >
+          <div>
+            <label for="exampleCheck1">
+              <input
+                type="checkbox"
+                id="exampleCheck1"
+                checked=${this.sampleformFields.checkme}
+                onchange=${this.createChangeHandler('checkme')}
+              />
+              Check me out
+            </label>
           </div>
-          <div class="form-group form-check">
+          <div>
             <label>single select</label>
             <select
               value=${this.sampleformFields.option}
@@ -150,10 +147,9 @@ class SampleForm implements IHooks {
               <option value="4">4</option>
             </select>
           </div>
-          <div>
+          <div class="mb-20">
             <label>plumejs multi select</label>
             <ui-dropdown
-              class="d-inline-block"
               ref=${(node) => {
                 this.dropdownRef = node;
               }}
@@ -166,30 +162,33 @@ class SampleForm implements IHooks {
               }}
             ></ui-dropdown>
           </div>
-          <div class="form-group form-check">
-            <input
-              type="radio"
-              id="gender_male"
-              name="gender"
-              value="male"
-              onchange=${this.createChangeHandler('gender')}
-            />
-            <label for="gender_male">Male</label>
-            <input
-              type="radio"
-              id="gender_female"
-              name="gender"
-              value="female"
-              onchange=${this.createChangeHandler('gender')}
-            />
-            <label for="gender_female">Female</label>
+          <div class="mb-20">
+            <label for="gender_male">
+              <input
+                type="radio"
+                id="gender_male"
+                name="gender"
+                value="male"
+                onchange=${this.createChangeHandler('gender')}
+              />
+              Male
+            </label>
+            <label for="gender_female">
+              <input
+                type="radio"
+                id="gender_female"
+                name="gender"
+                value="female"
+                onchange=${this.createChangeHandler('gender')}
+              />
+              Female
+            </label>
           </div>
-          <button type="submit" class="button is-info">Submit</button>
+          <button type="submit">Submit</button>
           <button
             onclick=${() => {
               this.resetForm();
             }}
-            class="button"
           >
             Reset
           </button>

@@ -166,9 +166,9 @@ class PlumeComponents implements IHooks {
   render() {
     return html`
       <div>
-        <h2 class="title is-3 mb-20">Plumejs UI Control Collection</h2>
+        <h2>Plumejs UI Control Collection</h2>
         <div class="mb-20">
-          <h5 class="title is-5">Modal</h5>
+          <h5>Modal</h5>
           <button
             class="button is-small is-info"
             onclick=${() => {
@@ -179,9 +179,8 @@ class PlumeComponents implements IHooks {
           </button>
         </div>
         <div class="mb-20">
-          <h5 class="title is-5">Notification</h5>
+          <h5>Notification</h5>
           <button
-            class="button is-small is-info mr-10"
             onclick=${() => {
               this.notify();
             }}
@@ -189,7 +188,6 @@ class PlumeComponents implements IHooks {
             Notify with action
           </button>
           <button
-            class="button is-small is-info"
             onclick=${() => {
               this.notifyWithAutoHide();
             }}
@@ -198,7 +196,7 @@ class PlumeComponents implements IHooks {
           </button>
         </div>
         <div class="mb-20">
-          <h5 class="title is-5">Toggle Button</h5>
+          <h5>Toggle Button</h5>
           <ui-toggle-button
             ref=${(node) => {
               this.sampleToggleRef = node;
@@ -209,9 +207,9 @@ class PlumeComponents implements IHooks {
           ></ui-toggle-button>
         </div>
         <div class="mb-20">
-          <h5 class="title is-5">Multi select</h5>
+          <h5>Multi select</h5>
           <div>
-            <div class="is-flex mb-20">
+            <div class="d-flex mb-20">
               <span>enable multi select</span>
               <ui-toggle-button
                 ref=${(node) => {
@@ -222,7 +220,7 @@ class PlumeComponents implements IHooks {
                 }}
               ></ui-toggle-button>
             </div>
-            <div class="is-flex mb-20">
+            <div class="d-flex mb-20">
               <span>disable dropdown</span>
               <ui-toggle-button
                 ref=${(node) => {
@@ -233,7 +231,7 @@ class PlumeComponents implements IHooks {
                 }}
               ></ui-toggle-button>
             </div>
-            <div class="is-flex mb-20">
+            <div class="d-flex mb-20">
               <span>enable filtering</span>
               <ui-toggle-button
                 ref=${(node) => {
@@ -245,7 +243,7 @@ class PlumeComponents implements IHooks {
               ></ui-toggle-button>
             </div>
           </div>
-          <div class="is-flex">
+          <div>
             <ui-dropdown
               ref=${(node) => {
                 this.dropdownRef = node;

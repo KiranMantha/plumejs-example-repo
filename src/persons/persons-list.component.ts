@@ -72,7 +72,6 @@ class PersonsList {
           ref="${(node) => {
             this.usersListRef = node;
           }}"
-          class="block-list is-small"
         ></ul>
         <person-details
           id="person-details"

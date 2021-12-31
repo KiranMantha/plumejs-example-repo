@@ -3,9 +3,9 @@ import { Component, html } from "@plumejs/core";
 @Component({
   selector: 'emulated-styles',
   styles: `
-    :host(.color-1) { color: green; }
-    :host(.color-2) { color: blue; }
-    :host(.color-3) { color: red; }
+    :host(.color-1) p { color: green; }
+    :host(.color-2) p { color: blue; }
+    :host(.color-3) p { color: red; }
   `
 })
 class EmulatedStylesComp {

@@ -14,10 +14,10 @@ export class TestEle implements IHooks {
             return html`
 				<div>
 					testing web component2 ${this.testprops.name}
-					<button class='button is-small is-info' onclick=${(e: any) => this.counts(e)}>hi</button>
+					<button onclick=${(e: any) => this.counts(e)}>hi</button>
 					<input
 						value=${this.testprops.name}
-						oninput=${(e: any) => this.change(e.target.value)}
+						oninput=${(e: any) => { this.change(e.target.value); e.target.focus(); }}
 					/>
 					<slot>testing slots</slot>
 				</div>

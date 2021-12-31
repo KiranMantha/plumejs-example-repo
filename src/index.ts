@@ -73,44 +73,26 @@ export class AppComponent {
   render() {
     return html`
       <nav
-        class="navbar is-light"
+        class="container-fluid"
         role="navigation"
         aria-label="main navigation"
       >
-        <div class="navbar-brand">
-          <a
-            class="navbar-item"
-            href="#"
-            onclick=${(e: Event) => {
-              this.navigate(e, '/home');
-            }}
-          >
-            <img src="./images/plume-logo.jpg" />
-          </a>
-
-          <span
-            role="button"
-            class="navbar-burger burger"
-            aria-label="menu"
-            aria-expanded="false"
-            onclick=${(e: Event) => {
-              e.preventDefault();
-              this._displayNav();
-            }}
-          >
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-            <span aria-hidden="true"></span>
-          </span>
-        </div>
-
-        <div
-          id="navbarBasicExample"
-          class="navbar-menu ${this.showNav ? 'is-active' : ''}"
-        >
-          <div class="navbar-start">
+        <ul>
+          <li>
             <a
-              class="navbar-item"
+              href="#"
+              onclick=${(e: Event) => {
+                this.navigate(e, '/home');
+              }}
+            >
+              <img src="./images/plume-logo.jpg" />
+            </a>
+          </li>
+        </ul>
+
+        <ul class="">
+          <li>
+            <a
               href="#"
               onclick=${(e: Event) => {
                 this.navigate(e, '/home');
@@ -118,9 +100,9 @@ export class AppComponent {
             >
               Home
             </a>
-
+          </li>
+          <li>
             <a
-              class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
                 this.navigate(e, '/controls', { name: 'hello world' });
@@ -128,9 +110,9 @@ export class AppComponent {
             >
               UI Controls
             </a>
-
+          </li>
+          <li>
             <a
-              class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
                 this.navigate(e, '/persons/123');
@@ -138,9 +120,9 @@ export class AppComponent {
             >
               Persons
             </a>
-
+          </li>
+          <li>
             <a
-              class="navbar-item"
               href="#"
               onclick=${(e: Event) => {
                 this.navigate(e, '/form');
@@ -148,29 +130,14 @@ export class AppComponent {
             >
               Sample Form
             </a>
-
-            <div class="navbar-item">
-              <div class="select">
-                <select
-                  class="form-control"
-                  value=${this.translation}
-                  onchange=${(e: any) => {
-                    this.translation = e.target.value;
-                    this.translations.setDefaultLanguage(e.target.value);
-                  }}
-                >
-                  <option value="en">EN</option>
-                  <option value="fr">FR</option>
-                </select>
-              </div>
-            </div>
-          </div>
-        </div>
+          </li>
+        </ul>
       </nav>
-      <div class="container">
-        <h1 class="title is-size-1-touch">Hello world</h1>
+      <main class="container">
+        <h1>Hello world</h1>
+        <h2>This demo is based on picocss</h2>
         <router-outlet></router-outlet>
-      </div>
+      </main>
     `;
   }
 }
