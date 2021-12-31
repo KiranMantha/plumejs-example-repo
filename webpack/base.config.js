@@ -14,8 +14,6 @@ const TerserPlugin = require('terser-webpack-plugin');
 const plumejsTransformer = require('../ast-transformer').default;
 
 module.exports = {
-  devtool: 'eval-cheap-source-map',
-  //devtool: false,
   mode: 'development',
   entry: './src/index.ts',
   output: {
@@ -102,7 +100,10 @@ module.exports = {
     new CopyWebpackPlugin({
       patterns: [{ from: 'src/images', to: 'images' }],
     }),
-    new webpack.SourceMapDevToolPlugin({}),
+    new webpack.SourceMapDevToolPlugin({
+      filename: 'sourcemaps/[name].js.map',
+      exclude: ['vendor.js']
+    }),
   ],
 
   optimization: {
