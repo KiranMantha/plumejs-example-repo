@@ -1,5 +1,4 @@
 //import { astTransformer } from '@plumejs/core';
-const webpack = require('webpack');
 const HtmlWebPackPlugin = require('html-webpack-plugin');
 const path = require('path');
 const appconstants = {
