@@ -6,7 +6,7 @@ const appconstants = {
   root: '../',
   sourceDir: '../src',
   buildDir: '../docs',
-  node_modules: '../node_modules',
+  node_modules: '../node_modules'
 };
 const CopyWebpackPlugin = require('copy-webpack-plugin');
 const plumejsTransformer = require('../ast-transformer').default;
@@ -19,16 +19,16 @@ module.exports = {
     path: path.resolve(__dirname, appconstants.buildDir),
     publicPath: appconstants.publicPath,
     filename: 'scripts/[name].[chunkhash].bundle.js',
-    chunkFilename: 'scripts/[name].[chunkhash].chunk.js',
+    chunkFilename: 'scripts/[name].[chunkhash].chunk.js'
   },
   resolve: {
-    extensions: ['.ts', '.js', '.scss', '.css'],
+    extensions: ['.ts', '.js', '.scss', '.css']
   },
   module: {
     rules: [
       {
         test: /\.html$/,
-        use: ['html-loader'],
+        use: ['html-loader']
       },
       {
         test: /\.ts$/,
@@ -37,13 +37,13 @@ module.exports = {
           {
             loader: 'ts-loader',
             options: {
-              configFile: path.resolve(__dirname, '../tsconfig.json'),
+              configFile: path.resolve(__dirname, '../tsconfig.json')
               // getCustomTransformers: () => ({
               //     before: [plumejsTransformer]
               // })
-            },
-          },
-        ],
+            }
+          }
+        ]
       },
       {
         test: /\.(s*)css$/,
@@ -55,11 +55,11 @@ module.exports = {
               // Prefer `dart-sass`
               implementation: require('sass'),
               sassOptions: {
-                fiber: false,
-              },
-            },
-          },
-        ],
+                fiber: false
+              }
+            }
+          }
+        ]
       },
       {
         test: /\.(png|jp(e*)g|svg)$/,
@@ -68,10 +68,10 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 8000, // Convert images < 8kb to base64 strings
-              name: 'images/[name].[ext]',
-            },
-          },
-        ],
+              name: 'images/[name].[ext]'
+            }
+          }
+        ]
       },
       {
         test: /\.(woff2?|ttf|eot)$/,
@@ -80,12 +80,12 @@ module.exports = {
             loader: 'url-loader',
             options: {
               limit: 10000,
-              name: 'fonts/[name].[ext]',
-            },
-          },
-        ],
-      },
-    ],
+              name: 'fonts/[name].[ext]'
+            }
+          }
+        ]
+      }
+    ]
   },
   plugins: [
     new HtmlWebPackPlugin({
@@ -93,18 +93,18 @@ module.exports = {
       filename: 'index.html',
       inject: 'head',
       minify: {
-        collapseWhitespace: false,
-      },
+        collapseWhitespace: false
+      }
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'src/images', to: 'images' }],
+      patterns: [{ from: 'src/images', to: 'images' }]
     })
   ],
 
   optimization: {
     minimize: true,
     runtimeChunk: {
-      name: 'runtime',
+      name: 'runtime'
     },
     splitChunks: {
       chunks: 'all',
@@ -112,22 +112,22 @@ module.exports = {
       minSize: 0,
       cacheGroups: {
         coreVendor: {
-          test: /[\\/]node_modules[\\/](@plumejs\/core)[\\/]/,
+          test: /[\\/]node_modules[\\/](@plumejs\/core)[\\/]/
         },
         uiVendor: {
-          test: /[\\/]node_modules[\\/](@plumejs\/ui)[\\/]/,
+          test: /[\\/]node_modules[\\/](@plumejs\/ui)[\\/]/
         },
         routerVendor: {
-          test: /[\\/]node_modules[\\/](@plumejs\/router)[\\/]/,
+          test: /[\\/]node_modules[\\/](@plumejs\/router)[\\/]/
         },
         otherVendor: {
-          test: /[\\/]node_modules[\\/](!@plumejs\/core)(!@plumejs\/ui)(!@plumejs\/router)[\\/]/,
+          test: /[\\/]node_modules[\\/](!@plumejs\/core)(!@plumejs\/ui)(!@plumejs\/router)[\\/]/
         },
         default: {
           minChunks: 1,
-          reuseExistingChunk: true,
-        },
-      },
-    },
-  },
+          reuseExistingChunk: true
+        }
+      }
+    }
+  }
 };

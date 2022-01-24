@@ -11,18 +11,18 @@ export default defineConfig({
       plugins: [
         visualizer({
           title: 'Plumejs example repo',
-          open: true,
-        }),
-      ],
-    },
+          open: true
+        })
+      ]
+    }
   },
   server: {
     host: true,
     port: 3001,
-    open: '/',
+    open: '/'
   },
   test: {
     globals: true,
-    environment: 'happy-dom',
-  },
+    environment: 'happy-dom'
+  }
 });

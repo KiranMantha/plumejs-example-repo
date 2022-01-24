@@ -8,18 +8,17 @@ module.exports = {
   testMatch: ['**/+(*.)+(spec).+(ts)'],
   // testMatch: ["**/+(index.)+(spec).+(ts)"], // to test single file,
   transform: {
-    '^.+\\.ts$': 'ts-jest',
+    '^.+\\.ts$': 'ts-jest'
   },
   extensionsToTreatAsEsm: ['.ts'],
   moduleFileExtensions: ['ts', 'html', 'js', 'json'],
   moduleNameMapper: {
-    '^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$':
-      'jest-transform-stub',
+    '^.+.(css|styl|less|sass|scss|png|jpg|ttf|woff|woff2)$': 'jest-transform-stub'
   },
   globals: {
     'ts-jest': {
       diagnostics: true,
-      tsconfig: '<rootDir>/tsconfig.json',
-    },
-  },
+      tsconfig: '<rootDir>/tsconfig.json'
+    }
+  }
 };
