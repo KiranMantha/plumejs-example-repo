@@ -9,7 +9,6 @@ const appconstants = {
   node_modules: '../node_modules',
 };
 const CopyWebpackPlugin = require('copy-webpack-plugin');
-const TerserPlugin = require('terser-webpack-plugin');
 const plumejsTransformer = require('../ast-transformer').default;
 
 module.exports = {

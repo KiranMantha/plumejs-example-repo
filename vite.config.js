@@ -8,16 +8,21 @@ export default defineConfig({
     outDir: 'dist',
     sourcemap: false,
     rollupOptions: {
-        plugins: [visualizer()]
-    }
+      plugins: [
+        visualizer({
+          title: 'Plumejs example repo',
+          open: true,
+        }),
+      ],
+    },
   },
   server: {
     host: true,
     port: 3001,
-    open: '/'
+    open: '/',
   },
   test: {
     globals: true,
-    environment: 'happy-dom'
-  }
+    environment: 'happy-dom',
+  },
 });
