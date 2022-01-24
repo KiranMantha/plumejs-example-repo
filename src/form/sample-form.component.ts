@@ -18,6 +18,7 @@ registerUIDropdown();
 
 @Component({
   selector: 'sample-form',
+  deps: [Renderer]
 })
 class SampleForm implements IHooks {
   sampleformFields: any;

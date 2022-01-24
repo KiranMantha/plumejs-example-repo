@@ -24,6 +24,7 @@ registerUIDropdown();
 
 @Component({
   selector: 'plume-comp',
+  deps: [Router, ModalService, NotificationService]
 })
 class PlumeComponents implements IHooks {
   constructor(

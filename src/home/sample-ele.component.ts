@@ -1,7 +1,7 @@
 import { Component, ComponentRef, html, Injectable, Renderer } from "@plumejs/core";
 import { TestEle } from './test-ele.component';
 
-@Injectable()
+@Injectable({ name: 'SampleService' })
 class SampleService {
 	constructor() { }
 	testMeth() {
@@ -9,7 +9,7 @@ class SampleService {
 	}
 }
 
-@Injectable()
+@Injectable({ name: 'TestService', deps: [SampleService] })
 class TestService {
 	constructor(private sampleSrvc: SampleService) { }
 	testMeth() {
@@ -23,7 +23,8 @@ class TestService {
 
 
 @Component({
-	selector: "sample-ele"
+	selector: "sample-ele",
+	deps: [TestService, Renderer]
 })
 class SampleEle {
 	test: string;

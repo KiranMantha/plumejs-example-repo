@@ -8,6 +8,7 @@ import globalstyles from './styles.scss';
   selector: 'app-root',
   styles: globalstyles,
   root: true,
+  deps: [Router, Renderer, TranslationService]
 })
 export class AppComponent {
   constructor(

@@ -1,7 +1,8 @@
 import { Component, html, IHooks, Renderer } from '@plumejs/core';
 
 @Component({
-    selector: "test-ele"
+    selector: "test-ele",
+    deps: [Renderer]
 })
 export class TestEle implements IHooks {
     readonly ObservedProperties = <const>['testprops'];

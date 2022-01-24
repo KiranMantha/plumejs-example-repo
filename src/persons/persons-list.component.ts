@@ -4,23 +4,24 @@ import {
   html,
   Injectable,
   render,
-} from "@plumejs/core";
-import { Router } from "@plumejs/router";
-import { PersonDetails } from "./person-details.component";
-import personListStyles from "./persons-list.scss";
+} from '@plumejs/core';
+import { Router } from '@plumejs/router';
+import { PersonDetails } from './person-details.component';
+import personListStyles from './persons-list.scss';
 
-@Injectable()
+@Injectable({ name: 'PersonService' })
 class PersonService {
   getPersons() {
-    return fetch("https://jsonplaceholder.typicode.com/users").then((res) =>
+    return fetch('https://jsonplaceholder.typicode.com/users').then((res) =>
       res.json()
     );
   }
 }
 
 @Component({
-  selector: "persons-list",
+  selector: 'persons-list',
   styles: personListStyles,
+  deps: [PersonService, Router],
 })
 class PersonsList {
   persondetails: any = {};
@@ -29,7 +30,7 @@ class PersonsList {
   personDetailsRef: ComponentRef<PersonDetails>;
 
   constructor(private personSrvc: PersonService, private router: Router) {
-    console.log("current route ", this.router.getCurrentRoute());
+    console.log('current route ', this.router.getCurrentRoute());
   }
 
   mount() {
