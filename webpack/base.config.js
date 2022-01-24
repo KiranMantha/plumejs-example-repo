@@ -90,7 +90,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebPackPlugin({
-      template: './src/index.html',
+      template: './index.html',
       filename: 'index.html',
       inject: 'head',
       minify: {
@@ -104,20 +104,6 @@ module.exports = {
 
   optimization: {
     minimize: true,
-    minimizer: [
-      new TerserPlugin({
-        terserOptions: {
-          parse: {
-            ecma: 8,
-          },
-          compress: {
-            ecma: 5,
-          },
-          sourceMap: false,
-          keep_classnames: true,
-        },
-      }),
-    ],
     runtimeChunk: {
       name: 'runtime',
     },
