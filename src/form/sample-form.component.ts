@@ -1,18 +1,6 @@
-import {
-  Component,
-  ComponentRef,
-  html,
-  IHooks,
-  Renderer,
-  useFormFields,
-} from '@plumejs/core';
+import { Component, ComponentRef, html, IHooks, Renderer, useFormFields } from '@plumejs/core';
 
-import {
-  IDropdownOptions,
-  IOption,
-  DropdownComponent,
-  registerUIDropdown,
-} from '@plumejs/ui';
+import { IDropdownOptions, IOption, DropdownComponent, registerUIDropdown } from '@plumejs/ui';
 
 registerUIDropdown();
 
@@ -20,7 +8,7 @@ registerUIDropdown();
   selector: 'sample-form',
   deps: [Renderer]
 })
-class SampleForm implements IHooks {
+export class SampleForm implements IHooks {
   sampleformFields: any;
   createChangeHandler: (key: string) => (e: Event) => void;
   multiSelectChangehandler: (e: any) => void;
@@ -31,20 +19,20 @@ class SampleForm implements IHooks {
     options: [
       {
         label: 'Option 1',
-        value: 'o1',
+        value: 'o1'
       },
       {
         label: 'Option 2',
-        value: 'o2',
+        value: 'o2'
       },
       {
         label: 'Option 3',
-        value: 'o3',
+        value: 'o3'
       },
       {
         label: 'Option 4',
-        value: 'o4',
-      },
+        value: 'o4'
+      }
     ],
     multiple: true,
     buttonText: (options: IOption<string>[]): string => {
@@ -55,7 +43,7 @@ class SampleForm implements IHooks {
       } else {
         return options.map((item) => item.label).join(', ');
       }
-    },
+    }
   };
 
   dropdownRef: ComponentRef<DropdownComponent<string>>;
@@ -63,21 +51,20 @@ class SampleForm implements IHooks {
   constructor(private renderer: Renderer) {}
 
   beforeMount() {
-    [this.sampleformFields, this.createChangeHandler, this.resetFormFields] =
-      useFormFields({
-        email: '',
-        password: '',
-        checkme: false,
-        option: '',
-        options: [],
-        gender: '',
-      });
+    [this.sampleformFields, this.createChangeHandler, this.resetFormFields] = useFormFields({
+      email: '',
+      password: '',
+      checkme: false,
+      option: '',
+      options: [],
+      gender: ''
+    });
     this.multiSelectChangehandler = this.createChangeHandler('options');
   }
 
   mount() {
     this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions,
+      dropdownOptions: this.dropdownOptions
     });
   }
 
@@ -110,9 +97,7 @@ class SampleForm implements IHooks {
               value=${this.sampleformFields.email}
               onchange=${this.createChangeHandler('email')}
             />
-            <small id="emailHelp">
-              We'll never share your email with anyone else.
-            </small>
+            <small id="emailHelp"> We'll never share your email with anyone else. </small>
           </div>
           <div>
             <label for="exampleInputPassword1">Password</label>
@@ -137,10 +122,7 @@ class SampleForm implements IHooks {
           </div>
           <div>
             <label>single select</label>
-            <select
-              value=${this.sampleformFields.option}
-              onchange=${this.createChangeHandler('option')}
-            >
+            <select value=${this.sampleformFields.option} onchange=${this.createChangeHandler('option')}>
               <option>select</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -157,8 +139,8 @@ class SampleForm implements IHooks {
               onoptionselected=${(event) => {
                 this.multiSelectChangehandler({
                   target: {
-                    value: event.detail,
-                  },
+                    value: event.detail
+                  }
                 });
               }}
             ></ui-dropdown>

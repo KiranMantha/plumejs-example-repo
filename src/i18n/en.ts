@@ -1,7 +1,7 @@
 const en = {
-  'username': {
-    'greet': 'my name is {name}'
+  username: {
+    greet: 'my name is {name}'
   }
-}
+};
 
 export default en;

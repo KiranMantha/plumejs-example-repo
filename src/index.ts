@@ -11,11 +11,7 @@ import globalstyles from './styles.scss';
   deps: [Router, Renderer, TranslationService]
 })
 export class AppComponent {
-  constructor(
-    private router: Router,
-    private renderer: Renderer,
-    private translations: TranslationService
-  ) {
+  constructor(private router: Router, private renderer: Renderer, private translations: TranslationService) {
     Router.registerRoutes(this.routes, true);
     translations.setTranslate(locale_en, 'en');
     translations.setTranslate(locale_fr, 'fr');
@@ -29,36 +25,36 @@ export class AppComponent {
   routes: Array<Route> = [
     {
       path: '',
-      redirectTo: '/home',
+      redirectTo: '/home'
     },
     {
       path: '/home',
       template: `<sample-ele></sample-ele>`,
-      templatePath: () => import('./home'),
+      templatePath: () => import('./home')
     },
     {
       path: '/controls',
       template: `<plume-comp></plume-comp>`,
-      templatePath: () => import('./ui-controls'),
+      templatePath: () => import('./ui-controls')
     },
     {
       path: '/persons/:id',
       template: `<persons-list></persons-list>`,
       templatePath: () => import('./persons'),
       canActivate: () => {
-        let key = localStorage.getItem('@plumejs/core');
+        const key = localStorage.getItem('@plumejs/core');
         if (!key) {
           this.router.navigateTo('/home');
           return false;
         }
         return true;
-      },
+      }
     },
     {
       path: '/form',
       template: `<sample-form></sample-form>`,
-      templatePath: () => import('./form'),
-    },
+      templatePath: () => import('./form')
+    }
   ];
 
   navigate = (e: Event, path: string, state?: Record<string, any>) => {
@@ -68,11 +64,7 @@ export class AppComponent {
 
   render() {
     return html`
-      <nav
-        class="container-fluid"
-        role="navigation"
-        aria-label="main navigation"
-      >
+      <nav class="container-fluid" role="navigation" aria-label="main navigation">
         <ul>
           <li>
             <details role="menu">

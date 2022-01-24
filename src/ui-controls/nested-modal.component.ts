@@ -3,7 +3,7 @@ import { ModalService } from '@plumejs/ui';
 
 @Component({
   selector: 'nested-modal',
-  deps: [ModalService],
+  deps: [ModalService]
 })
 export class NestedModal implements IHooks {
   readonly ObservedProperties = <const>['nestedModalData'];
@@ -15,7 +15,7 @@ export class NestedModal implements IHooks {
     const modal = this.modalsrvc.show({
       renderTemplate: () => html`<div>i'm nested modal</div>`,
       modalTitle: 'nested modal',
-      modalClass: 'nested-class',
+      modalClass: 'nested-class'
     });
 
     modal.onOpen.subscribe(() => {

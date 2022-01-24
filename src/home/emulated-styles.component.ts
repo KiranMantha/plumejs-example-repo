@@ -1,4 +1,4 @@
-import { Component, html } from "@plumejs/core";
+import { Component, html } from '@plumejs/core';
 
 @Component({
   selector: 'emulated-styles',
@@ -8,8 +8,7 @@ import { Component, html } from "@plumejs/core";
     :host(.color-3) p { color: red; }
   `
 })
-class EmulatedStylesComp {
-  constructor() { }
+export class EmulatedStylesComp {
   render() {
     return html`<p>my styles are emulated</p>`;
   }

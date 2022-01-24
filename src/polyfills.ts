@@ -3,4 +3,5 @@ import(
   /* webpackChunkName: "css-polyfills" */
   /* webpackPreload: true */
   /* webpackPrefetch: true */
-  'construct-style-sheets-polyfill');
+  'construct-style-sheets-polyfill'
+);
