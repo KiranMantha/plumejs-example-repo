@@ -3,7 +3,7 @@ import { Router } from '@plumejs/router';
 import { PersonDetails } from './person-details.component';
 import personListStyles from './persons-list.scss';
 
-@Injectable({ name: 'PersonService' })
+@Injectable()
 class PersonService {
   getPersons() {
     return fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json());

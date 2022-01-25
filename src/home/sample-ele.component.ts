@@ -1,14 +1,14 @@
 import { Component, ComponentRef, html, Injectable, Renderer } from '@plumejs/core';
 import { TestEle } from './test-ele.component';
 
-@Injectable({ name: 'SampleService' })
+@Injectable()
 class SampleService {
   testMeth() {
     console.log('testmethod in sample service');
   }
 }
 
-@Injectable({ name: 'TestService', deps: [SampleService] })
+@Injectable({ deps: [SampleService] })
 class TestService {
   constructor(private sampleSrvc: SampleService) {}
   testMeth() {
