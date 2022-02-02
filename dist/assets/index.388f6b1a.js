@@ -1,4 +1,4 @@
-var m=Object.defineProperty;var g=(o,r,e)=>r in o?m(o,r,{enumerable:!0,configurable:!0,writable:!0,value:e}):o[r]=e;var c=(o,r,e)=>(g(o,typeof r!="symbol"?r+"":r,e),e);import{C as v,R as s,a as h,T as y,h as f}from"./vendor.dafb32b6.js";const k=function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))a(n);new MutationObserver(n=>{for(const t of n)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function e(n){const t={};return n.integrity&&(t.integrity=n.integrity),n.referrerpolicy&&(t.referrerPolicy=n.referrerpolicy),n.crossorigin==="use-credentials"?t.credentials="include":n.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function a(n){if(n.ep)return;n.ep=!0;const t=e(n);fetch(n.href,t)}};k();const w="modulepreload",d={},x="/",l=function(r,e){return!e||e.length===0?r():Promise.all(e.map(a=>{if(a=`${x}${a}`,a in d)return;d[a]=!0;const n=a.endsWith(".css"),t=n?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${a}"]${t}`))return;const i=document.createElement("link");if(i.rel=n?"stylesheet":w,n||(i.as="script",i.crossOrigin=""),i.href=a,document.head.appendChild(i),n)return new Promise((u,b)=>{i.addEventListener("load",u),i.addEventListener("error",b)})})).then(()=>r())},C={username:{greet:"my name is {name}"}},E={username:{greet:"je m`appelle {name}"}};var z=`/*!
+var m=Object.defineProperty;var g=(o,r,e)=>r in o?m(o,r,{enumerable:!0,configurable:!0,writable:!0,value:e}):o[r]=e;var c=(o,r,e)=>(g(o,typeof r!="symbol"?r+"":r,e),e);import{C as v,R as s,a as h,T as y,h as f}from"./vendor.b39eeca7.js";const k=function(){const r=document.createElement("link").relList;if(r&&r.supports&&r.supports("modulepreload"))return;for(const n of document.querySelectorAll('link[rel="modulepreload"]'))a(n);new MutationObserver(n=>{for(const t of n)if(t.type==="childList")for(const i of t.addedNodes)i.tagName==="LINK"&&i.rel==="modulepreload"&&a(i)}).observe(document,{childList:!0,subtree:!0});function e(n){const t={};return n.integrity&&(t.integrity=n.integrity),n.referrerpolicy&&(t.referrerPolicy=n.referrerpolicy),n.crossorigin==="use-credentials"?t.credentials="include":n.crossorigin==="anonymous"?t.credentials="omit":t.credentials="same-origin",t}function a(n){if(n.ep)return;n.ep=!0;const t=e(n);fetch(n.href,t)}};k();const w="modulepreload",d={},x="/",l=function(r,e){return!e||e.length===0?r():Promise.all(e.map(a=>{if(a=`${x}${a}`,a in d)return;d[a]=!0;const n=a.endsWith(".css"),t=n?'[rel="stylesheet"]':"";if(document.querySelector(`link[href="${a}"]${t}`))return;const i=document.createElement("link");if(i.rel=n?"stylesheet":w,n||(i.as="script",i.crossOrigin=""),i.href=a,document.head.appendChild(i),n)return new Promise((u,b)=>{i.addEventListener("load",u),i.addEventListener("error",b)})})).then(()=>r())},C={username:{greet:"my name is {name}"}},E={username:{greet:"je m`appelle {name}"}};var z=`/*!
  * Pico.css v1.4.4 (https://picocss.com)
  * Copyright 2019-2021 - Licensed under MIT
  */
@@ -1990,12 +1990,8 @@ details[role=menu] summary + ul {
   align-items: stretch;
   min-width: 300px;
   z-index: 100;
-}`,j=Object.defineProperty,B=Object.getOwnPropertyDescriptor,_=(o,r,e,a)=>{for(var n=a>1?void 0:a?B(r,e):r,t=o.length-1,i;t>=0;t--)(i=o[t])&&(n=(a?i(r,e,n):i(n))||n);return a&&n&&j(r,e,n),n};let p=class{constructor(o,r,e){c(this,"translation","en");c(this,"showNav",!1);c(this,"routes",[{path:"",redirectTo:"/home"},{path:"/home",template:"<sample-ele></sample-ele>",templatePath:()=>l(()=>import("./index.7046ac0c.js"),["assets/index.7046ac0c.js","assets/vendor.dafb32b6.js"])},{path:"/controls",template:"<plume-comp></plume-comp>",templatePath:()=>l(()=>import("./index.d6007653.js"),["assets/index.d6007653.js","assets/vendor.dafb32b6.js","assets/index.7b5a3c05.js","assets/index.ac54e954.css"])},{path:"/persons/:id",template:"<persons-list></persons-list>",templatePath:()=>l(()=>import("./index.fa71129b.js"),["assets/index.fa71129b.js","assets/index.e28a3818.css","assets/vendor.dafb32b6.js"]),canActivate:()=>localStorage.getItem("@plumejs/core")?!0:(this.router.navigateTo("/home"),!1)},{path:"/form",template:"<sample-form></sample-form>",templatePath:()=>l(()=>import("./index.ad0fd297.js"),["assets/index.ad0fd297.js","assets/vendor.dafb32b6.js","assets/index.7b5a3c05.js","assets/index.ac54e954.css"])}]);c(this,"navigate",(o,r,e)=>{o.preventDefault(),this.router.navigateTo(r,e)});this.router=o,this.renderer=r,this.translations=e,s.registerRoutes(this.routes,!0),e.setTranslate(C,"en"),e.setTranslate(E,"fr"),e.setDefaultLanguage("en")}render(){return f`
-      <nav
-        class="container-fluid"
-        role="navigation"
-        aria-label="main navigation"
-      >
+}`,j=Object.defineProperty,_=Object.getOwnPropertyDescriptor,B=(o,r,e,a)=>{for(var n=a>1?void 0:a?_(r,e):r,t=o.length-1,i;t>=0;t--)(i=o[t])&&(n=(a?i(r,e,n):i(n))||n);return a&&n&&j(r,e,n),n};let p=class{constructor(o,r,e){c(this,"translation","en");c(this,"showNav",!1);c(this,"routes",[{path:"",redirectTo:"/home"},{path:"/home",template:"<sample-ele></sample-ele>",templatePath:()=>l(()=>import("./index.c87e65fd.js"),["assets/index.c87e65fd.js","assets/vendor.b39eeca7.js"])},{path:"/controls",template:"<plume-comp></plume-comp>",templatePath:()=>l(()=>import("./index.a241e023.js"),["assets/index.a241e023.js","assets/vendor.b39eeca7.js","assets/index.30f02d8b.js","assets/index.ac54e954.css"])},{path:"/persons/:id",template:"<persons-list></persons-list>",templatePath:()=>l(()=>import("./index.ecf33b02.js"),["assets/index.ecf33b02.js","assets/index.e28a3818.css","assets/vendor.b39eeca7.js"]),canActivate:()=>localStorage.getItem("@plumejs/core")?!0:(this.router.navigateTo("/home"),!1)},{path:"/form",template:"<sample-form></sample-form>",templatePath:()=>l(()=>import("./index.14feece4.js"),["assets/index.14feece4.js","assets/vendor.b39eeca7.js","assets/index.30f02d8b.js","assets/index.ac54e954.css"])},{path:"/nested-table",template:"<app-nested-table></app-nested-table>",templatePath:()=>l(()=>import("./index.4ebb0d54.js"),["assets/index.4ebb0d54.js","assets/vendor.b39eeca7.js"])}]);c(this,"navigate",(o,r,e)=>{o.preventDefault(),this.router.navigateTo(r,e)});this.router=o,this.renderer=r,this.translations=e,s.registerRoutes(this.routes,!0),e.setTranslate(C,"en"),e.setTranslate(E,"fr"),e.setDefaultLanguage("en")}render(){return f`
+      <nav class="container-fluid" role="navigation" aria-label="main navigation">
         <ul>
           <li>
             <details role="menu">
@@ -2051,6 +2047,14 @@ details[role=menu] summary + ul {
                     Sample Form
                   </a>
                 </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick=${o=>{this.navigate(o,"/nested-table")}}
+                  >
+                    Nested Table
+                  </a>
+                </li>
               </ul>
             </details>
           </li>
@@ -2092,4 +2096,4 @@ details[role=menu] summary + ul {
         <h2>This demo is based on picocss</h2>
         <router-outlet></router-outlet>
       </main>
-    `}};p=_([v({selector:"app-root",styles:z,root:!0,deps:[s,h,y]})],p);
+    `}};p=B([v({selector:"app-root",styles:z,root:!0,deps:[s,h,y]})],p);

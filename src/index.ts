@@ -54,6 +54,11 @@ export class AppComponent {
       path: '/form',
       template: `<sample-form></sample-form>`,
       templatePath: () => import('./form')
+    },
+    {
+      path: '/nested-table',
+      template: `<app-nested-table></app-nested-table>`,
+      templatePath: () => import('./nested-table')
     }
   ];
 
@@ -126,6 +131,16 @@ export class AppComponent {
                     }}
                   >
                     Sample Form
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#"
+                    onclick=${(e: Event) => {
+                      this.navigate(e, '/nested-table');
+                    }}
+                  >
+                    Nested Table
                   </a>
                 </li>
               </ul>

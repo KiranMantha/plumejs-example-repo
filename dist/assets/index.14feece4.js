@@ -1,4 +1,4 @@
-var d=Object.defineProperty;var p=(e,l,a)=>l in e?d(e,l,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[l]=a;var t=(e,l,a)=>(p(e,typeof l!="symbol"?l+"":l,a),a);import{C as m,a as h,u,h as c}from"./vendor.dafb32b6.js";import{r as f}from"./index.7b5a3c05.js";var b=Object.defineProperty,v=Object.getOwnPropertyDescriptor,g=(e,l,a,r)=>{for(var o=r>1?void 0:r?v(l,a):l,n=e.length-1,i;n>=0;n--)(i=e[n])&&(o=(r?i(l,a,o):i(o))||o);return r&&o&&b(l,a,o),o};f();let s=class{constructor(e){t(this,"sampleformFields");t(this,"createChangeHandler");t(this,"multiSelectChangehandler");t(this,"resetFormFields");t(this,"jsonRef");t(this,"dropdownOptions",{options:[{label:"Option 1",value:"o1"},{label:"Option 2",value:"o2"},{label:"Option 3",value:"o3"},{label:"Option 4",value:"o4"}],multiple:!0,buttonText:e=>e.length===0?"None selected":e.length>3?e.length+" selected":e.map(l=>l.label).join(", ")});t(this,"dropdownRef");this.renderer=e}beforeMount(){[this.sampleformFields,this.createChangeHandler,this.resetFormFields]=u({email:"",password:"",checkme:!1,option:"",options:[],gender:""}),this.multiSelectChangehandler=this.createChangeHandler("options")}mount(){this.dropdownRef.setProps({dropdownOptions:this.dropdownOptions})}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.jsonRef.innerHTML=JSON.stringify(this.sampleformFields,null,4)}resetForm(){this.resetFormFields(),this.renderer.update()}render(){return c`
+var d=Object.defineProperty;var p=(e,l,a)=>l in e?d(e,l,{enumerable:!0,configurable:!0,writable:!0,value:a}):e[l]=a;var t=(e,l,a)=>(p(e,typeof l!="symbol"?l+"":l,a),a);import{C as m,a as h,u,h as c}from"./vendor.b39eeca7.js";import{r as f}from"./index.30f02d8b.js";var b=Object.defineProperty,v=Object.getOwnPropertyDescriptor,g=(e,l,a,r)=>{for(var o=r>1?void 0:r?v(l,a):l,n=e.length-1,i;n>=0;n--)(i=e[n])&&(o=(r?i(l,a,o):i(o))||o);return r&&o&&b(l,a,o),o};f();let s=class{constructor(e){t(this,"sampleformFields");t(this,"createChangeHandler");t(this,"multiSelectChangehandler");t(this,"resetFormFields");t(this,"jsonRef");t(this,"dropdownOptions",{options:[{label:"Option 1",value:"o1"},{label:"Option 2",value:"o2"},{label:"Option 3",value:"o3"},{label:"Option 4",value:"o4"}],multiple:!0,buttonText:e=>e.length===0?"None selected":e.length>3?e.length+" selected":e.map(l=>l.label).join(", ")});t(this,"dropdownRef");this.renderer=e}beforeMount(){[this.sampleformFields,this.createChangeHandler,this.resetFormFields]=u({email:"",password:"",checkme:!1,option:"",options:[],gender:""}),this.multiSelectChangehandler=this.createChangeHandler("options")}mount(){this.dropdownRef.setProps({dropdownOptions:this.dropdownOptions})}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.jsonRef.innerHTML=JSON.stringify(this.sampleformFields,null,4)}resetForm(){this.resetFormFields(),this.renderer.update()}render(){return c`
       <div>
         <form
           onsubmit=${e=>{this.submitForm(e)}}
@@ -13,9 +13,7 @@ var d=Object.defineProperty;var p=(e,l,a)=>l in e?d(e,l,{enumerable:!0,configura
               value=${this.sampleformFields.email}
               onchange=${this.createChangeHandler("email")}
             />
-            <small id="emailHelp">
-              We'll never share your email with anyone else.
-            </small>
+            <small id="emailHelp"> We'll never share your email with anyone else. </small>
           </div>
           <div>
             <label for="exampleInputPassword1">Password</label>
@@ -40,10 +38,7 @@ var d=Object.defineProperty;var p=(e,l,a)=>l in e?d(e,l,{enumerable:!0,configura
           </div>
           <div>
             <label>single select</label>
-            <select
-              value=${this.sampleformFields.option}
-              onchange=${this.createChangeHandler("option")}
-            >
+            <select value=${this.sampleformFields.option} onchange=${this.createChangeHandler("option")}>
               <option>select</option>
               <option value="1">1</option>
               <option value="2">2</option>
