@@ -1,10 +1,14 @@
+# For Documentation
 
-### Plumejs repo
-For Documentation, please visit [here](https://github.com/kiranmantha/plumejs)
+## Core
+please visit [plumejs repo](https://github.com/kiranmantha/plumejs)
 
-### Plumejs-ui repo
-For Documentation, please visit [here](https://github.com/kiranmantha/plumejs-ui)
+## Router
+please visit [plumejs-router repo](https://github.com/kiranmantha/plumejs-router)
 
-### Initial Steps
+## UI controls
+please visit [plumejs-ui repo](https://github.com/kiranmantha/plumejs-ui)
+
+# Initial Steps
 1. To start application, run `npm start`
-2. To run unit tests, run `npm run test-local`
+2. To run unit tests, run `npm run test`
