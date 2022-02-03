@@ -6,6 +6,7 @@ const appconstants = {
   root: '../',
   sourceDir: '../src',
   buildDir: '../docs',
+  publicDir: '../public',
   node_modules: '../node_modules'
 };
 const CopyWebpackPlugin = require('copy-webpack-plugin');
@@ -97,7 +98,7 @@ module.exports = {
       }
     }),
     new CopyWebpackPlugin({
-      patterns: [{ from: 'src/images', to: 'images' }]
+      patterns: [{ from: path.resolve(__dirname, appconstants.publicDir, 'images'), to: 'images' }]
     })
   ],
 
