@@ -1,7 +1,7 @@
 const fr = {
-  'username': {
-    'greet': 'je m`appelle {name}'
+  username: {
+    greet: 'je m`appelle {name}'
   }
-}
+};
 
 export default fr;

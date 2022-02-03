@@ -19,9 +19,8 @@
     "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "emitDecoratorMetadata": true,
     "sourceMap": true,
     "skipLibCheck": true,
-    "typeRoots": ["@types", "node_modules/@types"]
+    "typeRoots": ["@types", "node_modules/@types", "vitest/globals"]
   }
 }

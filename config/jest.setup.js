@@ -49,7 +49,7 @@ function createXHRmock() {
   setRequestHeader = jest.fn();
   response = '';
   responseText = '';
-  // be aware we use *function* because we need to get *this* 
+  // be aware we use *function* because we need to get *this*
   // from *new XmlHttpRequest()* call
   send = jest.fn().mockImplementation(function () {
     this.onloadend && this.onloadend.call(this);
@@ -73,7 +73,7 @@ function createXHRmock() {
     status = res.status ? res.status : 200;
     response = res.response ? res.response : '';
     responseText = res.responseText ? res.responseText : '';
-  }
+  };
 }
 
 createXHRmock();

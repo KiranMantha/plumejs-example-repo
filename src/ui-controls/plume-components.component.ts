@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, IHooks, Renderer } from '@plumejs/core';
+import { Component, ComponentRef, html, IHooks } from '@plumejs/core';
 import { Router } from '@plumejs/router';
 import {
   IModal,
@@ -13,7 +13,7 @@ import {
   registerUIModal,
   registerUINotifications,
   registerUIToggle,
-  registerUIDropdown,
+  registerUIDropdown
 } from '@plumejs/ui';
 import { NestedModal } from './nested-modal.component';
 
@@ -24,29 +24,26 @@ registerUIDropdown();
 
 @Component({
   selector: 'plume-comp',
+  deps: [Router, ModalService, NotificationService]
 })
-class PlumeComponents implements IHooks {
-  constructor(
-    private router: Router,
-    private modalsrvc: ModalService,
-    private notifySrvc: NotificationService
-  ) {}
+export class PlumeComponents implements IHooks {
+  constructor(private router: Router, private modalsrvc: ModalService, private notifySrvc: NotificationService) {}
 
   toggleInput: IToggleInput = {
     onText: 'ON',
-    offText: 'OFF',
+    offText: 'OFF'
   };
 
   toggleProps: IToggleInput = {
     onText: '',
-    offText: '',
+    offText: ''
   };
 
   enableMultiselect(_checked: boolean) {
     this.dropdownOptions.multiple = _checked;
     this.dropdownOptions.resetDropdown = true;
     this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions,
+      dropdownOptions: this.dropdownOptions
     });
   }
 
@@ -54,7 +51,7 @@ class PlumeComponents implements IHooks {
     this.dropdownOptions.disable = checked;
     this.dropdownOptions.resetDropdown = true;
     this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions,
+      dropdownOptions: this.dropdownOptions
     });
   }
 
@@ -62,7 +59,7 @@ class PlumeComponents implements IHooks {
     this.dropdownOptions.enableFilter = checked;
     this.dropdownOptions.resetDropdown = true;
     this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions,
+      dropdownOptions: this.dropdownOptions
     });
   }
 
@@ -70,20 +67,20 @@ class PlumeComponents implements IHooks {
     options: [
       {
         label: 'Option 1',
-        value: 'o1',
+        value: 'o1'
       },
       {
         label: 'Option 2',
-        value: 'o2',
+        value: 'o2'
       },
       {
         label: 'Option 3',
-        value: 'o3',
+        value: 'o3'
       },
       {
         label: 'Option 4',
-        value: 'o4',
-      },
+        value: 'o4'
+      }
     ],
     multiple: false,
     buttonText: (options: IOption<string>[]) => {
@@ -94,7 +91,7 @@ class PlumeComponents implements IHooks {
       } else {
         return options.map((i) => i.label).join(', ');
       }
-    },
+    }
   };
 
   nestedModalRef: ComponentRef<NestedModal>;
@@ -107,23 +104,23 @@ class PlumeComponents implements IHooks {
   mount() {
     console.log(this.router.getCurrentRoute());
     this.sampleToggleRef.setProps({
-      toggleOptions: this.toggleInput,
+      toggleOptions: this.toggleInput
     });
 
     this.enableDropdownRef.setProps({
-      toggleOptions: { ...this.toggleProps },
+      toggleOptions: { ...this.toggleProps }
     });
 
     this.disableDropdownRef.setProps({
-      toggleOptions: { ...this.toggleProps },
+      toggleOptions: { ...this.toggleProps }
     });
 
     this.enableFilterRef.setProps({
-      toggleOptions: { ...this.toggleProps },
+      toggleOptions: { ...this.toggleProps }
     });
 
     this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions,
+      dropdownOptions: this.dropdownOptions
     });
   }
 
@@ -136,13 +133,13 @@ class PlumeComponents implements IHooks {
           }}
         ></nested-modal>`,
       modalTitle: 'testing modal',
-      modalClass: 'sample-class',
+      modalClass: 'sample-class'
     });
 
     modal.onOpen.subscribe(() => {
       console.log('main modal open', modal.Id);
       this.nestedModalRef.setProps({
-        nestedModalData: { message: 'Hello World' },
+        nestedModalData: { message: 'Hello World' }
       });
     });
 

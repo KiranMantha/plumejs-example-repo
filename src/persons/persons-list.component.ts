@@ -1,35 +1,28 @@
-import {
-  Component,
-  ComponentRef,
-  html,
-  Injectable,
-  render,
-} from "@plumejs/core";
-import { Router } from "@plumejs/router";
-import { PersonDetails } from "./person-details.component";
-import personListStyles from "./persons-list.scss";
+import { Component, ComponentRef, html, Injectable, render } from '@plumejs/core';
+import { Router } from '@plumejs/router';
+import { PersonDetails } from './person-details.component';
+import personListStyles from './persons-list.scss';
 
 @Injectable()
 class PersonService {
   getPersons() {
-    return fetch("https://jsonplaceholder.typicode.com/users").then((res) =>
-      res.json()
-    );
+    return fetch('https://jsonplaceholder.typicode.com/users').then((res) => res.json());
   }
 }
 
 @Component({
-  selector: "persons-list",
+  selector: 'persons-list',
   styles: personListStyles,
+  deps: [PersonService, Router]
 })
-class PersonsList {
+export class PersonsList {
   persondetails: any = {};
   update: any;
   usersListRef: HTMLElement;
   personDetailsRef: ComponentRef<PersonDetails>;
 
   constructor(private personSrvc: PersonService, private router: Router) {
-    console.log("current route ", this.router.getCurrentRoute());
+    console.log('current route ', this.router.getCurrentRoute());
   }
 
   mount() {
@@ -61,10 +54,7 @@ class PersonsList {
 
   render() {
     return html`
-      <h4>
-        Sample service injection with http call and passing data to other
-        component
-      </h4>
+      <h4>Sample service injection with http call and passing data to other component</h4>
       Current route data:
       <code>${JSON.stringify(this.router.getCurrentRoute(), null, 2)}</code>
       <div class="mt-20 mb-20 content">
