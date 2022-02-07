@@ -1,8 +1,8 @@
-var v=Object.defineProperty;var f=(e,s,r)=>s in e?v(e,s,{enumerable:!0,configurable:!0,writable:!0,value:r}):e[s]=r;var l=(e,s,r)=>(f(e,typeof s!="symbol"?s+"":s,r),r);import{C as c,h as a,I as m,R as D,r as P}from"./vendor.b39eeca7.js";var _=Object.defineProperty,g=Object.getOwnPropertyDescriptor,$=(e,s,r,n)=>{for(var t=n>1?void 0:n?g(s,r):s,o=e.length-1,i;o>=0;o--)(i=e[o])&&(t=(n?i(s,r,t):i(t))||t);return n&&t&&_(s,r,t),t};let u=class{constructor(){l(this,"ObservedProperties",["userDetails"]);l(this,"userDetails")}render(){return this.userDetails&&this.userDetails.name?a`
+var v=Object.defineProperty;var f=(e,s,r)=>s in e?v(e,s,{enumerable:!0,configurable:!0,writable:!0,value:r}):e[s]=r;var l=(e,s,r)=>(f(e,typeof s!="symbol"?s+"":s,r),r);import{C as u,h as a,I as m,R as D,r as P}from"./vendor.75761d15.js";var _=Object.defineProperty,g=Object.getOwnPropertyDescriptor,$=(e,s,r,n)=>{for(var t=n>1?void 0:n?g(s,r):s,o=e.length-1,i;o>=0;o--)(i=e[o])&&(t=(n?i(s,r,t):i(t))||t);return n&&t&&_(s,r,t),t};let c=class{constructor(){l(this,"ObservedProperties",["userDetails"]);l(this,"userDetails")}render(){return this.userDetails&&this.userDetails.name?a`
         <strong>Person Details</strong>
         <div>Name: ${this.userDetails.name}</div>
         <div>Company: ${this.userDetails.company.name}</div>
-      `:a`<div></div>`}};u=$([c({selector:"person-details"})],u);var O=`.test {
+      `:a`<div></div>`}};c=$([u({selector:"person-details"})],c);var O=`.test {
   list-style: none;
   margin: 0;
   padding: 0;
@@ -29,4 +29,4 @@ var v=Object.defineProperty;var f=(e,s,r)=>s in e?v(e,s,{enumerable:!0,configura
           ref="${e=>{this.personDetailsRef=e}}"
         ></person-details>
       </div>
-    `}};h=d([c({selector:"persons-list",styles:O,deps:[p,D]})],h);
+    `}};h=d([u({selector:"persons-list",styles:O,deps:[p,D]})],h);

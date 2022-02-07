@@ -1,4 +1,4 @@
-var g=Object.defineProperty;var P=(e,t,o)=>t in e?g(e,t,{enumerable:!0,configurable:!0,writable:!0,value:o}):e[t]=o;var i=(e,t,o)=>(P(e,typeof t!="symbol"?t+"":t,o),o);import{C as c,h as p,I as d,a as m}from"./vendor.b39eeca7.js";var $=Object.defineProperty,_=Object.getOwnPropertyDescriptor,w=(e,t,o,r)=>{for(var s=r>1?void 0:r?_(t,o):t,n=e.length-1,l;n>=0;n--)(l=e[n])&&(s=(r?l(t,o,s):l(s))||s);return r&&s&&$(t,o,s),s};let v=class{render(){return p`<p>my styles are emulated</p>`}};v=w([c({selector:"emulated-styles",styles:`
+var g=Object.defineProperty;var P=(e,t,o)=>t in e?g(e,t,{enumerable:!0,configurable:!0,writable:!0,value:o}):e[t]=o;var i=(e,t,o)=>(P(e,typeof t!="symbol"?t+"":t,o),o);import{C as c,h as p,I as d,a as m}from"./vendor.75761d15.js";var $=Object.defineProperty,_=Object.getOwnPropertyDescriptor,w=(e,t,o,r)=>{for(var s=r>1?void 0:r?_(t,o):t,n=e.length-1,l;n>=0;n--)(l=e[n])&&(s=(r?l(t,o,s):l(s))||s);return r&&s&&$(t,o,s),s};let v=class{render(){return p`<p>my styles are emulated</p>`}};v=w([c({selector:"emulated-styles",styles:`
     :host(.color-1) p { color: green; }
     :host(.color-2) p { color: blue; }
     :host(.color-3) p { color: red; }
