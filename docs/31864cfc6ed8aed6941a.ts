@@ -1,9 +1,10 @@
 import { __decorate } from "tslib";
-import { Component, html, Renderer, TranslationService } from '@plumejs/core';
+import { Component, html, Renderer } from '@plumejs/core';
 import { Router } from '@plumejs/router';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
 import globalstyles from './styles.scss';
+import { TranslationService } from './translationService';
 let AppComponent = class AppComponent {
     router;
     renderer;

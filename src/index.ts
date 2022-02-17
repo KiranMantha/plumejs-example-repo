@@ -1,8 +1,9 @@
-import { Component, html, Renderer, TranslationService } from '@plumejs/core';
+import { Component, html, Renderer } from '@plumejs/core';
 import { Route, Router } from '@plumejs/router';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
 import globalstyles from './styles.scss';
+import { TranslationService } from './translationService';
 
 @Component({
   selector: 'app-root',
