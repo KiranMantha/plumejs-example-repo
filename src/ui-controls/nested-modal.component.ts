@@ -1,5 +1,5 @@
 import { Component, html, IHooks } from '@plumejs/core';
-import { ModalService } from '@plumejs/ui';
+import { IDropdownOptions, IOption, ModalService } from '@plumejs/ui';
 
 @Component({
   selector: 'nested-modal',
@@ -8,6 +8,37 @@ import { ModalService } from '@plumejs/ui';
 export class NestedModal implements IHooks {
   readonly ObservedProperties = <const>['nestedModalData'];
   nestedModalData: { message: string };
+
+  dropdownOptions: IDropdownOptions<string> = {
+    options: [
+      {
+        label: 'Option 1',
+        value: 'o1'
+      },
+      {
+        label: 'Option 2',
+        value: 'o2'
+      },
+      {
+        label: 'Option 3',
+        value: 'o3'
+      },
+      {
+        label: 'Option 4',
+        value: 'o4'
+      }
+    ],
+    multiple: false,
+    buttonText: (options: IOption<string>[]) => {
+      if (options.length === 0) {
+        return 'None selected';
+      } else if (options.length > 3) {
+        return options.length + ' selected';
+      } else {
+        return options.map((i) => i.label).join(', ');
+      }
+    }
+  };
 
   constructor(private modalsrvc: ModalService) {}
 
@@ -32,6 +63,12 @@ export class NestedModal implements IHooks {
       return html`
         <div>sample modal</div>
         <div>${this.nestedModalData.message}</div>
+        <ui-dropdown
+          onbindprops=${() => ({ dropdownOptions: this.dropdownOptions })}
+          onoptionselected=${(event) => {
+            console.log(event.detail);
+          }}
+        ></ui-dropdown>
         <button
           onclick=${() => {
             this.openAnotherModal();
