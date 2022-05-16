@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[629],{629:function(e,l,a){a.r(l);var t=a(655),o=a(366);(0,a(558).aA)();let n=class{renderer;sampleformFields;createChangeHandler;multiSelectChangehandler;resetFormFields;jsonRef;dropdownOptions={options:[{label:"Option 1",value:"o1"},{label:"Option 2",value:"o2"},{label:"Option 3",value:"o3"},{label:"Option 4",value:"o4"}],multiple:!0,buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.map((e=>e.label)).join(", ")};dropdownRef;constructor(e){this.renderer=e}beforeMount(){[this.sampleformFields,this.createChangeHandler,this.resetFormFields]=(0,o.uA)({email:"",password:"",checkme:!1,option:"",options:[],gender:""}),this.multiSelectChangehandler=this.createChangeHandler("options")}mount(){this.dropdownRef.setProps({dropdownOptions:this.dropdownOptions})}submitForm(e){e.preventDefault(),console.log(this.sampleformFields),this.jsonRef.innerHTML=JSON.stringify(this.sampleformFields,null,4)}resetForm(){this.resetFormFields(),this.renderer.update()}render(){return o.dy`
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[629],{629:function(e,l,a){a.r(l);var t=a(655),o=a(366);(0,a(558).aA)();let n=class{renderer;sampleform;createChangeHandler;multiSelectChangehandler;jsonRef;dropdownOptions={options:[{label:"Option 1",value:"o1"},{label:"Option 2",value:"o2"},{label:"Option 3",value:"o3"},{label:"Option 4",value:"o4"}],multiple:!0,buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.map((e=>e.label)).join(", ")};dropdownRef;constructor(e){this.renderer=e}beforeMount(){[this.sampleform,this.createChangeHandler]=(0,o.uA)({email:"",password:"",checkme:!1,option:"",options:[[]],gender:""}),this.multiSelectChangehandler=this.createChangeHandler("options")}mount(){this.dropdownRef.setProps({dropdownOptions:this.dropdownOptions})}submitForm(e){e.preventDefault(),console.log(this.sampleform),this.jsonRef.innerHTML=JSON.stringify(this.sampleform.value,null,4)}resetForm(){this.sampleform.reset(),this.renderer.update()}render(){return o.dy`
       <div>
         <form
           onsubmit=${e=>{this.submitForm(e)}}
@@ -10,7 +10,7 @@
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
-              value=${this.sampleformFields.email}
+              value=${this.sampleform.get("email").value}
               onchange=${this.createChangeHandler("email")}
             />
             <small id="emailHelp"> We'll never share your email with anyone else. </small>
@@ -21,7 +21,7 @@
               type="password"
               id="exampleInputPassword1"
               placeholder="Password"
-              value=${this.sampleformFields.password}
+              value=${this.sampleform.get("password").value}
               onchange=${this.createChangeHandler("password")}
             />
           </div>
@@ -30,7 +30,7 @@
               <input
                 type="checkbox"
                 id="exampleCheck1"
-                checked=${this.sampleformFields.checkme}
+                checked=${this.sampleform.get("checkme").value}
                 onchange=${this.createChangeHandler("checkme")}
               />
               Check me out
@@ -38,7 +38,7 @@
           </div>
           <div>
             <label>single select</label>
-            <select value=${this.sampleformFields.option} onchange=${this.createChangeHandler("option")}>
+            <select value=${this.sampleform.get("option").value} onchange=${this.createChangeHandler("option")}>
               <option>select</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -85,7 +85,7 @@
       </div>
       <pre>
 				<code ref=${e=>{this.jsonRef=e}}>
-        ${JSON.stringify(this.sampleformFields,null,4)}
+        ${JSON.stringify(this.sampleform.value,null,4)}
 				</code>
 			</pre>
     `}};n=(0,t.gn)([(0,o.wA)({selector:"sample-form",deps:[o.Th]})],n)}}]);

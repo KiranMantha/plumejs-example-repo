@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, IHooks, Renderer, useFormFields } from '@plumejs/core';
+import { Component, ComponentRef, html, IHooks, Renderer, useFormFields, Form } from '@plumejs/core';
 
 import { IDropdownOptions, IOption, DropdownComponent, registerUIDropdown } from '@plumejs/ui';
 
@@ -9,10 +9,9 @@ registerUIDropdown();
   deps: [Renderer]
 })
 export class SampleForm implements IHooks {
-  sampleformFields: any;
+  sampleform: Form;
   createChangeHandler: (key: string) => (e: Event) => void;
   multiSelectChangehandler: (e: any) => void;
-  resetFormFields: () => void;
   jsonRef: HTMLElement;
 
   dropdownOptions: IDropdownOptions<string> = {
@@ -51,12 +50,12 @@ export class SampleForm implements IHooks {
   constructor(private renderer: Renderer) {}
 
   beforeMount() {
-    [this.sampleformFields, this.createChangeHandler, this.resetFormFields] = useFormFields({
+    [this.sampleform, this.createChangeHandler] = useFormFields({
       email: '',
       password: '',
       checkme: false,
       option: '',
-      options: [],
+      options: [[]],
       gender: ''
     });
     this.multiSelectChangehandler = this.createChangeHandler('options');
@@ -70,12 +69,12 @@ export class SampleForm implements IHooks {
 
   submitForm(e: Event) {
     e.preventDefault();
-    console.log(this.sampleformFields);
-    this.jsonRef.innerHTML = JSON.stringify(this.sampleformFields, null, 4);
+    console.log(this.sampleform);
+    this.jsonRef.innerHTML = JSON.stringify(this.sampleform.value, null, 4);
   }
 
   resetForm() {
-    this.resetFormFields();
+    this.sampleform.reset();
     this.renderer.update();
   }
 
@@ -94,7 +93,7 @@ export class SampleForm implements IHooks {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter email"
-              value=${this.sampleformFields.email}
+              value=${this.sampleform.get('email').value}
               onchange=${this.createChangeHandler('email')}
             />
             <small id="emailHelp"> We'll never share your email with anyone else. </small>
@@ -105,7 +104,7 @@ export class SampleForm implements IHooks {
               type="password"
               id="exampleInputPassword1"
               placeholder="Password"
-              value=${this.sampleformFields.password}
+              value=${this.sampleform.get('password').value}
               onchange=${this.createChangeHandler('password')}
             />
           </div>
@@ -114,7 +113,7 @@ export class SampleForm implements IHooks {
               <input
                 type="checkbox"
                 id="exampleCheck1"
-                checked=${this.sampleformFields.checkme}
+                checked=${this.sampleform.get('checkme').value}
                 onchange=${this.createChangeHandler('checkme')}
               />
               Check me out
@@ -122,7 +121,7 @@ export class SampleForm implements IHooks {
           </div>
           <div>
             <label>single select</label>
-            <select value=${this.sampleformFields.option} onchange=${this.createChangeHandler('option')}>
+            <select value=${this.sampleform.get('option').value} onchange=${this.createChangeHandler('option')}>
               <option>select</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -181,7 +180,7 @@ export class SampleForm implements IHooks {
 				<code ref=${(node) => {
         this.jsonRef = node;
       }}>
-        ${JSON.stringify(this.sampleformFields, null, 4)}
+        ${JSON.stringify(this.sampleform.value, null, 4)}
 				</code>
 			</pre>
     `;
