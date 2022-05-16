@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[728],{728:function(t,e,o){o.r(e),o.d(e,{NestedTable:function(){return d}});var a=o(655),r=o(366);let s=class{ObservedProperties=["category"];category;nestedRow;toggleNestedTable(){this.nestedRow.classList.toggle("hide-row")}populateNestedTable(){return this.category.questions.length?this.category.questions.map((t=>r.dy`<tr>
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[728],{728:function(t,e,o){o.r(e),o.d(e,{NestedTable:function(){return d}});var a=o(655),r=o(376);let s=class{ObservedProperties=["category"];category;nestedRow;toggleNestedTable(){this.nestedRow.classList.toggle("hide-row")}populateNestedTable(){return this.category.questions.length?this.category.questions.map((t=>r.dy`<tr>
           <td>${t.id}</td>
           <td>${t.name}</td>
           <td>${t.type}</td>

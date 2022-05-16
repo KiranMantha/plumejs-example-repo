@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, IHooks, Renderer, useFormFields, Form } from '@plumejs/core';
+import { Component, ComponentRef, html, IHooks, Renderer, useFormFields, Form, Validators } from '@plumejs/core';
 
 import { IDropdownOptions, IOption, DropdownComponent, registerUIDropdown } from '@plumejs/ui';
 
@@ -13,6 +13,7 @@ export class SampleForm implements IHooks {
   createChangeHandler: (key: string) => (e: Event) => void;
   multiSelectChangehandler: (e: any) => void;
   jsonRef: HTMLElement;
+  errorsRef: HTMLElement;
 
   dropdownOptions: IDropdownOptions<string> = {
     options: [
@@ -51,7 +52,7 @@ export class SampleForm implements IHooks {
 
   beforeMount() {
     [this.sampleform, this.createChangeHandler] = useFormFields({
-      email: '',
+      email: ['', Validators.required],
       password: '',
       checkme: false,
       option: '',
@@ -70,6 +71,7 @@ export class SampleForm implements IHooks {
   submitForm(e: Event) {
     e.preventDefault();
     console.log(this.sampleform);
+    this.errorsRef.innerHTML = JSON.stringify(Object.fromEntries(this.sampleform.errors), null, 4);
     this.jsonRef.innerHTML = JSON.stringify(this.sampleform.value, null, 4);
   }
 
@@ -176,6 +178,13 @@ export class SampleForm implements IHooks {
           </button>
         </form>
       </div>
+      <pre>
+            <code ref=${(node) => {
+        this.errorsRef = node;
+      }}>
+              ${JSON.stringify(Object.fromEntries(this.sampleform.errors), null, 4)}
+            </code>
+      </pre>
       <pre>
 				<code ref=${(node) => {
         this.jsonRef = node;

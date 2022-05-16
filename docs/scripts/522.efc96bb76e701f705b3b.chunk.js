@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[522],{522:function(n,i,o){o.r(i),o.d(i,{NotificationMessage:function(){return r}});var e=o(655),t=o(366),A=o(846);let r=class{renderer;ObservedProperties=["notification"];notification;constructor(n){this.renderer=n}mount(){this.renderer.emitEvent("rendered")}onDismiss(n){n.preventDefault(),this.notification.dismiss()}render(){return this.notification&&this.notification.message.content?t.dy`
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[522],{522:function(n,i,o){o.r(i),o.d(i,{NotificationMessage:function(){return r}});var e=o(655),t=o(376),A=o(846);let r=class{renderer;ObservedProperties=["notification"];notification;constructor(n){this.renderer=n}mount(){this.renderer.emitEvent("rendered")}onDismiss(n){n.preventDefault(),this.notification.dismiss()}render(){return this.notification&&this.notification.message.content?t.dy`
         <div
           part="notification"
           class="notification ${"info"===this.notification.message.type?"is-info":"danger"===this.notification.message.type?"is-danger":""}"
