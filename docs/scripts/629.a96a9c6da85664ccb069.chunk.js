@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[629],{629:function(e,l,a){a.r(l);var t=a(655),o=a(376);(0,a(558).aA)();let r=class{renderer;sampleform;createChangeHandler;multiSelectChangehandler;jsonRef;errorsRef;dropdownOptions={options:[{label:"Option 1",value:"o1"},{label:"Option 2",value:"o2"},{label:"Option 3",value:"o3"},{label:"Option 4",value:"o4"}],multiple:!0,buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.map((e=>e.label)).join(", ")};dropdownRef;constructor(e){this.renderer=e}beforeMount(){[this.sampleform,this.createChangeHandler]=(0,o.uA)({email:["",o.kI.required],password:"",checkme:!1,option:"",options:[[]],gender:""}),this.multiSelectChangehandler=this.createChangeHandler("options")}mount(){this.dropdownRef.setProps({dropdownOptions:this.dropdownOptions})}submitForm(e){e.preventDefault(),console.log(this.sampleform),this.errorsRef.innerHTML=JSON.stringify(Object.fromEntries(this.sampleform.errors),null,4),this.jsonRef.innerHTML=JSON.stringify(this.sampleform.value,null,4)}resetForm(){this.sampleform.reset(),this.renderer.update()}render(){return o.dy`
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[629],{629:function(e,l,a){a.r(l);var t=a(655),o=a(376);(0,a(558).aA)();let r=class{renderer;sampleform;createChangeHandler;multiSelectChangehandler;jsonRef;errorsRef;dropdownOptions={options:[{label:"Option 1",value:"o1"},{label:"Option 2",value:"o2"},{label:"Option 3",value:"o3"},{label:"Option 4",value:"o4"}],multiple:!0,buttonText:e=>0===e.length?"None selected":e.length>3?e.length+" selected":e.map((e=>e.label)).join(", ")};dropdownRef;constructor(e){this.renderer=e}beforeMount(){[this.sampleform,this.createChangeHandler]=(0,o.uA)({email:["",o.kI.required,o.kI.pattern(/^[a-z0-9]((\.|\+)?[a-z0-9]){5,}@gmail\.com$/)],password:"",checkme:!1,option:"",options:[[]],gender:""}),this.multiSelectChangehandler=this.createChangeHandler("options")}mount(){this.dropdownRef.setProps({dropdownOptions:this.dropdownOptions})}submitForm(e){e.preventDefault(),console.log(this.sampleform),this.errorsRef.innerHTML=JSON.stringify(Object.fromEntries(this.sampleform.errors),null,4),this.jsonRef.innerHTML=JSON.stringify(this.sampleform.value,null,4)}resetForm(){this.sampleform.reset(),this.renderer.update()}render(){return o.dy`
       <div>
         <form
           onsubmit=${e=>{this.submitForm(e)}}
@@ -9,7 +9,7 @@
               type="email"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter gmail id"
               value=${this.sampleform.get("email").value}
               onchange=${this.createChangeHandler("email")}
             />

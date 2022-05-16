@@ -52,7 +52,7 @@ export class SampleForm implements IHooks {
 
   beforeMount() {
     [this.sampleform, this.createChangeHandler] = useFormFields({
-      email: ['', Validators.required],
+      email: ['', Validators.required, Validators.pattern(/^[a-z0-9]((\.|\+)?[a-z0-9]){5,}@gmail\.com$/)],
       password: '',
       checkme: false,
       option: '',
@@ -94,7 +94,7 @@ export class SampleForm implements IHooks {
               type="email"
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
-              placeholder="Enter email"
+              placeholder="Enter gmail id"
               value=${this.sampleform.get('email').value}
               onchange=${this.createChangeHandler('email')}
             />
