@@ -70,6 +70,7 @@ export class AppComponent {
 
   render() {
     return html`
+    <header>
       <nav class="container-fluid" role="navigation" aria-label="main navigation">
         <ul>
           <li>
@@ -182,6 +183,7 @@ export class AppComponent {
           </li>
         </ul>
       </nav>
+      </header>
       <main class="container">
         <h1>Hello world</h1>
         <h2>This demo is based on picocss</h2>

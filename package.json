@@ -47,7 +47,7 @@
     "prettier": "^2.5.1",
     "rimraf": "^3.0.2",
     "rollup-plugin-visualizer": "^5.5.4",
-    "rxjs": "^7.5.2",
+    "rxjs": "^7.5.5",
     "sass": "^1.43.4",
     "sass-loader": "^12.3.0",
     "terser-webpack-plugin": "^5.2.5",
