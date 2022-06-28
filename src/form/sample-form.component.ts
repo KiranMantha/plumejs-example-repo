@@ -9,7 +9,7 @@ registerUIDropdown();
   deps: [Renderer]
 })
 export class SampleForm implements IHooks {
-  sampleform: Form;
+  sampleform: Form<any>;
   createChangeHandler: (key: string) => (e: Event) => void;
   multiSelectChangehandler: (e: any) => void;
   jsonRef: HTMLElement;
