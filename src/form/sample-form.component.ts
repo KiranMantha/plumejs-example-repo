@@ -70,6 +70,9 @@ export class SampleForm implements IHooks {
 
   submitForm(e: Event) {
     e.preventDefault();
+    if(this.sampleform.valid) {
+      alert('form submitted successfully');
+    }
     console.log(this.sampleform);
     this.errorsRef.innerHTML = JSON.stringify(Object.fromEntries(this.sampleform.errors), null, 4);
     this.jsonRef.innerHTML = JSON.stringify(this.sampleform.value, null, 4);
@@ -178,6 +181,7 @@ export class SampleForm implements IHooks {
           </button>
         </form>
       </div>
+      <p>Error summary</p>
       <pre>
             <code ref=${(node) => {
         this.errorsRef = node;
@@ -185,6 +189,7 @@ export class SampleForm implements IHooks {
               ${JSON.stringify(Object.fromEntries(this.sampleform.errors), null, 4)}
             </code>
       </pre>
+      <p>Form value</p>
       <pre>
 				<code ref=${(node) => {
         this.jsonRef = node;
