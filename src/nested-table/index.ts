@@ -19,13 +19,6 @@ interface Category {
   .hide-row {
       display: none;
   }
-  :host > tr > td[colspan] {
-      background-color: #eee;
-  }
-  :host > tr > td[colspan] table {
-      background-color: #fff;
-      margin-bottom: 0;
-  }
   `
 })
 class RowItem implements IHooks {

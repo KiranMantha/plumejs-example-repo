@@ -63,7 +63,7 @@ export class SampleEle {
   }
 
   updateProps() {
-    this.testEleRef.setProps({ testprops: this.props });
+    this.testEleRef.setProps({ testprops: {name: 'sample 123'} });
   }
 
   count(val: string) {

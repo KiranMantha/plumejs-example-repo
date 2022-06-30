@@ -6,7 +6,6 @@ import {
   ModalService,
   NotificationService,
   NotificationType,
-  ToggleComponent,
   IDropdownOptions,
   IOption,
   DropdownComponent,
@@ -95,33 +94,10 @@ export class PlumeComponents implements IHooks {
   };
 
   nestedModalRef: ComponentRef<NestedModal>;
-  sampleToggleRef: ComponentRef<ToggleComponent>;
-  enableDropdownRef: ComponentRef<ToggleComponent>;
-  disableDropdownRef: ComponentRef<ToggleComponent>;
-  enableFilterRef: ComponentRef<ToggleComponent>;
   dropdownRef: ComponentRef<DropdownComponent<string>>;
 
   mount() {
     console.log(this.router.getCurrentRoute());
-    this.sampleToggleRef.setProps({
-      toggleOptions: this.toggleInput
-    });
-
-    this.enableDropdownRef.setProps({
-      toggleOptions: { ...this.toggleProps }
-    });
-
-    this.disableDropdownRef.setProps({
-      toggleOptions: { ...this.toggleProps }
-    });
-
-    this.enableFilterRef.setProps({
-      toggleOptions: { ...this.toggleProps }
-    });
-
-    this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions
-    });
   }
 
   openModal() {
@@ -195,9 +171,7 @@ export class PlumeComponents implements IHooks {
         <div class="mb-20">
           <h5>Toggle Button</h5>
           <ui-toggle-button
-            ref=${(node) => {
-              this.sampleToggleRef = node;
-            }}
+            onbindprops=${() => ({ toggleOptions: this.toggleInput })}
             ontogglechange=${(event) => {
               this.onToggleChange(event.detail);
             }}
@@ -209,9 +183,7 @@ export class PlumeComponents implements IHooks {
             <div class="d-flex mb-20">
               <span>enable multi select</span>
               <ui-toggle-button
-                ref=${(node) => {
-                  this.enableDropdownRef = node;
-                }}
+                onbindprops=${() => ({ toggleOptions: { ...this.toggleProps } })}
                 ontogglechange=${(event) => {
                   this.enableMultiselect(event.detail);
                 }}
@@ -220,9 +192,7 @@ export class PlumeComponents implements IHooks {
             <div class="d-flex mb-20">
               <span>disable dropdown</span>
               <ui-toggle-button
-                ref=${(node) => {
-                  this.disableDropdownRef = node;
-                }}
+                onbindprops=${() => ({ toggleOptions: { ...this.toggleProps } })}
                 ontogglechange=${(event) => {
                   this.disableDropdown(event.detail);
                 }}
@@ -231,9 +201,7 @@ export class PlumeComponents implements IHooks {
             <div class="d-flex mb-20">
               <span>enable filtering</span>
               <ui-toggle-button
-                ref=${(node) => {
-                  this.enableFilterRef = node;
-                }}
+                onbindprops=${() => ({ toggleOptions: { ...this.toggleProps } })}
                 ontogglechange=${(event) => {
                   this.enableFilter(event.detail);
                 }}
@@ -245,6 +213,7 @@ export class PlumeComponents implements IHooks {
               ref=${(node) => {
                 this.dropdownRef = node;
               }}
+              onbindprops=${() => ({ dropdownOptions: this.dropdownOptions })}
               onoptionselected=${(event) => {
                 console.log(event.detail);
               }}
