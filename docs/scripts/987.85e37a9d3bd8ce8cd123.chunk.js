@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[728],{728:function(t,e,a){a.r(e),a.d(e,{NestedTable:function(){return d}});var s=a(655),o=a(376);let r=class{ObservedProperties=["category"];category;nestedRow;toggleNestedTable(){this.nestedRow.classList.toggle("hide-row")}populateNestedTable(){return this.category.questions.length?this.category.questions.map((t=>o.dy`<tr>
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[987],{987:function(t,e,a){a.r(e),a.d(e,{NestedTable:function(){return d}});var s=a(655),o=a(385);let r=class{ObservedProperties=["category"];category;nestedRow;toggleNestedTable(){this.nestedRow.classList.toggle("hide-row")}populateNestedTable(){return this.category.questions.length?this.category.questions.map((t=>o.dy`<tr>
           <td>${t.id}</td>
           <td>${t.name}</td>
           <td>${t.type}</td>
@@ -47,4 +47,4 @@
         ${this.categories.map((t=>o.dy`<app-row-item onbindprops=${()=>({category:t})}></app-row-item>`))}
       </table>
     `}};d=(0,s.gn)([(0,o.wA)({selector:"app-nested-table"})],d)}}]);
-//# sourceMappingURL=../sourcemaps/728.js.map
+//# sourceMappingURL=../sourcemaps/987.js.map

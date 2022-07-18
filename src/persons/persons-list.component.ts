@@ -36,6 +36,16 @@ export class PersonsList {
     this.personDetailsRef.setProps({ userDetails: user });
   }
 
+  loadRouteData() {
+    const route = this.router.getCurrentRoute();
+    return {
+      path: route.path,
+      routeParams: Object.fromEntries(route.routeParams),
+      queryParams: Object.fromEntries(route.queryParams),
+      state: route.state,
+    };
+  }
+
   private renderUsers(data: Array<any>) {
     const nodes = data.map((user: any) => {
       return html`
@@ -56,7 +66,7 @@ export class PersonsList {
     return html`
       <h4>Sample service injection with http call and passing data to other component</h4>
       Current route data:
-      <code>${JSON.stringify(this.router.getCurrentRoute(), null, 2)}</code>
+      <code>${JSON.stringify(this.loadRouteData(), null, 2)}</code>
       <div class="mt-20 mb-20 content">
         <ul
           ref="${(node) => {

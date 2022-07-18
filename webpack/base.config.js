@@ -23,13 +23,21 @@ module.exports = {
     chunkFilename: 'scripts/[name].[chunkhash].chunk.js'
   },
   resolve: {
-    extensions: ['.ts', '.js', '.scss', '.css']
+    extensions: ['.ts', '.js', '.scss', '.css'],
+    modules: ['./node_modules']
   },
   module: {
     rules: [
       {
         test: /\.html$/,
         use: ['html-loader']
+      },
+      {
+        test: /\.m?js/,
+        type: "javascript/auto",
+        resolve: {
+          fullySpecified: false,
+        },
       },
       {
         test: /\.ts$/,
