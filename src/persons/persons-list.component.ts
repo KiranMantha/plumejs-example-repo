@@ -66,7 +66,7 @@ export class PersonsList {
     return html`
       <h4>Sample service injection with http call and passing data to other component</h4>
       Current route data:
-      <code>${JSON.stringify(this.loadRouteData(), null, 2)}</code>
+      <pre><code>${JSON.stringify(this.loadRouteData(), null, 4)}</code></pre>
       <div class="mt-20 mb-20 content">
         <ul
           ref="${(node) => {
