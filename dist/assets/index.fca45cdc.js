@@ -1,4 +1,4 @@
-import{h as r,C as h}from"./index.adbef661.js";var c=Object.defineProperty,u=Object.getOwnPropertyDescriptor,p=(t,o,a,s)=>{for(var e=s>1?void 0:s?u(o,a):o,d=t.length-1,i;d>=0;d--)(i=t[d])&&(e=(s?i(o,a,e):i(e))||e);return s&&e&&c(o,a,e),e};let l=class{constructor(){this.ObservedProperties=["category"]}toggleNestedTable(){this.nestedRow.classList.toggle("hide-row")}populateNestedTable(){return this.category.questions.length?this.category.questions.map(t=>r`<tr>
+import{h as r,C as h}from"./index.85d60b15.js";var c=Object.defineProperty,u=Object.getOwnPropertyDescriptor,p=(t,o,a,s)=>{for(var e=s>1?void 0:s?u(o,a):o,d=t.length-1,i;d>=0;d--)(i=t[d])&&(e=(s?i(o,a,e):i(e))||e);return s&&e&&c(o,a,e),e};let l=class{constructor(){this.ObservedProperties=["category"]}toggleNestedTable(){this.nestedRow.classList.toggle("hide-row")}populateNestedTable(){return this.category.questions.length?this.category.questions.map(t=>r`<tr>
           <td>${t.id}</td>
           <td>${t.name}</td>
           <td>${t.type}</td>

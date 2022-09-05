@@ -1,4 +1,4 @@
-import{C as c,h as i,I as d,a as m,r as v}from"./index.adbef661.js";var f=Object.defineProperty,P=Object.getOwnPropertyDescriptor,D=(e,t,r,o)=>{for(var s=o>1?void 0:o?P(t,r):t,n=e.length-1,a;n>=0;n--)(a=e[n])&&(s=(o?a(t,r,s):a(s))||s);return o&&s&&f(t,r,s),s};let p=class{constructor(){this.ObservedProperties=["userDetails"]}render(){return this.userDetails&&this.userDetails.name?i`
+import{C as c,h as i,I as d,a as m,r as v}from"./index.85d60b15.js";var f=Object.defineProperty,P=Object.getOwnPropertyDescriptor,D=(e,t,r,o)=>{for(var s=o>1?void 0:o?P(t,r):t,n=e.length-1,a;n>=0;n--)(a=e[n])&&(s=(o?a(t,r,s):a(s))||s);return o&&s&&f(t,r,s),s};let p=class{constructor(){this.ObservedProperties=["userDetails"]}render(){return this.userDetails&&this.userDetails.name?i`
         <strong>Person Details</strong>
         <div>Name: ${this.userDetails.name}</div>
         <div>Company: ${this.userDetails.company.name}</div>

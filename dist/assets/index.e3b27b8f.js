@@ -1,4 +1,4 @@
-import{C as a,h as i,I as v,R as b}from"./index.adbef661.js";var f=Object.defineProperty,g=Object.getOwnPropertyDescriptor,P=(e,s,r,o)=>{for(var t=o>1?void 0:o?g(s,r):s,n=e.length-1,l;n>=0;n--)(l=e[n])&&(t=(o?l(s,r,t):l(t))||t);return o&&t&&f(s,r,t),t};let h=class{render(){return i`<p>my styles are emulated</p>`}};h=P([a({selector:"emulated-styles",styles:`
+import{C as a,h as i,I as v,R as b}from"./index.85d60b15.js";var f=Object.defineProperty,g=Object.getOwnPropertyDescriptor,P=(e,s,r,o)=>{for(var t=o>1?void 0:o?g(s,r):s,n=e.length-1,l;n>=0;n--)(l=e[n])&&(t=(o?l(s,r,t):l(t))||t);return o&&t&&f(s,r,t),t};let h=class{render(){return i`<p>my styles are emulated</p>`}};h=P([a({selector:"emulated-styles",styles:`
     :host(.color-1) p { color: green; }
     :host(.color-2) p { color: blue; }
     :host(.color-3) p { color: red; }

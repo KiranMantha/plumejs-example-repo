@@ -1,6 +1,7 @@
 /// <reference types="vitest" />
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
+import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
   base: '/',
@@ -9,6 +10,10 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       plugins: [
+        viteCompression({
+          algorithm: 'brotliCompress',
+          ext: '.br'
+        }),
         visualizer({
           title: 'Plumejs example repo',
           open: true
