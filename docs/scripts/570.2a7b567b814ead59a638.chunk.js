@@ -49,7 +49,7 @@
           <div class="mb-20">
             <label>plumejs multi select</label>
             <ui-dropdown
-              ref=${e=>{this.dropdownRef=e}}
+              ref=${e=>{this.dropdownRef||(this.dropdownRef=e)}}
               onoptionselected=${e=>{this.multiSelectChangehandler({target:{value:e.detail}})}}
             ></ui-dropdown>
           </div>
@@ -85,13 +85,13 @@
       </div>
       <p>Error summary</p>
       <pre>
-            <code ref=${e=>{this.errorsRef=e}}>
+            <code ref=${e=>{this.errorsRef||(this.errorsRef=e)}}>
               ${JSON.stringify(Object.fromEntries(this.sampleform.errors),null,4)}
             </code>
       </pre>
       <p>Form value</p>
       <pre>
-				<code ref=${e=>{this.jsonRef=e}}>
+				<code ref=${e=>{this.jsonRef||(this.jsonRef=e)}}>
         ${JSON.stringify(this.sampleform.value,null,4)}
 				</code>
 			</pre>

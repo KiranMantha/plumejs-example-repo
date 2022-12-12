@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, Injectable, render, Renderer } from '@plumejs/core';
+import { Component, ComponentRef, html, Injectable, Renderer } from '@plumejs/core';
 import { Router } from '@plumejs/router';
 import { PersonDetails } from './person-details.component';
 import personListStyles from './persons-list.scss';
@@ -77,7 +77,7 @@ export class PersonsList {
         <person-details
           id="person-details"
           ref="${(node) => {
-            this.personDetailsRef = node;
+            if (!this.personDetailsRef) this.personDetailsRef = node;
           }}"
           onuserclick="${(e) => {
             this.onUserClick(e.detail);

@@ -63,7 +63,7 @@ export class SampleEle {
   }
 
   updateProps() {
-    this.testEleRef.setProps({ testprops: {name: 'sample 123'} });
+    this.testEleRef.setProps({ testprops: { name: 'sample 123' } });
   }
 
   count(val: string) {
@@ -95,7 +95,7 @@ export class SampleEle {
       <input
         type="text"
         ref=${(node) => {
-          this.inputField = node;
+          if (!this.inputField) this.inputField = node;
         }}
       />
       <button
@@ -119,7 +119,7 @@ export class SampleEle {
         </div>
         <test-ele
           ref="${(node) => {
-            this.testEleRef = node;
+            if (!this.testEleRef) this.testEleRef = node;
           }}"
           oncount="${(e: CustomEvent) => {
             this.count(e.detail);

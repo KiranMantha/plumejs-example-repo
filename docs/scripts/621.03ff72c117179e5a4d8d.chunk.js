@@ -14,7 +14,7 @@
       <div class="mt-20">check translation: ${"username.greet".translate({name:"test user"})}</div>
       <input
         type="text"
-        ref=${e=>{this.inputField=e}}
+        ref=${e=>{this.inputField||(this.inputField=e)}}
       />
       <button
         onclick=${()=>{this.getRef()}}
@@ -32,7 +32,7 @@
           </button>
         </div>
         <test-ele
-          ref="${e=>{this.testEleRef=e}}"
+          ref="${e=>{this.testEleRef||(this.testEleRef=e)}}"
           oncount="${e=>{this.count(e.detail)}}"
         >
         </test-ele>

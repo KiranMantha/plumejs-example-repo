@@ -65,7 +65,7 @@ class RowItem implements IHooks {
         </tr>
         <tr
           ref=${(row) => {
-            this.nestedRow = row;
+            if (!this.nestedRow) this.nestedRow = row;
           }}
           class="hide-row"
         >
