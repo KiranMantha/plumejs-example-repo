@@ -19,18 +19,18 @@
           role="list"
           part="list"
           class="${this.dropdownOptions.disable?"disabled":""}"
-          ref=${e=>{this._detailsNode||(this._detailsNode=e)}}
+          ref=${e=>{this._detailsNode=e}}
           ontoggle=${()=>{this.onToggle()}}
         >
           <summary
             aria-haspopup="listbox"
-            ref=${e=>{this._summaryNode||(this._summaryNode=e)}}
+            ref=${e=>{this._summaryNode=e}}
           >
             ${this.getSummaryText()}
           </summary>
           <ul
             role="listbox"
-            ref=${e=>{this._optionsContainerNode||(this._optionsContainerNode=e)}}
+            ref=${e=>{this._optionsContainerNode=e}}
           >
             ${this.buildItems()}
           </ul>

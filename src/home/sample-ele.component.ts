@@ -95,7 +95,7 @@ export class SampleEle {
       <input
         type="text"
         ref=${(node) => {
-          if (!this.inputField) this.inputField = node;
+          this.inputField = node;
         }}
       />
       <button
@@ -119,7 +119,7 @@ export class SampleEle {
         </div>
         <test-ele
           ref="${(node) => {
-            if (!this.testEleRef) this.testEleRef = node;
+            this.testEleRef = node;
           }}"
           oncount="${(e: CustomEvent) => {
             this.count(e.detail);

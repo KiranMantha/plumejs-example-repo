@@ -25,7 +25,7 @@
         </ul>
         <person-details
           id="person-details"
-          ref="${e=>{this.personDetailsRef||(this.personDetailsRef=e)}}"
+          ref="${e=>{this.personDetailsRef=e}}"
           onuserclick="${e=>{this.onUserClick(e.detail)}}"
         ></person-details>
       </div>

@@ -105,7 +105,7 @@ export class PlumeComponents implements IHooks {
       renderTemplate: () =>
         html`<nested-modal
           ref=${(node) => {
-            if (!this.nestedModalRef) this.nestedModalRef = node;
+            this.nestedModalRef = node;
           }}
         ></nested-modal>`,
       modalTitle: 'testing modal',
@@ -211,7 +211,7 @@ export class PlumeComponents implements IHooks {
           <div>
             <ui-dropdown
               ref=${(node) => {
-                if (!this.dropdownRef) this.dropdownRef = node;
+                this.dropdownRef = node;
               }}
               onbindprops=${() => ({ dropdownOptions: this.dropdownOptions })}
               onoptionselected=${(event) => {

@@ -138,7 +138,7 @@ export class SampleForm implements IHooks {
             <label>plumejs multi select</label>
             <ui-dropdown
               ref=${(node) => {
-                if (!this.dropdownRef) this.dropdownRef = node;
+                this.dropdownRef = node;
               }}
               onoptionselected=${(event) => {
                 this.multiSelectChangehandler({
@@ -184,7 +184,7 @@ export class SampleForm implements IHooks {
       <p>Error summary</p>
       <pre>
             <code ref=${(node) => {
-        if (!this.errorsRef) this.errorsRef = node;
+        this.errorsRef = node;
       }}>
               ${JSON.stringify(Object.fromEntries(this.sampleform.errors), null, 4)}
             </code>
@@ -192,7 +192,7 @@ export class SampleForm implements IHooks {
       <p>Form value</p>
       <pre>
 				<code ref=${(node) => {
-        if (!this.jsonRef) this.jsonRef = node;
+        this.jsonRef = node;
       }}>
         ${JSON.stringify(this.sampleform.value, null, 4)}
 				</code>

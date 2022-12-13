@@ -77,7 +77,7 @@ export class PersonsList {
         <person-details
           id="person-details"
           ref="${(node) => {
-            if (!this.personDetailsRef) this.personDetailsRef = node;
+            this.personDetailsRef = node;
           }}"
           onuserclick="${(e) => {
             this.onUserClick(e.detail);
