@@ -70,7 +70,7 @@ export class SampleForm implements IHooks {
 
   submitForm(e: Event) {
     e.preventDefault();
-    if(this.sampleform.valid) {
+    if (this.sampleform.valid) {
       alert('form submitted successfully');
     }
     console.log(this.sampleform);

@@ -38,30 +38,6 @@ export class PlumeComponents implements IHooks {
     offText: ''
   };
 
-  enableMultiselect(_checked: boolean) {
-    this.dropdownOptions.multiple = _checked;
-    this.dropdownOptions.resetDropdown = true;
-    this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions
-    });
-  }
-
-  disableDropdown(checked: boolean) {
-    this.dropdownOptions.disable = checked;
-    this.dropdownOptions.resetDropdown = true;
-    this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions
-    });
-  }
-
-  enableFilter(checked: boolean) {
-    this.dropdownOptions.enableFilter = checked;
-    this.dropdownOptions.resetDropdown = true;
-    this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions
-    });
-  }
-
   dropdownOptions: IDropdownOptions<string> = {
     options: [
       {
@@ -95,6 +71,28 @@ export class PlumeComponents implements IHooks {
 
   nestedModalRef: ComponentRef<NestedModal>;
   dropdownRef: ComponentRef<DropdownComponent<string>>;
+
+  enableMultiselect(_checked: boolean) {
+    this.dropdownOptions.multiple = _checked;
+    this.dropdownOptions.resetDropdown = true;
+    this.dropdownRef.setProps({ dropdownOptions: this.dropdownOptions });
+  }
+
+  disableDropdown(checked: boolean) {
+    this.dropdownOptions.disable = checked;
+    this.dropdownOptions.resetDropdown = true;
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions
+    });
+  }
+
+  enableFilter(checked: boolean) {
+    this.dropdownOptions.enableFilter = checked;
+    this.dropdownOptions.resetDropdown = true;
+    this.dropdownRef.setProps({
+      dropdownOptions: this.dropdownOptions
+    });
+  }
 
   mount() {
     console.log(this.router.getCurrentRoute());
