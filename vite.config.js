@@ -4,7 +4,7 @@ import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
 
 export default defineConfig({
-  base: '/',
+  base: './',
   build: {
     outDir: 'dist',
     sourcemap: false,
@@ -19,6 +19,9 @@ export default defineConfig({
           open: true
         })
       ]
+    },
+    output: {
+      entryFileNames: `[name]-[hash].js`,
     }
   },
   server: {
