@@ -75,66 +75,26 @@ export class AppComponent {
           <nav role="navigation" aria-label="main navigation">
             <ul>
               <li>
-                <a
-                  href="#"
-                  onclick=${(e: Event) => {
-                    this.navigate(e, '/home');
-                  }}
-                >
+                <a href="#/home">
                   <img src="./images/plume-logo.jpg" />
                 </a>
               </li>
             </ul>
             <ul>
               <li>
-                <a
-                  href="#"
-                  onclick=${(e: Event) => {
-                    this.navigate(e, '/home');
-                  }}
-                >
-                  Home
-                </a>
+                <a href="#/home"> Home </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${(e: Event) => {
-                    this.navigate(e, '/controls', { name: 'hello world' });
-                  }}
-                >
-                  UI Controls
-                </a>
+                <a href="#/controls"> UI Controls </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${(e: Event) => {
-                    this.navigate(e, '/persons/123/testuser?a=123');
-                  }}
-                >
-                  Persons
-                </a>
+                <a href="#/persons/123/testuser?a=123"> Persons </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${(e: Event) => {
-                    this.navigate(e, '/form');
-                  }}
-                >
-                  Sample Form
-                </a>
+                <a href="#/form"> Sample Form </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${(e: Event) => {
-                    this.navigate(e, '/nested-table');
-                  }}
-                >
-                  Nested Table
-                </a>
+                <a href="#/nested-table"> Nested Table </a>
               </li>
               <li>
                 <a href="https://github.com/KiranMantha/plumejs-example-repo/">
