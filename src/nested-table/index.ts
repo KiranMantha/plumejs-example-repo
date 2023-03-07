@@ -1,5 +1,6 @@
 import { Component, html } from '@plumejs/core';
 import { IHooks, InputProps } from '@plumejs/core/dist/src/lib/types';
+import './editable-table';
 
 interface Category {
   id: number;
@@ -132,6 +133,9 @@ export class NestedTable {
           return html`<app-row-item onbindprops=${(): InputProps<RowItem> => ({ category })}></app-row-item>`;
         })}
       </table>
+      <br />
+      <br />
+      <app-editable-table></app-editable-table>
     `;
   }
 }

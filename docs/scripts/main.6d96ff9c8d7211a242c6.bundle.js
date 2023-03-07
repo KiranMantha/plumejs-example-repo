@@ -1,57 +1,29 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[179],{307:function(e,n,t){var i=t(537),o=t.n(i),s=t(645),l=t.n(s),r=t(812),a=l()(o());a.i(r.Z),a.push([e.id,'.container{padding:0 .5rem}.mt-20{margin-top:20px}.mb-20{margin-bottom:20px}.mr-10{margin-right:10px}.d-inline-block{display:inline-block}.d-flex{display:flex}.pointer{cursor:pointer}details[role=menu]{border:none;margin:0;padding:0;position:relative}details[role=menu][open] summary{margin:0}details[role=menu][open] summary::before{position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;display:block;cursor:default;content:" ";background:rgba(0,0,0,0)}details[role=menu] summary{list-style:none}details[role=menu] summary::after{display:none}details[role=menu] summary+ul{list-style:none;position:absolute;top:100%;border:1px solid #ccc;border-radius:4px;background:#fff;box-shadow:rgba(140,149,159,.2) 0px 8px 24px 0px;margin:5px auto;padding:0;display:flex;flex-direction:column;align-items:stretch;min-width:300px;z-index:100}',"",{version:3,sources:["webpack://./src/styles/_external.scss","webpack://./src/styles.scss"],names:[],mappings:"AAEQ,WCCN,eAAA,CAGF,OACE,eAAA,CAGF,OACE,kBAAA,CAGF,OACE,iBAAA,CAGF,gBACE,oBAAA,CAGF,QACE,YAAA,CAGF,SACE,cAAA,CAGF,mBACE,WAAA,CACA,QAAA,CACA,SAAA,CACA,iBAAA,CAEA,iCACE,QAAA,CAEA,yCACE,cAAA,CACA,KAAA,CACA,OAAA,CACA,QAAA,CACA,MAAA,CACA,UAAA,CACA,aAAA,CACA,cAAA,CACA,WAAA,CACA,wBAAA,CAIJ,2BACE,eAAA,CAEA,kCACE,YAAA,CAIJ,8BACE,eAAA,CACA,iBAAA,CACA,QAAA,CACA,qBAAA,CACA,iBAAA,CACA,eAAA,CACA,gDAAA,CACA,eAAA,CACA,SAAA,CACA,YAAA,CACA,qBAAA,CACA,mBAAA,CACA,eAAA,CACA,WAAA",sourcesContent:["// @import \"bulma/bulma.sass\";\n// @import \"bulma-block-list/src/block-list.scss\";\n@import '@picocss/pico/css/pico.min.css';\n//@import url(\"https://cdn.jsdelivr.net/gh/kiranmantha/minimal/minimal.css\");\n//@import './_pico';\n//@import './_simplecss';","@import './styles/external';\n\n.container {\n  padding: 0 0.5rem;\n}\n\n.mt-20 {\n  margin-top: 20px;\n}\n\n.mb-20 {\n  margin-bottom: 20px;\n}\n\n.mr-10 {\n  margin-right: 10px;\n}\n\n.d-inline-block {\n  display: inline-block;\n}\n\n.d-flex {\n  display: flex;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\ndetails[role='menu'] {\n  border: none;\n  margin: 0;\n  padding: 0;\n  position: relative;\n\n  &[open] summary {\n    margin: 0;\n\n    &::before {\n      position: fixed;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      z-index: 80;\n      display: block;\n      cursor: default;\n      content: ' ';\n      background: transparent;\n    }\n  }\n\n  summary {\n    list-style: none;\n\n    &::after {\n      display: none;\n    }\n  }\n\n  summary + ul {\n    list-style: none;\n    position: absolute;\n    top: 100%;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    background: #fff;\n    box-shadow: rgba(140, 149, 159, 0.2) 0px 8px 24px 0px;\n    margin: 5px auto;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    align-items: stretch;\n    min-width: 300px;\n    z-index: 100;\n  }\n}\n"],sourceRoot:""}]),n.Z=a},554:function(e,n,t){var i=t(655),o=t(385),s=t(45),l={username:{greet:"my name is {name}"}},r={username:{greet:"je m`appelle {name}"}},a=t(307),g=t(949);let p=class{_defaultLanguage="";setTranslate(e,n){(0,g.setTranslate)(e,n)}setDefaultLanguage(e){this._defaultLanguage=e,(0,g.setDefaultLanguage)(e);const n=new CustomEvent("onLanguageChange");window.dispatchEvent(n)}getCurrentLanguage(){return this._defaultLanguage}};p=(0,i.gn)([(0,o.GS)()],p);let A=class{router;renderer;translations;constructor(e,n,t){this.router=e,this.renderer=n,this.translations=t,s.F.registerRoutes(this.routes,!0),t.setTranslate(l,"en"),t.setTranslate(r,"fr"),t.setDefaultLanguage("en")}translation="en";showNav=!1;routes=[{path:"",redirectTo:"/home"},{path:"/home",template:"<sample-ele></sample-ele>",templatePath:()=>t.e(621).then(t.bind(t,621))},{path:"/controls",template:"<plume-comp></plume-comp>",templatePath:()=>Promise.all([t.e(79),t.e(821)]).then(t.bind(t,821))},{path:"/persons/:id/:name",template:"<persons-list></persons-list>",templatePath:()=>t.e(483).then(t.bind(t,483)),canActivate:()=>!!localStorage.getItem("@plumejs/core")||(this.router.navigateTo("/home"),!1)},{path:"/form",template:"<sample-form></sample-form>",templatePath:()=>Promise.all([t.e(79),t.e(570)]).then(t.bind(t,570))},{path:"/nested-table",template:"<app-nested-table></app-nested-table>",templatePath:()=>t.e(987).then(t.bind(t,987))}];navigate=(e,n,t)=>{e.preventDefault(),this.router.navigateTo(n,t)};render(){return o.dy`
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[179],{307:function(e,n,t){var i=t(537),o=t.n(i),s=t(645),r=t.n(s),l=t(812),a=r()(o());a.i(l.Z),a.push([e.id,'.container{padding:0 .5rem}.mt-20{margin-top:20px}.mb-20{margin-bottom:20px}.mr-10{margin-right:10px}.d-inline-block{display:inline-block}.d-flex{display:flex}.pointer{cursor:pointer}details[role=menu]{border:none;margin:0;padding:0;position:relative}details[role=menu][open] summary{margin:0}details[role=menu][open] summary::before{position:fixed;top:0;right:0;bottom:0;left:0;z-index:80;display:block;cursor:default;content:" ";background:rgba(0,0,0,0)}details[role=menu] summary{list-style:none}details[role=menu] summary::after{display:none}details[role=menu] summary+ul{list-style:none;position:absolute;top:100%;border:1px solid #ccc;border-radius:4px;background:#fff;box-shadow:rgba(140,149,159,.2) 0px 8px 24px 0px;margin:5px auto;padding:0;display:flex;flex-direction:column;align-items:stretch;min-width:300px;z-index:100}',"",{version:3,sources:["webpack://./src/styles/_external.scss","webpack://./src/styles.scss"],names:[],mappings:"AAEQ,WCCN,eAAA,CAGF,OACE,eAAA,CAGF,OACE,kBAAA,CAGF,OACE,iBAAA,CAGF,gBACE,oBAAA,CAGF,QACE,YAAA,CAGF,SACE,cAAA,CAGF,mBACE,WAAA,CACA,QAAA,CACA,SAAA,CACA,iBAAA,CAEA,iCACE,QAAA,CAEA,yCACE,cAAA,CACA,KAAA,CACA,OAAA,CACA,QAAA,CACA,MAAA,CACA,UAAA,CACA,aAAA,CACA,cAAA,CACA,WAAA,CACA,wBAAA,CAIJ,2BACE,eAAA,CAEA,kCACE,YAAA,CAIJ,8BACE,eAAA,CACA,iBAAA,CACA,QAAA,CACA,qBAAA,CACA,iBAAA,CACA,eAAA,CACA,gDAAA,CACA,eAAA,CACA,SAAA,CACA,YAAA,CACA,qBAAA,CACA,mBAAA,CACA,eAAA,CACA,WAAA",sourcesContent:["// @import \"bulma/bulma.sass\";\n// @import \"bulma-block-list/src/block-list.scss\";\n@import '@picocss/pico/css/pico.min.css';\n//@import url(\"https://cdn.jsdelivr.net/gh/kiranmantha/minimal/minimal.css\");\n//@import './_pico';\n//@import './_simplecss';","@import './styles/external';\n\n.container {\n  padding: 0 0.5rem;\n}\n\n.mt-20 {\n  margin-top: 20px;\n}\n\n.mb-20 {\n  margin-bottom: 20px;\n}\n\n.mr-10 {\n  margin-right: 10px;\n}\n\n.d-inline-block {\n  display: inline-block;\n}\n\n.d-flex {\n  display: flex;\n}\n\n.pointer {\n  cursor: pointer;\n}\n\ndetails[role='menu'] {\n  border: none;\n  margin: 0;\n  padding: 0;\n  position: relative;\n\n  &[open] summary {\n    margin: 0;\n\n    &::before {\n      position: fixed;\n      top: 0;\n      right: 0;\n      bottom: 0;\n      left: 0;\n      z-index: 80;\n      display: block;\n      cursor: default;\n      content: ' ';\n      background: transparent;\n    }\n  }\n\n  summary {\n    list-style: none;\n\n    &::after {\n      display: none;\n    }\n  }\n\n  summary + ul {\n    list-style: none;\n    position: absolute;\n    top: 100%;\n    border: 1px solid #ccc;\n    border-radius: 4px;\n    background: #fff;\n    box-shadow: rgba(140, 149, 159, 0.2) 0px 8px 24px 0px;\n    margin: 5px auto;\n    padding: 0;\n    display: flex;\n    flex-direction: column;\n    align-items: stretch;\n    min-width: 300px;\n    z-index: 100;\n  }\n}\n"],sourceRoot:""}]),n.Z=a},554:function(e,n,t){var i=t(655),o=t(385),s=t(45),r={username:{greet:"my name is {name}"}},l={username:{greet:"je m`appelle {name}"}},a=t(307),g=t(949);let p=class{_defaultLanguage="";setTranslate(e,n){(0,g.setTranslate)(e,n)}setDefaultLanguage(e){this._defaultLanguage=e,(0,g.setDefaultLanguage)(e);const n=new CustomEvent("onLanguageChange");window.dispatchEvent(n)}getCurrentLanguage(){return this._defaultLanguage}};p=(0,i.gn)([(0,o.GS)()],p);let A=class{router;renderer;translations;constructor(e,n,t){this.router=e,this.renderer=n,this.translations=t,s.F.registerRoutes(this.routes,!0),t.setTranslate(r,"en"),t.setTranslate(l,"fr"),t.setDefaultLanguage("en")}translation="en";showNav=!1;routes=[{path:"",redirectTo:"/home"},{path:"/home",template:"<sample-ele></sample-ele>",templatePath:()=>t.e(621).then(t.bind(t,621))},{path:"/controls",template:"<plume-comp></plume-comp>",templatePath:()=>Promise.all([t.e(79),t.e(821)]).then(t.bind(t,821))},{path:"/persons/:id/:name",template:"<persons-list></persons-list>",templatePath:()=>t.e(483).then(t.bind(t,483)),canActivate:()=>!!localStorage.getItem("@plumejs/core")||(this.router.navigateTo("/home"),!1)},{path:"/form",template:"<sample-form></sample-form>",templatePath:()=>Promise.all([t.e(79),t.e(570)]).then(t.bind(t,570))},{path:"/nested-table",template:"<app-nested-table></app-nested-table>",templatePath:()=>t.e(716).then(t.bind(t,716))}];navigate=(e,n,t)=>{e.preventDefault(),this.router.navigateTo(n,t)};render(){return o.dy`
       <div class="layout">
         <header class="layout">
           <nav role="navigation" aria-label="main navigation">
             <ul>
               <li>
-                <a
-                  href="#"
-                  onclick=${e=>{this.navigate(e,"/home")}}
-                >
+                <a href="#/home">
                   <img src="./images/plume-logo.jpg" />
                 </a>
               </li>
             </ul>
             <ul>
               <li>
-                <a
-                  href="#"
-                  onclick=${e=>{this.navigate(e,"/home")}}
-                >
-                  Home
-                </a>
+                <a href="#/home"> Home </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${e=>{this.navigate(e,"/controls",{name:"hello world"})}}
-                >
-                  UI Controls
-                </a>
+                <a href="#/controls"> UI Controls </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${e=>{this.navigate(e,"/persons/123/testuser?a=123")}}
-                >
-                  Persons
-                </a>
+                <a href="#/persons/123/testuser?a=123"> Persons </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${e=>{this.navigate(e,"/form")}}
-                >
-                  Sample Form
-                </a>
+                <a href="#/form"> Sample Form </a>
               </li>
               <li>
-                <a
-                  href="#"
-                  onclick=${e=>{this.navigate(e,"/nested-table")}}
-                >
-                  Nested Table
-                </a>
+                <a href="#/nested-table"> Nested Table </a>
               </li>
               <li>
                 <a href="https://github.com/KiranMantha/plumejs-example-repo/">

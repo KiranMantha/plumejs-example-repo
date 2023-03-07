@@ -6,7 +6,7 @@
     "target": "esnext",
     "moduleResolution": "node",
     "module": "esnext",
-    "lib": ["DOM", "ESNext"],
+    "lib": ["DOM", "ESNext", "DOM.Iterable"],
     "plugins": [
       {
         "transform": "./ast-transformer.js",
