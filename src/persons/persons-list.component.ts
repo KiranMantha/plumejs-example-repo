@@ -13,23 +13,20 @@ class PersonService {
 @Component({
   selector: 'persons-list',
   styles: personListStyles,
-  deps: [PersonService, Router, Renderer]
+  deps: [PersonService, Router]
 })
 export class PersonsList {
   persondetails: any = {};
   users = [];
   personDetailsRef: ComponentRef<PersonDetails>;
 
-  constructor(private personSrvc: PersonService, private router: Router, private renderer: Renderer) {
+  constructor(private personSrvc: PersonService, private router: Router) {
     console.log('current route ', this.router.getCurrentRoute());
   }
 
   mount() {
     this.personSrvc.getPersons().then((data) => {
       this.users = data;
-      setTimeout(() => {
-        this.renderer.update();
-      }, 100);
     });
   }
 

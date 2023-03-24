@@ -2,10 +2,13 @@ import { Component, html, Renderer } from '@plumejs/core';
 
 @Component({
   selector: 'app-editable-table',
-  deps: [Renderer]
+  styles: `
+    td form {
+      display: none;
+    }
+  `
 })
 class EditableTable {
-  constructor(private renderer: Renderer) {}
   users = [];
 
   mount() {
@@ -13,7 +16,7 @@ class EditableTable {
       .then((response) => response.json())
       .then((users) => {
         this.users = users;
-        this.renderer.update();
+        console.log('no renderer');
       });
   }
 
