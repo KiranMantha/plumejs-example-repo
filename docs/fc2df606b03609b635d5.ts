@@ -86,7 +86,12 @@ let AppComponent = class AppComponent {
           <nav role="navigation" aria-label="main navigation">
             <ul>
               <li>
-                <a href="#/home">
+                <a
+                  href="#"
+                  onclick=${(e) => {
+            this.navigate(e, '/home');
+        }}
+                >
                   <img src="./images/plume-logo.jpg" />
                 </a>
               </li>
