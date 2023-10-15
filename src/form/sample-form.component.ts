@@ -1,8 +1,6 @@
 import { Component, ComponentRef, html, IHooks, Renderer, useFormFields, Form, Validators } from '@plumejs/core';
 
-import { IDropdownOptions, IOption, DropdownComponent, registerUIDropdown } from '@plumejs/ui';
-
-registerUIDropdown();
+import { IDropdownOptions, IOption, DropdownComponent } from '@plumejs/ui';
 
 @Component({
   selector: 'sample-form',

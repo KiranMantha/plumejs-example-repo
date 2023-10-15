@@ -8,18 +8,9 @@ import {
   NotificationType,
   IDropdownOptions,
   IOption,
-  DropdownComponent,
-  registerUIModal,
-  registerUINotifications,
-  registerUIToggle,
-  registerUIDropdown
+  DropdownComponent
 } from '@plumejs/ui';
 import { NestedModal } from './nested-modal.component';
-
-registerUIModal();
-registerUINotifications();
-registerUIToggle();
-registerUIDropdown();
 
 @Component({
   selector: 'plume-comp',

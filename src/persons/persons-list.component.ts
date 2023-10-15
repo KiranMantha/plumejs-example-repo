@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, Injectable, Renderer } from '@plumejs/core';
+import { Component, ComponentRef, html, Injectable, Renderer, useSearchParams } from '@plumejs/core';
 import { Router } from '@plumejs/router';
 import { PersonDetails } from './person-details.component';
 import personListStyles from './persons-list.scss';
@@ -19,9 +19,12 @@ export class PersonsList {
   persondetails: any = {};
   users = [];
   personDetailsRef: ComponentRef<PersonDetails>;
+  seachParams = {};
+  updateSearchParams;
 
   constructor(private personSrvc: PersonService, private router: Router) {
     console.log('current route ', this.router.getCurrentRoute());
+    [this.seachParams, this.updateSearchParams] = useSearchParams();
   }
 
   mount() {
@@ -49,9 +52,23 @@ export class PersonsList {
     console.log('data from app-person-details comp: ', person);
   }
 
+  updateUrl() {
+    // const updatedSearchParams = new URLSearchParams(this.seachParams.toString());
+    // updatedSearchParams.set('a', Math.random().toString());
+    // this.updateSearchParams(updatedSearchParams);
+    this.router.navigateTo(`/persons/${Math.random()}/testuser?a=${Math.random()}`);
+  }
+
   render() {
     return html`
       <h4>Sample service injection with http call and passing data to other component</h4>
+      <button
+        onclick=${() => {
+          this.updateUrl();
+        }}
+      >
+        Update url
+      </button>
       Current route data:
       <pre><code>${JSON.stringify(this.loadRouteData(), null, 4)}</code></pre>
       <div class="mt-20 mb-20 content">

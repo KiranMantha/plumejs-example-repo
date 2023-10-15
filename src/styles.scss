@@ -1,5 +1,9 @@
 @import './styles/external';
 
+.navlink.active {
+  --background-color: var(--primary-focus);
+}
+
 .container {
   padding: 0 0.5rem;
 }

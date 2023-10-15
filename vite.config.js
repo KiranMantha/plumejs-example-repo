@@ -2,6 +2,8 @@
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
+import css from "rollup-plugin-import-css";
+
 
 export default defineConfig({
   base: './',
@@ -10,6 +12,7 @@ export default defineConfig({
     sourcemap: false,
     rollupOptions: {
       plugins: [
+        css(),
         viteCompression({
           algorithm: 'brotliCompress',
           ext: '.br'
@@ -26,7 +29,7 @@ export default defineConfig({
   },
   server: {
     host: true,
-    port: 3001,
+    port: 3002,
     open: '/'
   },
   test: {

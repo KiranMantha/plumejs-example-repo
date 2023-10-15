@@ -1,5 +1,5 @@
-import { Component, html, Renderer } from '@plumejs/core';
-import { Route, Router } from '@plumejs/router';
+import { Component, html, Renderer, Subscriptions } from '@plumejs/core';
+import { matchPath, Route, Router } from '@plumejs/router';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
 import globalstyles from './styles.scss';
@@ -12,8 +12,11 @@ import { TranslationService } from './translationService';
   deps: [Router, Renderer, TranslationService]
 })
 export class AppComponent {
+  routePath = '';
+  subscriptions = new Subscriptions();
+
   constructor(private router: Router, private renderer: Renderer, private translations: TranslationService) {
-    Router.registerRoutes(this.routes, true);
+    Router.registerRoutes({ routes: this.routes, preloadAllRoutes: true });
     translations.setTranslate(locale_en, 'en');
     translations.setTranslate(locale_fr, 'fr');
     translations.setDefaultLanguage('en');
@@ -25,7 +28,7 @@ export class AppComponent {
 
   routes: Array<Route> = [
     {
-      path: '',
+      path: '/',
       redirectTo: '/home'
     },
     {
@@ -60,8 +63,26 @@ export class AppComponent {
       path: '/nested-table',
       template: `<app-nested-table></app-nested-table>`,
       templatePath: () => import('./nested-table')
+    },
+    {
+      path: '/experiments',
+      template: `<app-experiments></app-experiments>`,
+      templatePath: () => import('./experiments')
     }
   ];
+
+  beforeMount() {
+    this.subscriptions.add(
+      this.router.onNavigationEnd().subscribe(() => {
+        this.routePath = this.router.getCurrentRoute().path;
+        console.log('routePath', this.routePath);
+      })
+    );
+  }
+
+  setNavActive(path) {
+    return matchPath(path, this.routePath) ? 'active' : '';
+  }
 
   navigate = (e: Event, path: string, state?: Record<string, any>) => {
     e.preventDefault();
@@ -82,19 +103,70 @@ export class AppComponent {
             </ul>
             <ul>
               <li>
-                <a href="#/home"> Home </a>
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/home')}"
+                  onclick=${(e) => {
+                    this.navigate(e, '/home');
+                  }}
+                >
+                  Home
+                </a>
               </li>
               <li>
-                <a href="#/controls"> UI Controls </a>
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/controls')}"
+                  onclick=${(e) => {
+                    this.navigate(e, '/controls');
+                  }}
+                >
+                  UI Controls
+                </a>
               </li>
               <li>
-                <a href="#/persons/123/testuser?a=123"> Persons </a>
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/persons/:id/:name')}"
+                  onclick=${(e) => {
+                    this.navigate(e, '/persons/123/testuser?a=123', { date: new Date() });
+                  }}
+                >
+                  Persons
+                </a>
               </li>
               <li>
-                <a href="#/form"> Sample Form </a>
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/form')}"
+                  onclick=${(e) => {
+                    this.navigate(e, '/form');
+                  }}
+                >
+                  Sample Form
+                </a>
               </li>
               <li>
-                <a href="#/nested-table"> Nested Table </a>
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/nested-table')}"
+                  onclick=${(e) => {
+                    this.navigate(e, '/nested-table');
+                  }}
+                >
+                  Nested Table
+                </a>
+              </li>
+              <li>
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/experiments')}"
+                  onclick=${(e) => {
+                    this.navigate(e, '/experiments');
+                  }}
+                >
+                  Experiments
+                </a>
               </li>
               <li>
                 <a href="https://github.com/KiranMantha/plumejs-example-repo/">
