@@ -5,7 +5,7 @@ import { Component, html, IHooks, Renderer } from '@plumejs/core';
   deps: [Renderer]
 })
 export class TestEle implements IHooks {
-  readonly ObservedProperties = <const>['testprops'];
+  static readonly observedProperties = <const>['testprops'];
   testprops: { name: string };
 
   constructor(private renderer: Renderer) {}

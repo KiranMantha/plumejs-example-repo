@@ -60,12 +60,6 @@ export class SampleForm implements IHooks {
     this.multiSelectChangehandler = this.createChangeHandler('options');
   }
 
-  mount() {
-    this.dropdownRef.setProps({
-      dropdownOptions: this.dropdownOptions
-    });
-  }
-
   submitForm(e: Event) {
     e.preventDefault();
     if (this.sampleform.valid) {
@@ -135,8 +129,8 @@ export class SampleForm implements IHooks {
           <div class="mb-20">
             <label>plumejs multi select</label>
             <ui-dropdown
-              ref=${(node) => {
-                this.dropdownRef = node;
+              data-input=${{
+                dropdownOptions: this.dropdownOptions
               }}
               onoptionselected=${(event) => {
                 this.multiSelectChangehandler({

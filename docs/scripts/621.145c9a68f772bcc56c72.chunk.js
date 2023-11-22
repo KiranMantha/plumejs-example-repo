@@ -41,7 +41,7 @@
         </test-ele>
       </div>
       ${[1,2,3].map((e=>n.dy`<emulated-styles class="color-${e}"></emulated-styles>`))}
-    `}};c=(0,o.gn)([(0,n.wA)({selector:"sample-ele",deps:[i,n.Th]})],c);let p=class{renderer;ObservedProperties=["testprops"];testprops;constructor(e){this.renderer=e}render(){return this.testprops?n.dy`
+    `}};c=(0,o.gn)([(0,n.wA)({selector:"sample-ele",deps:[i,n.Th]})],c);let p=class{renderer;static observedProperties=["testprops"];testprops;constructor(e){this.renderer=e}render(){return this.testprops?n.dy`
         <div>
           testing web component2 ${this.testprops.name}
           <button onclick=${()=>this.counts()}>hi</button>
