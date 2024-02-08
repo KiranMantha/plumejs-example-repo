@@ -5,21 +5,21 @@ import { Component, html, IHooks, Renderer } from '@plumejs/core';
   deps: [Renderer]
 })
 export class PersonDetails implements IHooks {
-  readonly ObservedProperties = <const>['userDetails'];
-  userDetails: { name: string; company: { name: string } };
-
+  static readonly observedProperties = <const>['personDetails'];
   constructor(private renderer: Renderer) {}
 
+  personDetails: { name: string; company: { name: string } };
+
   sendDataToParent() {
-    this.renderer.emitEvent('userclick', this.userDetails);
+    this.renderer.emitEvent('userclick', this.personDetails);
   }
 
   render() {
-    if (this.userDetails && this.userDetails.name) {
+    if (this.personDetails?.name) {
       return html`
         <strong>Person Details</strong>
-        <div>Name: ${this.userDetails.name}</div>
-        <div>Company: ${this.userDetails.company.name}</div>
+        <div>Name: ${this.personDetails.name}</div>
+        <div>Company: ${this.personDetails.company.name}</div>
         <button
           class="button is-info is-light"
           onclick="${() => {

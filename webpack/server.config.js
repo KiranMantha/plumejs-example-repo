@@ -8,7 +8,7 @@ module.exports = merge(baseConfig, {
     static: path.join(__dirname, '../docs'),
     compress: true,
     hot: true,
-    port: 3001,
+    port: 4002,
     open: true,
     historyApiFallback: {
       rewrites: [

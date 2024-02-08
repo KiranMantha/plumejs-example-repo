@@ -1,5 +1,6 @@
 import { Component, html } from '@plumejs/core';
-import { IHooks, InputProps } from '@plumejs/core/dist/src/lib/types';
+import { IHooks } from '@plumejs/core';
+import './editable-table';
 
 interface Category {
   id: number;
@@ -22,7 +23,7 @@ interface Category {
   `
 })
 class RowItem implements IHooks {
-  readonly ObservedProperties = <const>['category'];
+  static readonly observedProperties = <const>['category'];
 
   category: Category;
   nestedRow: HTMLElement;
@@ -129,9 +130,12 @@ export class NestedTable {
           </tr>
         </thead>
         ${this.categories.map((category: Category) => {
-          return html`<app-row-item onbindprops=${(): InputProps<RowItem> => ({ category })}></app-row-item>`;
+          return html`<app-row-item data-input=${{ category }}></app-row-item>`;
         })}
       </table>
+      <br />
+      <br />
+      <app-editable-table></app-editable-table>
     `;
   }
 }

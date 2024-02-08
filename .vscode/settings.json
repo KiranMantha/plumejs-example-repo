@@ -1,5 +1,7 @@
 {
     "liveServer.settings.CustomBrowser": "chrome",
     "liveServer.settings.port": 5501,
-    "liveServer.settings.root": "/docs"
+    "liveServer.settings.root": "/docs",
+    "editor.formatOnSave": true,
+    "editor.formatOnPaste": true
 }

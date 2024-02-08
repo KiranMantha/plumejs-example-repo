@@ -26,6 +26,7 @@ class TestService {
 })
 export class SampleEle {
   test: string;
+  greeting = 'hello world';
   outCount: () => void;
   props: any;
   inputField: HTMLInputElement;
@@ -69,7 +70,6 @@ export class SampleEle {
   count(val: string) {
     this.test = val;
     this.props.name = val;
-    this.renderer.update();
     this.testEleRef.setProps({ testprops: this.props });
   }
 
@@ -92,10 +92,15 @@ export class SampleEle {
         </button>
       </div>
       <div class="mt-20">check translation: ${'username.greet'.translate({ name: 'test user' })}</div>
+      <p>type in below text box and see magic: ${this.greeting}</p>
       <input
         type="text"
         ref=${(node) => {
           this.inputField = node;
+        }}
+        value="${this.greeting}"
+        oninput=${(e) => {
+          this.greeting = e.target.value;
         }}
       />
       <button
