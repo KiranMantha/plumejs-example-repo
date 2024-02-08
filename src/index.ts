@@ -74,8 +74,10 @@ export class AppComponent {
   beforeMount() {
     this.subscriptions.add(
       this.router.onNavigationEnd().subscribe(() => {
-        this.routePath = this.router.getCurrentRoute().path;
-        console.log('routePath', this.routePath);
+        this.router.getCurrentRoute().subscribe((routeInfo) => {
+          this.routePath = routeInfo.path;
+          console.log('routePath', this.routePath);
+        });
       })
     );
   }

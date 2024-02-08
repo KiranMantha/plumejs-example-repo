@@ -14,6 +14,7 @@ export class SampleForm implements IHooks {
   jsonRef: HTMLElement;
   errorsRef: HTMLElement;
   hasErrors = false;
+  isSubmitted = false;
 
   dropdownOptions: IDropdownOptions<string> = {
     options: [
@@ -54,8 +55,8 @@ export class SampleForm implements IHooks {
     this.sampleform = new FormBuilder({
       email: ['', [Validators.required, Validators.pattern(/^[a-z0-9]((\.|\+)?[a-z0-9]){5,}@gmail\.com$/)]],
       password: '',
-      checkme: false,
-      option: '',
+      checkme: true,
+      option: '1',
       options: [[]],
       gender: ''
     });
@@ -69,10 +70,11 @@ export class SampleForm implements IHooks {
     if (this.sampleform.valid) {
       alert('form submitted successfully');
     }
-    console.log(this.sampleform);
+    console.log(this.sampleform.value);
   }
 
   resetForm() {
+    // this.isSubmitted = false;
     this.sampleform.reset();
   }
 

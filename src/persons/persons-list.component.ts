@@ -17,6 +17,7 @@ class PersonService {
 export class PersonsList {
   users = [];
   selectedPerson;
+  routeData;
 
   constructor(private personSrvc: PersonService, private router: Router) {}
 
@@ -24,16 +25,18 @@ export class PersonsList {
     this.personSrvc.getPersons().then((users) => {
       this.users = users;
     });
+    this.loadRouteData();
   }
 
   loadRouteData() {
-    const route = this.router.getCurrentRoute();
-    return {
-      path: route.path,
-      routeParams: Object.fromEntries(route.routeParams),
-      queryParams: Object.fromEntries(route.queryParams),
-      state: route.state
-    };
+    this.router.getCurrentRoute().subscribe((route) => {
+      this.routeData = {
+        path: route.path,
+        routeParams: Object.fromEntries(route.routeParams),
+        queryParams: Object.fromEntries(route.queryParams),
+        state: route.state
+      };
+    });
   }
 
   onUserClick(person) {
@@ -51,7 +54,7 @@ export class PersonsList {
         this.updateUrl();
       }}>Update url</button>
       <p>
-        Current route data: <pre><code>${JSON.stringify(this.loadRouteData(), null, 4)}</code></pre>
+        Current route data: <pre><code>${JSON.stringify(this.routeData, null, 4)}</code></pre>
       </p>
       <ul>
         ${
