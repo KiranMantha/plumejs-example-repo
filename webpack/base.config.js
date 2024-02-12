@@ -62,10 +62,7 @@ module.exports = {
             loader: 'sass-loader',
             options: {
               // Prefer `dart-sass`
-              implementation: require('sass'),
-              sassOptions: {
-                fiber: false
-              }
+              implementation: require('sass')
             }
           }
         ]
