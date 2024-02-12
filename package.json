@@ -29,6 +29,7 @@
   },
   "devDependencies": {
     "@happy-dom/jest-environment": "^13.3.8",
+    "@plumejs/testing": "^4.1.1",
     "@types/jest": "^29.5.12",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "construct-style-sheets-polyfill": "^3.1.0",
