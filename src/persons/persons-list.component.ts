@@ -19,7 +19,10 @@ export class PersonsList {
   selectedPerson;
   routeData;
 
-  constructor(private personSrvc: PersonService, private router: Router) {}
+  constructor(
+    private personSrvc: PersonService,
+    private router: Router
+  ) {}
 
   mount() {
     this.personSrvc.getPersons().then((users) => {

@@ -34,10 +34,10 @@ module.exports = {
       },
       {
         test: /\.m?js/,
-        type: "javascript/auto",
+        type: 'javascript/auto',
         resolve: {
-          fullySpecified: false,
-        },
+          fullySpecified: false
+        }
       },
       {
         test: /\.ts$/,
