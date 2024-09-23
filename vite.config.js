@@ -2,17 +2,18 @@
 import { visualizer } from 'rollup-plugin-visualizer';
 import { defineConfig } from 'vite';
 import viteCompression from 'vite-plugin-compression';
-import css from "rollup-plugin-import-css";
-
+import css from 'rollup-plugin-import-css';
+import compileStyles from './vite-css';
 
 export default defineConfig({
   base: './',
+  plugins: [compileStyles(), css()],
   build: {
     outDir: 'dist',
     sourcemap: false,
     rollupOptions: {
       plugins: [
-        css(),
+        // css(),
         viteCompression({
           algorithm: 'brotliCompress',
           ext: '.br'
@@ -24,7 +25,7 @@ export default defineConfig({
       ]
     },
     output: {
-      entryFileNames: `[name]-[hash].js`,
+      entryFileNames: `[name]-[hash].js`
     }
   },
   server: {

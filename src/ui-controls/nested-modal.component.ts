@@ -1,4 +1,4 @@
-import { Component, html, IHooks } from '@plumejs/core';
+import { Component, html, IHooks, Input, signal } from '@plumejs/core';
 import { IDropdownOptions, IOption, ModalService } from '@plumejs/ui';
 
 @Component({
@@ -6,8 +6,8 @@ import { IDropdownOptions, IOption, ModalService } from '@plumejs/ui';
   deps: [ModalService]
 })
 export class NestedModal implements IHooks {
-  static readonly observedProperties = <const>['nestedModalData'];
-  nestedModalData: { message: string };
+  @Input()
+  nestedModalData = signal<{ message: string }>();
 
   dropdownOptions: IDropdownOptions<string> = {
     options: [
@@ -59,10 +59,10 @@ export class NestedModal implements IHooks {
   }
 
   render() {
-    if (this.nestedModalData) {
+    if (this.nestedModalData()) {
       return html`
         <div>sample modal</div>
-        <div>${this.nestedModalData.message}</div>
+        <div>${this.nestedModalData().message}</div>
         <ui-dropdown
           data-input=${{ dropdownOptions: this.dropdownOptions }}
           onoptionselected=${(event) => {

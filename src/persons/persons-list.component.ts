@@ -1,4 +1,4 @@
-import { Component, html, Injectable } from '@plumejs/core';
+import { Component, html, Injectable, signal } from '@plumejs/core';
 import { Router } from '@plumejs/router';
 import personListStyles from './persons-list.scss';
 
@@ -15,8 +15,8 @@ class PersonService {
   deps: [PersonService, Router]
 })
 export class PersonsList {
-  users = [];
-  selectedPerson;
+  users = signal([]);
+  selectedPerson = signal({});
   routeData;
 
   constructor(
@@ -26,7 +26,7 @@ export class PersonsList {
 
   mount() {
     this.personSrvc.getPersons().then((users) => {
-      this.users = users;
+      this.users.set(users);
     });
     this.loadRouteData();
   }
@@ -61,13 +61,13 @@ export class PersonsList {
       </p>
       <ul>
         ${
-          this.users.length
-            ? this.users.map((user) => {
+          this.users().length
+            ? this.users().map((user) => {
                 return html`
                   <li
                     class="is-clickable"
                     onclick="${() => {
-                      this.selectedPerson = user;
+                      this.selectedPerson.set(user);
                     }}"
                   >
                     ${user.name}
@@ -78,7 +78,7 @@ export class PersonsList {
         }
       </ul>
       <person-details
-        data-input=${{ personDetails: this.selectedPerson }}
+        data-input=${{ personDetails: this.selectedPerson() }}
         onuserclick="${(e) => {
           this.onUserClick(e.detail);
         }}"

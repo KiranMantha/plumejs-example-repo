@@ -41,11 +41,11 @@ export class AppComponent {
       template: `<sample-ele></sample-ele>`,
       templatePath: () => import('./home')
     },
-    {
-      path: '/controls',
-      template: `<plume-comp></plume-comp>`,
-      templatePath: () => import('./ui-controls')
-    },
+    // {
+    //   path: '/controls',
+    //   template: `<plume-comp></plume-comp>`,
+    //   templatePath: () => import('./ui-controls')
+    // },
     {
       path: '/persons/:id/:name',
       template: `<persons-list></persons-list>`,
