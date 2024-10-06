@@ -1,4 +1,4 @@
-import { Component, ComponentRef, html, Injectable, Renderer } from '@plumejs/core';
+import { Component, ComponentRef, html, Injectable, Renderer, signal } from '@plumejs/core';
 import { TestEle } from './test-ele.component';
 
 @Injectable()
@@ -26,14 +26,17 @@ class TestService {
 })
 export class SampleEle {
   test: string;
-  greeting = 'hello world';
+  greeting = signal('hello world');
   outCount: () => void;
   props: any;
   inputField: HTMLInputElement;
 
   private testEleRef: ComponentRef<TestEle>;
 
-  constructor(private testSrvc: TestService, private renderer: Renderer) {
+  constructor(
+    private testSrvc: TestService,
+    private renderer: Renderer
+  ) {
     this.test = 'sample 123';
     this.props = {
       name: this.test
@@ -92,15 +95,15 @@ export class SampleEle {
         </button>
       </div>
       <div class="mt-20">check translation: ${'username.greet'.translate({ name: 'test user' })}</div>
-      <p>type in below text box and see magic: ${this.greeting}</p>
+      <p>type in below text box and see magic: ${this.greeting()}</p>
       <input
         type="text"
         ref=${(node) => {
           this.inputField = node;
         }}
-        value="${this.greeting}"
+        value="${this.greeting()}"
         oninput=${(e) => {
-          this.greeting = e.target.value;
+          this.greeting.set(e.target.value);
         }}
       />
       <button
