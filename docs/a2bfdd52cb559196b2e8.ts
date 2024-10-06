@@ -32,11 +32,11 @@ let AppComponent = class AppComponent {
             template: `<sample-ele></sample-ele>`,
             templatePath: () => import('./home')
         },
-        // {
-        //   path: '/controls',
-        //   template: `<plume-comp></plume-comp>`,
-        //   templatePath: () => import('./ui-controls')
-        // },
+        {
+            path: '/controls',
+            template: `<plume-comp></plume-comp>`,
+            templatePath: () => import('./ui-controls')
+        },
         {
             path: '/persons/:id/:name',
             template: `<persons-list></persons-list>`,
@@ -63,7 +63,14 @@ let AppComponent = class AppComponent {
         {
             path: '/experiments',
             template: `<app-experiments></app-experiments>`,
-            templatePath: () => import('./experiments')
+            templatePath: () => import('./experiments'),
+            children: [
+                {
+                    path: '/*',
+                    template: '<app-slug></app-slug>',
+                    templatePath: () => import('./experiments/slug')
+                }
+            ]
         }
     ];
     beforeMount() {
@@ -164,6 +171,17 @@ let AppComponent = class AppComponent {
                 >
                   Experiments
                 </a>
+              </li>
+              <li role="menuitem">
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive('/experiments/*')}"
+                  onclick=${(e) => this.navigate(e, '/experiments/abc/123')}
+                  >Dynaic Route</a
+                >
+              </li>
+              <li>
+                <a href="#" class="navlink" onclick=${(e) => this.navigate(e, '/404')}>404 Page</a>
               </li>
               <li>
                 <a href="https://github.com/KiranMantha/plumejs-example-repo/">

@@ -33,12 +33,7 @@ export class PersonsList {
 
   loadRouteData() {
     this.router.getCurrentRoute().subscribe((route) => {
-      this.routeData = {
-        path: route.path,
-        routeParams: Object.fromEntries(route.routeParams),
-        queryParams: Object.fromEntries(route.queryParams),
-        state: route.state
-      };
+      this.routeData = route;
     });
   }
 

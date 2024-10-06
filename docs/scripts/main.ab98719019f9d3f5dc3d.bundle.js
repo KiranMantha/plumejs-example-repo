@@ -1,4 +1,4 @@
-"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[792],{986:function(e,t,a){var s=a(674),n=a(968),i=a(766),l={username:{greet:"my name is {name}"}},r={username:{greet:"je m`appelle {name}"}},o=a(68);let h=class{_defaultLanguage="";setTranslate(e,t){(0,o.setTranslate)(e,t)}setDefaultLanguage(e){this._defaultLanguage=e,(0,o.setDefaultLanguage)(e);const t=new CustomEvent("onLanguageChange");window.dispatchEvent(t)}getCurrentLanguage(){return this._defaultLanguage}};h=(0,s.Cg)([(0,n._q)()],h);const u=Promise.all([a.e(343),a.e(417),a.e(747)]).then(a.bind(a,747));let c=class{router;renderer;translations;routePath="";subscriptions=new n.zr;constructor(e,t,a){this.router=e,this.renderer=t,this.translations=a,i.I.registerRoutes({routes:this.routes,preloadAllRoutes:!0}),a.setTranslate(l,"en"),a.setTranslate(r,"fr"),a.setDefaultLanguage("en")}translation="en";showNav=!1;routes=[{path:"/",redirectTo:"/home"},{path:"/home",template:"<sample-ele></sample-ele>",templatePath:()=>a.e(325).then(a.bind(a,325))},{path:"/persons/:id/:name",template:"<persons-list></persons-list>",templatePath:()=>Promise.all([a.e(343),a.e(468)]).then(a.bind(a,468)),canActivate:()=>!!localStorage.getItem("@plumejs/core")||(this.router.navigateTo("/home"),!1)},{path:"/form",template:"<sample-form></sample-form>",templatePath:()=>Promise.all([a.e(632),a.e(541)]).then(a.bind(a,541))},{path:"/nested-table",template:"<app-nested-table></app-nested-table>",templatePath:()=>a.e(270).then(a.bind(a,270))},{path:"/experiments",template:"<app-experiments></app-experiments>",templatePath:()=>a.e(608).then(a.bind(a,608))}];beforeMount(){this.subscriptions.add(this.router.onNavigationEnd().subscribe((()=>{this.router.getCurrentRoute().subscribe((e=>{this.routePath=e.path,console.log("routePath",this.routePath)}))})))}setNavActive(e){return(0,i.B)(e,this.routePath)?"active":""}navigate=(e,t,a)=>{e.preventDefault(),this.router.navigateTo(t,a)};render(){return n.qy`
+"use strict";(self.webpackChunkplumejs_example_repo=self.webpackChunkplumejs_example_repo||[]).push([[792],{986:function(e,t,a){var s=a(674),n=a(968),i=a(766),l={username:{greet:"my name is {name}"}},r={username:{greet:"je m`appelle {name}"}},o=a(68);let h=class{_defaultLanguage="";setTranslate(e,t){(0,o.setTranslate)(e,t)}setDefaultLanguage(e){this._defaultLanguage=e,(0,o.setDefaultLanguage)(e);const t=new CustomEvent("onLanguageChange");window.dispatchEvent(t)}getCurrentLanguage(){return this._defaultLanguage}};h=(0,s.Cg)([(0,n._q)()],h);const c=Promise.all([a.e(343),a.e(107),a.e(747)]).then(a.bind(a,747));let p=class{router;renderer;translations;routePath="";subscriptions=new n.zr;constructor(e,t,a){this.router=e,this.renderer=t,this.translations=a,i.I.registerRoutes({routes:this.routes,preloadAllRoutes:!0}),a.setTranslate(l,"en"),a.setTranslate(r,"fr"),a.setDefaultLanguage("en")}translation="en";showNav=!1;routes=[{path:"/",redirectTo:"/home"},{path:"/home",template:"<sample-ele></sample-ele>",templatePath:()=>a.e(325).then(a.bind(a,325))},{path:"/controls",template:"<plume-comp></plume-comp>",templatePath:()=>Promise.all([a.e(343),a.e(107),a.e(353),a.e(748)]).then(a.bind(a,748))},{path:"/persons/:id/:name",template:"<persons-list></persons-list>",templatePath:()=>Promise.all([a.e(343),a.e(468)]).then(a.bind(a,468)),canActivate:()=>!!localStorage.getItem("@plumejs/core")||(this.router.navigateTo("/home"),!1)},{path:"/form",template:"<sample-form></sample-form>",templatePath:()=>Promise.all([a.e(632),a.e(541)]).then(a.bind(a,541))},{path:"/nested-table",template:"<app-nested-table></app-nested-table>",templatePath:()=>a.e(270).then(a.bind(a,270))},{path:"/experiments",template:"<app-experiments></app-experiments>",templatePath:()=>a.e(608).then(a.bind(a,608)),children:[{path:"/*",template:"<app-slug></app-slug>",templatePath:()=>a.e(861).then(a.bind(a,861))}]}];beforeMount(){this.subscriptions.add(this.router.onNavigationEnd().subscribe((()=>{this.router.getCurrentRoute().subscribe((e=>{this.routePath=e.path,console.log("routePath",this.routePath)}))})))}setNavActive(e){return(0,i.B)(e,this.routePath)?"active":""}navigate=(e,t,a)=>{e.preventDefault(),this.router.navigateTo(t,a)};render(){return n.qy`
       <div class="layout">
         <header class="layout">
           <nav role="navigation" aria-label="main navigation">
@@ -67,6 +67,17 @@
                   Experiments
                 </a>
               </li>
+              <li role="menuitem">
+                <a
+                  href="#"
+                  class="navlink ${this.setNavActive("/experiments/*")}"
+                  onclick=${e=>this.navigate(e,"/experiments/abc/123")}
+                  >Dynaic Route</a
+                >
+              </li>
+              <li>
+                <a href="#" class="navlink" onclick=${e=>this.navigate(e,"/404")}>404 Page</a>
+              </li>
               <li>
                 <a href="https://github.com/KiranMantha/plumejs-example-repo/">
                   Source code
@@ -95,5 +106,5 @@
           <router-outlet></router-outlet>
         </main>
       </div>
-    `}};c=(0,s.Cg)([(0,n.uA)({selector:"app-root",styles:u,root:!0,deps:[i.I,n.A4,h]})],c)}},function(e){e.O(0,[766,968,125],(function(){return 986,e(e.s=986)})),e.O()}]);
+    `}};p=(0,s.Cg)([(0,n.uA)({selector:"app-root",styles:c,root:!0,deps:[i.I,n.A4,h]})],p)}},function(e){e.O(0,[766,968,125],(function(){return 986,e(e.s=986)})),e.O()}]);
 //# sourceMappingURL=../sourcemaps/main.js.map
