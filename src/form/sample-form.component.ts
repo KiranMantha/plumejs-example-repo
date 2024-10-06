@@ -9,7 +9,6 @@ import { IDropdownOptions, IOption, DropdownComponent } from '@plumejs/ui';
 })
 export class SampleForm implements IHooks {
   sampleform: FormBuilder;
-  createChangeHandler: (key: string) => (e: Event) => void;
   multiSelectChangehandler: (e: any) => void;
   jsonRef: HTMLElement;
   errorsRef: HTMLElement;
@@ -60,8 +59,7 @@ export class SampleForm implements IHooks {
       options: [[]],
       gender: ''
     });
-    this.createChangeHandler = this.sampleform.changeHandler;
-    this.multiSelectChangehandler = this.createChangeHandler('options');
+    this.multiSelectChangehandler = this.sampleform.register('options').attrs.onchange;
   }
 
   submitForm(e: Event) {
@@ -76,6 +74,12 @@ export class SampleForm implements IHooks {
   resetForm() {
     // this.isSubmitted = false;
     this.sampleform.reset();
+  }
+
+  registerWithoutValue(controlName: string) {
+    const attrObj = this.sampleform.register(controlName);
+    delete attrObj.attrs.value;
+    return attrObj;
   }
 
   render() {
@@ -93,8 +97,7 @@ export class SampleForm implements IHooks {
               id="exampleInputEmail1"
               aria-describedby="emailHelp"
               placeholder="Enter gmail id"
-              value=${this.sampleform.getControl('email').value}
-              oninput=${this.createChangeHandler('email')}
+              ${this.sampleform.register('email')}
             />
             <small id="emailHelp"> We'll never share your email with anyone else. </small>
           </div>
@@ -104,8 +107,7 @@ export class SampleForm implements IHooks {
               type="password"
               id="exampleInputPassword1"
               placeholder="Password"
-              value=${this.sampleform.getControl('password').value}
-              oninput=${this.createChangeHandler('password')}
+              ${this.sampleform.register('password')}
             />
           </div>
           <div>
@@ -113,15 +115,15 @@ export class SampleForm implements IHooks {
               <input
                 type="checkbox"
                 id="exampleCheck1"
+                ${this.registerWithoutValue('checkme')}
                 checked=${this.sampleform.getControl('checkme').value}
-                onchange=${this.createChangeHandler('checkme')}
               />
               Check me out
             </label>
           </div>
           <div>
             <label>single select</label>
-            <select value=${this.sampleform.getControl('option').value} onchange=${this.createChangeHandler('option')}>
+            <select ${this.sampleform.register('option')}>
               <option>select</option>
               <option value="1">1</option>
               <option value="2">2</option>
@@ -146,13 +148,7 @@ export class SampleForm implements IHooks {
           </div>
           <div class="mb-20">
             <label for="gender_male">
-              <input
-                type="radio"
-                id="gender_male"
-                name="gender"
-                value="male"
-                onchange=${this.createChangeHandler('gender')}
-              />
+              <input type="radio" id="gender_male" name="gender" value="male" ${this.registerWithoutValue('gender')} />
               Male
             </label>
             <label for="gender_female">
@@ -161,7 +157,7 @@ export class SampleForm implements IHooks {
                 id="gender_female"
                 name="gender"
                 value="female"
-                onchange=${this.createChangeHandler('gender')}
+                ${this.registerWithoutValue('gender')}
               />
               Female
             </label>

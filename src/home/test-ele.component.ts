@@ -1,11 +1,11 @@
-import { Component, html, IHooks, Renderer } from '@plumejs/core';
+import { Component, html, IHooks, Input, Renderer } from '@plumejs/core';
 
 @Component({
   selector: 'test-ele',
   deps: [Renderer]
 })
 export class TestEle implements IHooks {
-  static readonly observedProperties = <const>['testprops'];
+  @Input()
   testprops: { name: string };
 
   constructor(private renderer: Renderer) {}

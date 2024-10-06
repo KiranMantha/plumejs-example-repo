@@ -1,4 +1,4 @@
-import { Component, html, Renderer } from '@plumejs/core';
+import { Component, html, Renderer, signal } from '@plumejs/core';
 
 @Component({
   selector: 'app-editable-table',
@@ -9,14 +9,13 @@ import { Component, html, Renderer } from '@plumejs/core';
   `
 })
 class EditableTable {
-  users = [];
+  users = signal([]);
 
   mount() {
     fetch('https://jsonplaceholder.typicode.com/users')
       .then((response) => response.json())
       .then((users) => {
-        this.users = users;
-        console.log('no renderer');
+        this.users.set(users);
       });
   }
 
@@ -27,13 +26,15 @@ class EditableTable {
   }
 
   render() {
-    if (!this.users.length) {
+    if (!this.users().length) {
       return html`Loading`;
     }
 
     return html`
       <table class="table-bordered">
-        <caption>Editable table. Edit any row, click on save and check console</caption>
+        <caption>
+          Editable table. Edit any row, click on save and check console
+        </caption>
         <thead>
           <tr>
             <th>Name</th>
@@ -42,24 +43,23 @@ class EditableTable {
           </tr>
         </thead>
         <tbody>
-          ${this.users.map(({ id, name, email }) => {
+          ${this.users().map(({ id, name, email }) => {
             return html`
-            <tr>
-              <td>
-                <form method="GET" id="inline-form-${id}" onsubmit=${this.onFormSubmit}></form>
-                <input type='hidden' name='id' value='${id}' form='inline-form-${id}'/>
-                <input type='text' name='username' value='${name}' form='inline-form-${id}'/>
+              <tr>
+                <td>
+                  <form method="GET" id="inline-form-${id}" onsubmit=${this.onFormSubmit}></form>
+                  <input type="hidden" name="id" value="${id}" form="inline-form-${id}" />
+                  <input type="text" name="username" value="${name}" form="inline-form-${id}" />
                 </td>
-              <td>
-                <input type='text' name='email' value='${email}' form='inline-form-${id}'/>
-              </td>
-              <td>
-                <button form='inline-form-${id}'>save</button>
-              </td>
-            </tr>
-        `;
+                <td>
+                  <input type="text" name="email" value="${email}" form="inline-form-${id}" />
+                </td>
+                <td>
+                  <button form="inline-form-${id}">save</button>
+                </td>
+              </tr>
+            `;
           })}
-          
         </tbody>
       </table>
     `;

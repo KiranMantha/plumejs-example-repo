@@ -1,110 +1,95 @@
+import { __decorate } from "tslib";
 import { Component, html, Renderer, Subscriptions } from '@plumejs/core';
-import { matchPath, Route, Router } from '@plumejs/router';
+import { matchPath, Router } from '@plumejs/router';
 import locale_en from './i18n/en';
 import locale_fr from './i18n/fr';
 import { TranslationService } from './translationService';
-
 const globalstyles = import('./styles.scss');
-
-@Component({
-  selector: 'app-root',
-  styles: globalstyles,
-  root: true,
-  deps: [Router, Renderer, TranslationService]
-})
-export class AppComponent {
-  routePath = '';
-  subscriptions = new Subscriptions();
-
-  constructor(
-    private router: Router,
-    private renderer: Renderer,
-    private translations: TranslationService
-  ) {
-    Router.registerRoutes({ routes: this.routes, preloadAllRoutes: true });
-    translations.setTranslate(locale_en, 'en');
-    translations.setTranslate(locale_fr, 'fr');
-    translations.setDefaultLanguage('en');
-  }
-
-  translation = 'en';
-
-  showNav = false;
-
-  routes: Array<Route> = [
-    {
-      path: '/',
-      redirectTo: '/home'
-    },
-    {
-      path: '/home',
-      template: `<sample-ele></sample-ele>`,
-      templatePath: () => import('./home')
-    },
-    {
-      path: '/controls',
-      template: `<plume-comp></plume-comp>`,
-      templatePath: () => import('./ui-controls')
-    },
-    {
-      path: '/persons/:id/:name',
-      template: `<persons-list></persons-list>`,
-      templatePath: () => import('./persons'),
-      canActivate: () => {
-        const key = localStorage.getItem('@plumejs/core');
-        if (!key) {
-          this.router.navigateTo('/home');
-          return false;
-        }
-        return true;
-      }
-    },
-    {
-      path: '/form',
-      template: `<sample-form></sample-form>`,
-      templatePath: () => import('./form')
-    },
-    {
-      path: '/nested-table',
-      template: `<app-nested-table></app-nested-table>`,
-      templatePath: () => import('./nested-table')
-    },
-    {
-      path: '/experiments',
-      template: `<app-experiments></app-experiments>`,
-      templatePath: () => import('./experiments'),
-      children: [
-        {
-          path: '/*',
-          template: '<app-slug></app-slug>',
-          templatePath: () => import('./experiments/slug')
-        }
-      ]
+let AppComponent = class AppComponent {
+    router;
+    renderer;
+    translations;
+    routePath = '';
+    subscriptions = new Subscriptions();
+    constructor(router, renderer, translations) {
+        this.router = router;
+        this.renderer = renderer;
+        this.translations = translations;
+        Router.registerRoutes({ routes: this.routes, preloadAllRoutes: true });
+        translations.setTranslate(locale_en, 'en');
+        translations.setTranslate(locale_fr, 'fr');
+        translations.setDefaultLanguage('en');
     }
-  ];
-
-  beforeMount() {
-    this.subscriptions.add(
-      this.router.onNavigationEnd().subscribe(() => {
-        this.router.getCurrentRoute().subscribe((routeInfo) => {
-          this.routePath = routeInfo.path;
-          console.log('routePath', this.routePath);
-        });
-      })
-    );
-  }
-
-  setNavActive(path) {
-    return matchPath(path, this.routePath) ? 'active' : '';
-  }
-
-  navigate = (e: Event, path: string, state?: Record<string, any>) => {
-    e.preventDefault();
-    this.router.navigateTo(path, state);
-  };
-
-  render() {
-    return html`
+    translation = 'en';
+    showNav = false;
+    routes = [
+        {
+            path: '/',
+            redirectTo: '/home'
+        },
+        {
+            path: '/home',
+            template: `<sample-ele></sample-ele>`,
+            templatePath: () => import('./home')
+        },
+        {
+            path: '/controls',
+            template: `<plume-comp></plume-comp>`,
+            templatePath: () => import('./ui-controls')
+        },
+        {
+            path: '/persons/:id/:name',
+            template: `<persons-list></persons-list>`,
+            templatePath: () => import('./persons'),
+            canActivate: () => {
+                const key = localStorage.getItem('@plumejs/core');
+                if (!key) {
+                    this.router.navigateTo('/home');
+                    return false;
+                }
+                return true;
+            }
+        },
+        {
+            path: '/form',
+            template: `<sample-form></sample-form>`,
+            templatePath: () => import('./form')
+        },
+        {
+            path: '/nested-table',
+            template: `<app-nested-table></app-nested-table>`,
+            templatePath: () => import('./nested-table')
+        },
+        {
+            path: '/experiments',
+            template: `<app-experiments></app-experiments>`,
+            templatePath: () => import('./experiments'),
+            children: [
+                {
+                    path: '/*',
+                    template: '<app-slug></app-slug>',
+                    templatePath: () => import('./experiments/slug')
+                }
+            ]
+        }
+    ];
+    beforeMount() {
+        this.subscriptions.add(this.router.onNavigationEnd().subscribe(() => {
+            this.router.getCurrentRoute().subscribe((routeInfo) => {
+                this.routePath = routeInfo.path;
+                console.log('routePath', this.routePath);
+            });
+        }));
+    }
+    setNavActive(path) {
+        return matchPath(path, this.routePath) ? 'active' : '';
+    }
+    navigate = (e, path, state) => {
+        e.preventDefault();
+        this.router.navigateTo(path, state);
+    };
+    render() {
+        return html `
       <div class="layout">
         <header class="layout">
           <nav role="navigation" aria-label="main navigation">
@@ -113,8 +98,8 @@ export class AppComponent {
                 <a
                   href="#"
                   onclick=${(e) => {
-                    this.navigate(e, '/home');
-                  }}
+            this.navigate(e, '/home');
+        }}
                 >
                   <img src="./images/plume-logo.jpg" />
                 </a>
@@ -126,8 +111,8 @@ export class AppComponent {
                   href="#"
                   class="navlink ${this.setNavActive('/home')}"
                   onclick=${(e) => {
-                    this.navigate(e, '/home');
-                  }}
+            this.navigate(e, '/home');
+        }}
                 >
                   Home
                 </a>
@@ -137,8 +122,8 @@ export class AppComponent {
                   href="#"
                   class="navlink ${this.setNavActive('/controls')}"
                   onclick=${(e) => {
-                    this.navigate(e, '/controls');
-                  }}
+            this.navigate(e, '/controls');
+        }}
                 >
                   UI Controls
                 </a>
@@ -148,8 +133,8 @@ export class AppComponent {
                   href="#"
                   class="navlink ${this.setNavActive('/persons/:id/:name')}"
                   onclick=${(e) => {
-                    this.navigate(e, '/persons/123/testuser?a=123', { date: new Date() });
-                  }}
+            this.navigate(e, '/persons/123/testuser?a=123', { date: new Date() });
+        }}
                 >
                   Persons
                 </a>
@@ -159,8 +144,8 @@ export class AppComponent {
                   href="#"
                   class="navlink ${this.setNavActive('/form')}"
                   onclick=${(e) => {
-                    this.navigate(e, '/form');
-                  }}
+            this.navigate(e, '/form');
+        }}
                 >
                   Sample Form
                 </a>
@@ -170,8 +155,8 @@ export class AppComponent {
                   href="#"
                   class="navlink ${this.setNavActive('/nested-table')}"
                   onclick=${(e) => {
-                    this.navigate(e, '/nested-table');
-                  }}
+            this.navigate(e, '/nested-table');
+        }}
                 >
                   Nested Table
                 </a>
@@ -181,8 +166,8 @@ export class AppComponent {
                   href="#"
                   class="navlink ${this.setNavActive('/experiments')}"
                   onclick=${(e) => {
-                    this.navigate(e, '/experiments');
-                  }}
+            this.navigate(e, '/experiments');
+        }}
                 >
                   Experiments
                 </a>
@@ -227,5 +212,14 @@ export class AppComponent {
         </main>
       </div>
     `;
-  }
-}
+    }
+};
+AppComponent = __decorate([
+    Component({
+        selector: 'app-root',
+        styles: globalstyles,
+        root: true,
+        deps: [Router, Renderer, TranslationService]
+    })
+], AppComponent);
+export { AppComponent };

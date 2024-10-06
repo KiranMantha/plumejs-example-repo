@@ -1,4 +1,4 @@
-import { Component, html } from '@plumejs/core';
+import { Component, html, Input, signal } from '@plumejs/core';
 import { IHooks } from '@plumejs/core';
 import './editable-table';
 
@@ -14,18 +14,19 @@ interface Category {
 
 @Component({
   selector: 'app-row-item',
-  styles: `:host {
+  styles: `
+    :host {
       display: table-row-group;
-  }
-  .hide-row {
+    }
+    .hide-row {
       display: none;
-  }
+    }
   `
 })
 class RowItem implements IHooks {
-  static readonly observedProperties = <const>['category'];
+  @Input()
+  category = signal<Category>();
 
-  category: Category;
   nestedRow: HTMLElement;
 
   toggleNestedTable() {
@@ -33,8 +34,8 @@ class RowItem implements IHooks {
   }
 
   populateNestedTable() {
-    if (this.category.questions.length) {
-      return this.category.questions.map((question) => {
+    if (this.category().questions.length) {
+      return this.category().questions.map((question) => {
         return html`<tr>
           <td>${question.id}</td>
           <td>${question.name}</td>
@@ -49,11 +50,11 @@ class RowItem implements IHooks {
   }
 
   render() {
-    if (this.category) {
+    if (this.category()) {
       return html`
         <tr>
-          <td>${this.category.id}</td>
-          <td>${this.category.name}</td>
+          <td>${this.category().id}</td>
+          <td>${this.category().name}</td>
           <td>
             <button
               onclick=${() => {
